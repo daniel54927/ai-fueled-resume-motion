@@ -1,12 +1,40 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect } from 'react';
+import Header from '../components/Header';
+import Hero from '../components/Hero';
+import About from '../components/About';
+import Experience from '../components/Experience';
+import Skills from '../components/Skills';
+import Contact from '../components/Contact';
+import ParticleBackground from '../components/ParticleBackground';
+import ScrollProgress from '../components/ScrollProgress';
 
 const Index = () => {
+  useEffect(() => {
+    document.title = "Daniel C. Brown - IT Systems Administrator & Cybersecurity Specialist";
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <ScrollProgress />
+      <ParticleBackground />
+      <Header />
+      
+      <main>
+        <Hero />
+        <About />
+        <Experience />
+        <Skills />
+        <Contact />
+      </main>
+      
+      <footer className="py-8 bg-gray-50 border-t border-gray-100">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-muted-foreground text-sm">
+            &copy; {new Date().getFullYear()} Daniel C. Brown. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
