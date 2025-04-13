@@ -67,42 +67,42 @@ const Contact = () => {
             
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="bg-tech-blue/10 p-3 rounded-full mr-4">
-                  <Mail className="h-6 w-6 text-tech-blue" />
+                <div className="bg-tech-blue/10 dark:bg-tech-blue/30 p-3 rounded-full mr-4">
+                  <Mail className="h-6 w-6 text-tech-blue dark:text-white" />
                 </div>
                 <div>
                   <h4 className="font-medium">Email</h4>
-                  <a href="mailto:daniel.brown@deepfrog.app" className="text-tech-blue hover:underline">
+                  <a href="mailto:daniel.brown@deepfrog.app" className="text-tech-blue hover:underline dark:text-tech-blue">
                     daniel.brown@deepfrog.app
                   </a>
                 </div>
               </div>
               
               <div className="flex items-start">
-                <div className="bg-tech-blue/10 p-3 rounded-full mr-4">
-                  <Phone className="h-6 w-6 text-tech-blue" />
+                <div className="bg-tech-blue/10 dark:bg-tech-blue/30 p-3 rounded-full mr-4">
+                  <Phone className="h-6 w-6 text-tech-blue dark:text-white" />
                 </div>
                 <div>
                   <h4 className="font-medium">Phone</h4>
-                  <a href="tel:+18474547221" className="text-tech-blue hover:underline">
+                  <a href="tel:+18474547221" className="text-tech-blue hover:underline dark:text-tech-blue">
                     (847) 454-7221
                   </a>
                 </div>
               </div>
               
               <div className="flex items-start">
-                <div className="bg-tech-blue/10 p-3 rounded-full mr-4">
-                  <MapPin className="h-6 w-6 text-tech-blue" />
+                <div className="bg-tech-blue/10 dark:bg-tech-blue/30 p-3 rounded-full mr-4">
+                  <MapPin className="h-6 w-6 text-tech-blue dark:text-white" />
                 </div>
                 <div>
                   <h4 className="font-medium">Location</h4>
-                  <p>Waukegan, IL 60085</p>
+                  <p className="dark:text-gray-200">Waukegan, IL 60085</p>
                 </div>
               </div>
               
               <div className="flex items-start">
-                <div className="bg-tech-blue/10 p-3 rounded-full mr-4">
-                  <Linkedin className="h-6 w-6 text-tech-blue" />
+                <div className="bg-tech-blue/10 dark:bg-tech-blue/30 p-3 rounded-full mr-4">
+                  <Linkedin className="h-6 w-6 text-tech-blue dark:text-white" />
                 </div>
                 <div>
                   <h4 className="font-medium">LinkedIn</h4>
@@ -110,7 +110,7 @@ const Contact = () => {
                     href="https://www.linkedin.com/in/daniel-charles-brown/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-tech-blue hover:underline"
+                    className="text-tech-blue hover:underline dark:text-tech-blue"
                   >
                     daniel-charles-brown
                   </a>
@@ -128,7 +128,7 @@ const Contact = () => {
                 <input
                   type="text"
                   id="name"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue dark:bg-tech-dark/50 dark:border-gray-700"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue dark:bg-tech-dark/80 dark:border-gray-700 dark:text-white"
                   required
                 />
               </div>
@@ -140,7 +140,7 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue dark:bg-tech-dark/50 dark:border-gray-700"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue dark:bg-tech-dark/80 dark:border-gray-700 dark:text-white"
                   required
                 />
               </div>
@@ -152,7 +152,7 @@ const Contact = () => {
                 <textarea
                   id="message"
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue dark:bg-tech-dark/50 dark:border-gray-700"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue dark:bg-tech-dark/80 dark:border-gray-700 dark:text-white"
                   required
                 ></textarea>
               </div>
@@ -164,19 +164,19 @@ const Contact = () => {
                   formStatus === 'submitting' 
                     ? 'bg-tech-blue/70 dark:bg-tech-purple/70 cursor-not-allowed' 
                     : 'bg-tech-blue dark:bg-tech-purple hover:bg-tech-blue/90 dark:hover:bg-tech-purple/90'
-                }`}
+                } font-medium`}
               >
                 {formStatus === 'submitting' ? 'Sending...' : 'Send Message'}
               </button>
               
               {formStatus === 'success' && (
-                <div className="p-4 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-lg">
+                <div className="p-4 bg-green-50 dark:bg-green-900/50 text-green-700 dark:text-green-300 rounded-lg">
                   Your message has been sent successfully!
                 </div>
               )}
               
               {formStatus === 'error' && (
-                <div className="p-4 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-lg">
+                <div className="p-4 bg-red-50 dark:bg-red-900/50 text-red-700 dark:text-red-300 rounded-lg">
                   There was an error sending your message. Please try again.
                 </div>
               )}

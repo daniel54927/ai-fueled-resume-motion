@@ -34,7 +34,7 @@ const About = () => {
   }, []);
   
   return (
-    <section id="about" ref={sectionRef} className="py-24 bg-gradient-to-b from-white to-gray-50">
+    <section id="about" ref={sectionRef} className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-tech-dark dark:to-tech-dark">
       <div className="section-container">
         <div className="mb-12 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-underline">About Me</h2>
@@ -61,7 +61,7 @@ const About = () => {
           </div>
           
           <div className="grid grid-cols-2 gap-6">
-            <AnimatedCard className="p-6">
+            <AnimatedCard className="p-6 dark:bg-tech-dark/50">
               <Cpu className="h-10 w-10 text-tech-blue mb-4" />
               <h4 className="text-xl font-semibold mb-2">AI Automation</h4>
               <p className="text-sm text-muted-foreground">
@@ -69,7 +69,7 @@ const About = () => {
               </p>
             </AnimatedCard>
             
-            <AnimatedCard className="p-6">
+            <AnimatedCard className="p-6 dark:bg-tech-dark/50">
               <Lock className="h-10 w-10 text-tech-purple mb-4" />
               <h4 className="text-xl font-semibold mb-2">Cybersecurity</h4>
               <p className="text-sm text-muted-foreground">
@@ -77,7 +77,7 @@ const About = () => {
               </p>
             </AnimatedCard>
             
-            <AnimatedCard className="p-6">
+            <AnimatedCard className="p-6 dark:bg-tech-dark/50">
               <Server className="h-10 w-10 text-tech-blue mb-4" />
               <h4 className="text-xl font-semibold mb-2">Systems Admin</h4>
               <p className="text-sm text-muted-foreground">
@@ -85,7 +85,7 @@ const About = () => {
               </p>
             </AnimatedCard>
             
-            <AnimatedCard className="p-6">
+            <AnimatedCard className="p-6 dark:bg-tech-dark/50">
               <Network className="h-10 w-10 text-tech-purple mb-4" />
               <h4 className="text-xl font-semibold mb-2">Network Admin</h4>
               <p className="text-sm text-muted-foreground">

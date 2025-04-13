@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
@@ -38,33 +39,33 @@
   }
 
   .dark {
-    --background: 222 47% 6%;
-    --foreground: 0 0% 98%;
+    --background: 222 47% 5%;
+    --foreground: 0 0% 100%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 0 0% 98%;
+    --card: 222 47% 7%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 222 47% 7%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 196 90% 55%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 196 90% 60%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 260 80% 80%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 217 33% 14%;
-    --muted-foreground: 215 20% 80%;
+    --muted: 217 33% 12%;
+    --muted-foreground: 215 20% 90%;
 
     --accent: 260 80% 80%;
-    --accent-foreground: 0 0% 98%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 212.7 26.8% 85%;
   }
 
   * {
@@ -91,7 +92,7 @@
   }
 
   .tech-card {
-    @apply bg-white/70 dark:bg-tech-dark/50 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-xl shadow-lg;
+    @apply bg-white/70 dark:bg-tech-dark/40 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-xl shadow-lg;
   }
   
   .animated-border {
@@ -156,7 +157,7 @@
 
 /* DeepFrog dark mode styles */
 .dark .tech-card {
-  box-shadow: 0 4px 24px -8px rgba(155, 135, 245, 0.3);
+  box-shadow: 0 4px 24px -8px rgba(155, 135, 245, 0.4);
 }
 
 .dark section {
@@ -164,11 +165,11 @@
 }
 
 .dark .bg-white {
-  @apply bg-tech-dark/80;
+  @apply bg-tech-dark/90;
 }
 
 .dark .bg-gray-50 {
-  @apply bg-tech-dark/60;
+  @apply bg-tech-dark/70;
 }
 
 .dark footer {
@@ -176,5 +177,19 @@
 }
 
 .dark .text-muted-foreground {
-  @apply text-gray-300;
+  @apply text-gray-200;
+}
+
+/* Improved contrast for card content in dark mode */
+.dark .experience-item .bg-white {
+  @apply text-white;
+}
+
+.dark .skill-card h3 {
+  @apply text-white;
+}
+
+/* Improved contrast for section headings */
+.dark h2, .dark h3, .dark h4 {
+  @apply text-white;
 }
