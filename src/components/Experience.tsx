@@ -134,11 +134,11 @@ const Experience = () => {
                 {/* Content */}
                 <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
                   <div className="bg-white rounded-lg shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-xl font-semibold">{exp.position}</h3>
-                      <div className="flex items-center text-sm text-tech-blue">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        <span>{exp.period}</span>
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
+                      <h3 className="text-xl font-semibold mb-2 md:mb-0">{exp.position}</h3>
+                      <div className="flex items-center text-sm text-tech-blue w-full md:w-auto">
+                        <Calendar className="w-4 h-4 mr-1 flex-shrink-0" />
+                        <span className="truncate max-w-full">{exp.period}</span>
                       </div>
                     </div>
                     
@@ -167,3 +167,4 @@ const Experience = () => {
 };
 
 export default Experience;
+
