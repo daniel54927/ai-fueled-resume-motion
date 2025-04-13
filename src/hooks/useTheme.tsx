@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 type ThemeProviderProps = {
   children: React.ReactNode;
   defaultTheme?: Theme;
+  disableToggle?: boolean;
 };
 
 type Theme = 'dark' | 'light' | 'system';
@@ -11,17 +12,23 @@ type Theme = 'dark' | 'light' | 'system';
 type ThemeProviderState = {
   theme: Theme;
   setTheme: (theme: Theme) => void;
+  disableToggle?: boolean;
 };
 
 const initialState: ThemeProviderState = {
-  theme: 'system',
+  theme: 'dark',
   setTheme: () => null,
 };
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
-export function ThemeProvider({ children, defaultTheme = 'system' }: ThemeProviderProps) {
+export function ThemeProvider({ 
+  children, 
+  defaultTheme = 'system',
+  disableToggle = false 
+}: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
+    if (disableToggle) return 'dark';
     const storedTheme = localStorage.getItem('theme') as Theme;
     return storedTheme || defaultTheme;
   });
@@ -31,7 +38,7 @@ export function ThemeProvider({ children, defaultTheme = 'system' }: ThemeProvid
 
     root.classList.remove('light', 'dark');
 
-    if (theme === 'system') {
+    if (theme === 'system' && !disableToggle) {
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
         .matches
         ? 'dark'
@@ -41,12 +48,15 @@ export function ThemeProvider({ children, defaultTheme = 'system' }: ThemeProvid
       return;
     }
 
-    root.classList.add(theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+    root.classList.add(disableToggle ? 'dark' : theme);
+    
+    if (!disableToggle) {
+      localStorage.setItem('theme', theme);
+    }
+  }, [theme, disableToggle]);
 
   return (
-    <ThemeProviderContext.Provider value={{ theme, setTheme }}>
+    <ThemeProviderContext.Provider value={{ theme, setTheme, disableToggle }}>
       {children}
     </ThemeProviderContext.Provider>
   );
