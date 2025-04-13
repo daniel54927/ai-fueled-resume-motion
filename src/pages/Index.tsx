@@ -28,7 +28,7 @@ const Index = () => {
         <Contact />
       </main>
       
-      <footer className="py-8 bg-gray-50 border-t border-gray-100">
+      <footer className="py-8 bg-gray-50 dark:bg-tech-dark/50 border-t border-gray-100 dark:border-gray-800">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground text-sm">
             &copy; {new Date().getFullYear()} Daniel C. Brown. All rights reserved.

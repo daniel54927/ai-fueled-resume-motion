@@ -38,6 +38,36 @@
     --radius: 0.5rem;
   }
 
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 196 78% 49%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 260 70% 74%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 260 70% 74%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+
   * {
     @apply border-border;
   }
@@ -62,7 +92,7 @@
   }
 
   .tech-card {
-    @apply bg-white/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg;
+    @apply bg-white/70 dark:bg-tech-dark/70 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-xl shadow-lg;
     box-shadow: 0 4px 24px -8px rgba(30, 174, 219, 0.2);
   }
   
@@ -81,7 +111,7 @@
   }
   
   .glass-card {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl;
+    @apply bg-white/10 dark:bg-tech-dark/20 backdrop-blur-md border border-white/20 dark:border-white/5 rounded-xl;
   }
   
   .nav-link {
@@ -90,7 +120,7 @@
   
   .nav-link::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue transition-all duration-300;
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue dark:bg-tech-purple transition-all duration-300;
   }
   
   .nav-link:hover::after {
