@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { ChevronDown, Briefcase, Cpu, Shield, Compass } from 'lucide-react';
 
@@ -19,7 +18,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center py-24">
       <div className="section-container flex flex-col items-center justify-center text-center">
-        <span className="py-1 px-4 bg-tech-purple/20 text-tech-purple dark:text-white rounded-full text-sm mb-6 animate-fade-in font-medium">
+        <span className="py-1 px-4 bg-tech-blue/20 text-tech-blue dark:text-white rounded-full text-sm mb-6 animate-fade-in font-medium">
           IT Systems Administrator & Cybersecurity Specialist
         </span>
         
@@ -31,7 +30,7 @@ const Hero = () => {
           15+ years of experience across AI automation, cybersecurity, and infrastructure management.
         </p>
 
-        <p className="max-w-2xl mx-auto text-lg md:text-xl text-tech-purple mb-8 animate-fade-in font-medium" style={{ animationDelay: '0.3s' }}>
+        <p className="max-w-2xl mx-auto text-lg md:text-xl text-tech-blue mb-8 animate-fade-in font-medium" style={{ animationDelay: '0.3s' }}>
           AI Projects Coming Soon!
         </p>
         
@@ -41,8 +40,8 @@ const Hero = () => {
             <span className="text-white font-medium">Systems Administration</span>
           </div>
           
-          <div className="flex items-center gap-2 bg-tech-dark/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-tech-purple/20">
-            <Cpu className="h-4 w-4 text-tech-purple" />
+          <div className="flex items-center gap-2 bg-tech-dark/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-tech-blue/20">
+            <Cpu className="h-4 w-4 text-tech-blue" />
             <span className="text-white font-medium">AI Automation</span>
           </div>
           
@@ -51,8 +50,8 @@ const Hero = () => {
             <span className="text-white font-medium">Cybersecurity</span>
           </div>
 
-          <div className="flex items-center gap-2 bg-tech-dark/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-tech-purple/20">
-            <Compass className="h-4 w-4 text-tech-purple" />
+          <div className="flex items-center gap-2 bg-tech-dark/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-tech-blue/20">
+            <Compass className="h-4 w-4 text-tech-blue" />
             <span className="text-white font-medium">Digital Adventure</span>
           </div>
         </div>
@@ -78,7 +77,7 @@ const Hero = () => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
         aria-label="Scroll Down"
       >
-        <ChevronDown className="h-8 w-8 text-tech-purple" />
+        <ChevronDown className="h-8 w-8 text-tech-blue" />
       </a>
     </section>
   );
