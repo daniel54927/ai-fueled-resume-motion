@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Zap } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
@@ -29,7 +29,10 @@ const Header = () => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         <a href="#" className="flex items-center space-x-2">
-          <span className="font-bold text-xl font-mono tech-gradient-text">DCB</span>
+          <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-tech-blue to-tech-purple rounded-full overflow-hidden">
+            <Zap className="h-5 w-5 text-white" />
+          </div>
+          <span className="font-bold text-xl font-mono tech-gradient-text">DeepFrog</span>
         </a>
         
         {/* Desktop Nav */}

@@ -52,7 +52,7 @@ const Contact = () => {
   }, []);
   
   return (
-    <section id="contact" ref={sectionRef} className="py-24 bg-gradient-to-b from-white to-gray-50">
+    <section id="contact" ref={sectionRef} className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-tech-dark dark:to-tech-dark">
       <div className="section-container">
         <div className="mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-underline">Get In Touch</h2>
@@ -72,8 +72,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-medium">Email</h4>
-                  <a href="mailto:daniel54927@gmail.com" className="text-tech-blue hover:underline">
-                    daniel54927@gmail.com
+                  <a href="mailto:daniel.brown@deepfrog.app" className="text-tech-blue hover:underline">
+                    daniel.brown@deepfrog.app
                   </a>
                 </div>
               </div>
@@ -128,7 +128,7 @@ const Contact = () => {
                 <input
                   type="text"
                   id="name"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue dark:bg-tech-dark/50 dark:border-gray-700"
                   required
                 />
               </div>
@@ -140,7 +140,7 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue dark:bg-tech-dark/50 dark:border-gray-700"
                   required
                 />
               </div>
@@ -152,7 +152,7 @@ const Contact = () => {
                 <textarea
                   id="message"
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue dark:bg-tech-dark/50 dark:border-gray-700"
                   required
                 ></textarea>
               </div>
@@ -162,21 +162,21 @@ const Contact = () => {
                 disabled={formStatus === 'submitting'}
                 className={`w-full px-6 py-3 text-white rounded-lg transition-all ${
                   formStatus === 'submitting' 
-                    ? 'bg-tech-blue/70 cursor-not-allowed' 
-                    : 'bg-tech-blue hover:bg-tech-blue/90'
+                    ? 'bg-tech-blue/70 dark:bg-tech-purple/70 cursor-not-allowed' 
+                    : 'bg-tech-blue dark:bg-tech-purple hover:bg-tech-blue/90 dark:hover:bg-tech-purple/90'
                 }`}
               >
                 {formStatus === 'submitting' ? 'Sending...' : 'Send Message'}
               </button>
               
               {formStatus === 'success' && (
-                <div className="p-4 bg-green-50 text-green-700 rounded-lg">
+                <div className="p-4 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-lg">
                   Your message has been sent successfully!
                 </div>
               )}
               
               {formStatus === 'error' && (
-                <div className="p-4 bg-red-50 text-red-700 rounded-lg">
+                <div className="p-4 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-lg">
                   There was an error sending your message. Please try again.
                 </div>
               )}
