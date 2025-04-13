@@ -65,9 +65,9 @@ export default {
 				},
 				// Custom tech-inspired colors
 				tech: {
-					blue: '#1EAEDB',
+					blue: '#33C3F0',
 					purple: '#9b87f5',
-					dark: '#1A1F2C',
+					dark: '#121218',
 					gray: '#8E9196',
 					light: '#C8C8C9',
 				}

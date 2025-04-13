@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
@@ -39,29 +38,29 @@
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    --background: 222 47% 6%;
+    --foreground: 0 0% 98%;
 
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
+    --card: 222 47% 8%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 222 47% 8%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 196 78% 49%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 196 90% 55%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 260 70% 74%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 260 80% 80%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 217 33% 14%;
+    --muted-foreground: 215 20% 80%;
 
-    --accent: 260 70% 74%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 260 80% 80%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
     --border: 217 33% 17%;
     --input: 217 33% 17%;
@@ -92,7 +91,7 @@
   }
 
   .tech-card {
-    @apply bg-white/70 dark:bg-tech-dark/30 backdrop-blur-sm border border-white/20 dark:border-white/5 rounded-xl shadow-lg;
+    @apply bg-white/70 dark:bg-tech-dark/50 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-xl shadow-lg;
   }
   
   .animated-border {
@@ -157,7 +156,7 @@
 
 /* DeepFrog dark mode styles */
 .dark .tech-card {
-  box-shadow: 0 4px 24px -8px rgba(155, 135, 245, 0.2);
+  box-shadow: 0 4px 24px -8px rgba(155, 135, 245, 0.3);
 }
 
 .dark section {
@@ -165,13 +164,17 @@
 }
 
 .dark .bg-white {
-  @apply bg-tech-dark/50;
+  @apply bg-tech-dark/80;
 }
 
 .dark .bg-gray-50 {
-  @apply bg-tech-dark/30;
+  @apply bg-tech-dark/60;
 }
 
 .dark footer {
   @apply bg-tech-dark border-gray-800/30 !important;
+}
+
+.dark .text-muted-foreground {
+  @apply text-gray-300;
 }
