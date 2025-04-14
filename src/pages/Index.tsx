@@ -15,7 +15,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background goo-world">
       <ScrollProgress />
       <GooBackground />
       <Header />
@@ -36,10 +36,10 @@ const Index = () => {
         </div>
       </footer>
       
-      {/* Decorative gooey blobs - World of Goo inspired */}
-      <div className="gooey-blob w-64 h-64 -top-32 -left-20 animate-float-goo" style={{ animationDelay: '0s' }}></div>
-      <div className="gooey-blob w-96 h-96 top-1/4 -right-48 animate-float-goo" style={{ animationDelay: '1s' }}></div>
-      <div className="gooey-blob w-80 h-80 bottom-1/4 -left-40 animate-float-goo" style={{ animationDelay: '2s' }}></div>
+      {/* World of Goo inspired decorative blobs that follow scrolling */}
+      <div className="gooey-blob-fixed w-64 h-64 -top-32 -left-20 animate-float-goo" style={{ animationDelay: '0s' }}></div>
+      <div className="gooey-blob-fixed w-96 h-96 top-1/4 -right-48 animate-float-goo" style={{ animationDelay: '1s' }}></div>
+      <div className="gooey-blob-fixed w-80 h-80 bottom-1/4 -left-40 animate-float-goo" style={{ animationDelay: '2s' }}></div>
     </div>
   );
 };
