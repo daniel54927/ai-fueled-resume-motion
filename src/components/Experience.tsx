@@ -1,6 +1,8 @@
 
-import { useEffect, useRef } from 'react';
-import { Calendar } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Calendar, ChevronDown, ChevronUp } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
+import { cn } from '@/lib/utils';
 
 interface ExperienceItem {
   id: number;
@@ -13,6 +15,8 @@ interface ExperienceItem {
 
 const Experience = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [expandedItem, setExpandedItem] = useState<number | null>(null);
+  const [animatedItems, setAnimatedItems] = useState<number[]>([]);
   
   const experiences: ExperienceItem[] = [
     {
@@ -84,11 +88,17 @@ const Experience = () => {
       (entries) => {
         const [entry] = entries;
         if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.experience-item').forEach((el, i) => {
-            setTimeout(() => {
-              el.classList.add('animate-fade-in');
-            }, i * 200);
-          });
+          // Stagger the animation of experience items
+          const animationInterval = setInterval(() => {
+            setAnimatedItems(prev => {
+              const nextItem = experiences.find(exp => !prev.includes(exp.id))?.id;
+              if (nextItem) {
+                return [...prev, nextItem];
+              }
+              clearInterval(animationInterval);
+              return prev;
+            });
+          }, 200);
         }
       },
       { threshold: 0.1 }
@@ -103,7 +113,11 @@ const Experience = () => {
         observer.unobserve(sectionRef.current);
       }
     };
-  }, []);
+  }, [experiences]);
+
+  const toggleExpand = (id: number) => {
+    setExpandedItem(prevId => prevId === id ? null : id);
+  };
   
   return (
     <section id="experience" ref={sectionRef} className="py-24">
@@ -117,42 +131,77 @@ const Experience = () => {
         
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-tech-blue/20 transform md:translate-x-px"></div>
+          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-tech-blue/20 transform md:translate-x-px 
+            before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2 before:w-3 before:h-3 before:rounded-full before:bg-tech-blue
+            after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-3 after:h-3 after:rounded-full after:bg-tech-blue">
+          </div>
           
           {/* Experience items */}
           <div className="space-y-16">
             {experiences.map((exp, index) => (
               <div 
                 key={exp.id} 
-                className={`experience-item relative opacity-0 flex flex-col md:flex-row ${
+                className={cn(
+                  "experience-item relative flex flex-col md:flex-row transition-all duration-700",
+                  animatedItems.includes(exp.id) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
+                )}
               >
-                {/* Timeline dot */}
-                <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-tech-blue rounded-full transform -translate-x-1.5 md:-translate-x-2 mt-1.5"></div>
+                {/* Timeline dot with pulse effect */}
+                <div 
+                  className={cn(
+                    "absolute left-0 md:left-1/2 w-4 h-4 bg-tech-blue rounded-full transform -translate-x-1.5 md:-translate-x-2 mt-1.5",
+                    "before:absolute before:w-full before:h-full before:rounded-full before:bg-tech-blue before:animate-ping before:opacity-75"
+                  )}
+                ></div>
                 
                 {/* Content */}
                 <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                  <div className="bg-white rounded-lg shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow">
-                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
-                      <h3 className="text-xl font-semibold mb-2 md:mb-0">{exp.position}</h3>
-                      <div className="flex items-center text-sm text-tech-blue w-full md:w-auto">
-                        <Calendar className="w-4 h-4 mr-1 flex-shrink-0" />
-                        <span className="truncate max-w-full">{exp.period}</span>
+                  <Collapsible 
+                    open={expandedItem === exp.id}
+                    onOpenChange={() => toggleExpand(exp.id)}
+                    className={cn(
+                      "bg-white rounded-lg shadow-md border border-gray-100 transition-all duration-300 overflow-hidden",
+                      expandedItem === exp.id ? "shadow-xl transform scale-[1.02]" : "hover:shadow-lg"
+                    )}
+                  >
+                    <div className="p-6">
+                      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
+                        <h3 className="text-xl font-semibold mb-2 md:mb-0">{exp.position}</h3>
+                        <div className="flex items-center text-sm text-tech-blue w-full md:w-auto">
+                          <Calendar className="w-4 h-4 mr-1 flex-shrink-0" />
+                          <span className="truncate max-w-full">{exp.period}</span>
+                        </div>
                       </div>
+                      
+                      <div className="mb-3">
+                        <h4 className="font-medium text-lg">{exp.company}</h4>
+                        <p className="text-sm text-muted-foreground">{exp.location}</p>
+                      </div>
+                      
+                      <CollapsibleTrigger className="w-full flex justify-between items-center pt-2 text-tech-blue hover:text-tech-purple transition-colors">
+                        <span className="text-sm font-medium">{expandedItem === exp.id ? 'Hide details' : 'Show details'}</span>
+                        {expandedItem === exp.id ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                      </CollapsibleTrigger>
+                      
+                      <CollapsibleContent className="pt-4 space-y-2">
+                        <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
+                          {exp.highlights.map((highlight, i) => (
+                            <li 
+                              key={i} 
+                              className={cn(
+                                "transition-all duration-300 delay-75",
+                                expandedItem === exp.id ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                              )}
+                              style={{ transitionDelay: `${i * 75}ms` }}
+                            >
+                              {highlight}
+                            </li>
+                          ))}
+                        </ul>
+                      </CollapsibleContent>
                     </div>
-                    
-                    <div className="mb-3">
-                      <h4 className="font-medium text-lg">{exp.company}</h4>
-                      <p className="text-sm text-muted-foreground">{exp.location}</p>
-                    </div>
-                    
-                    <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
-                      {exp.highlights.map((highlight, i) => (
-                        <li key={i}>{highlight}</li>
-                      ))}
-                    </ul>
-                  </div>
+                  </Collapsible>
                 </div>
                 
                 {/* Empty space for the other side */}
