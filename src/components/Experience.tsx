@@ -1,13 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Calendar, MapPin, ExternalLink } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { 
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "./ui/hover-card";
-import { Button } from "./ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
+
+import { useEffect, useRef } from 'react';
+import { Calendar } from 'lucide-react';
 
 interface ExperienceItem {
   id: number;
@@ -20,8 +13,6 @@ interface ExperienceItem {
 
 const Experience = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [animatedItems, setAnimatedItems] = useState<number[]>([]);
-  const [hoveredDot, setHoveredDot] = useState<number | null>(null);
   
   const experiences: ExperienceItem[] = [
     {
@@ -93,16 +84,11 @@ const Experience = () => {
       (entries) => {
         const [entry] = entries;
         if (entry.isIntersecting) {
-          const animationInterval = setInterval(() => {
-            setAnimatedItems(prev => {
-              const nextItem = experiences.find(exp => !prev.includes(exp.id))?.id;
-              if (nextItem) {
-                return [...prev, nextItem];
-              }
-              clearInterval(animationInterval);
-              return prev;
-            });
-          }, 200);
+          entry.target.querySelectorAll('.experience-item').forEach((el, i) => {
+            setTimeout(() => {
+              el.classList.add('animate-fade-in');
+            }, i * 200);
+          });
         }
       },
       { threshold: 0.1 }
@@ -117,10 +103,10 @@ const Experience = () => {
         observer.unobserve(sectionRef.current);
       }
     };
-  }, [experiences]);
+  }, []);
   
   return (
-    <section id="experience" ref={sectionRef} className="py-24 relative">
+    <section id="experience" ref={sectionRef} className="py-24">
       <div className="section-container">
         <div className="mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-underline">Work Experience</h2>
@@ -130,149 +116,46 @@ const Experience = () => {
         </div>
         
         <div className="relative">
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-tech-blue via-tech-purple to-tech-blue transform md:translate-x-px 
-            before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2 before:w-3 before:h-3 before:rounded-full before:bg-tech-blue before:animate-pulse
-            after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-3 after:h-3 after:rounded-full after:bg-tech-purple after:animate-pulse">
-            <div className="absolute w-full h-[30%] top-0 animate-slide-down bg-gradient-to-b from-tech-blue/0 via-tech-blue/30 to-tech-blue/0 opacity-50" 
-                style={{ animationDuration: '3s', animationIterationCount: 'infinite' }}></div>
-          </div>
+          {/* Timeline line */}
+          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-tech-blue/20 transform md:translate-x-px"></div>
           
-          <div className="space-y-12">
+          {/* Experience items */}
+          <div className="space-y-16">
             {experiences.map((exp, index) => (
               <div 
                 key={exp.id} 
-                className={cn(
-                  "experience-item relative flex flex-col md:flex-row transition-all duration-700 group",
-                  animatedItems.includes(exp.id) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
+                className={`experience-item relative opacity-0 flex flex-col md:flex-row ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                )}
+                }`}
               >
-                <div 
-                  className={cn(
-                    "absolute left-0 md:left-1/2 w-5 h-5 rounded-full transform -translate-x-2 md:-translate-x-2.5 mt-1.5 transition-all duration-300",
-                    hoveredDot === exp.id ? 
-                      "bg-tech-purple scale-125 shadow-[0_0_10px_rgba(155,135,245,0.7)]" : 
-                      "bg-tech-blue shadow-[0_0_5px_rgba(0,149,255,0.5)]",
-                    "z-10"
-                  )}
-                  onMouseEnter={() => setHoveredDot(exp.id)}
-                  onMouseLeave={() => setHoveredDot(null)}
-                >
-                  <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                </div>
+                {/* Timeline dot */}
+                <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-tech-blue rounded-full transform -translate-x-1.5 md:-translate-x-2 mt-1.5"></div>
                 
-                <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'} z-20`}>
-                  <div 
-                    className={cn(
-                      "bg-white dark:bg-tech-dark/90 rounded-lg shadow-md border border-gray-100 dark:border-gray-800/30 transition-all duration-300 overflow-hidden",
-                      "hover:shadow-xl hover:transform hover:scale-[1.02] group-hover:border-tech-blue/30"
-                    )}
-                  >
-                    <div className="p-6">
-                      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-3">
-                        <h3 className="text-xl font-semibold mb-2 md:mb-0 group-hover:text-tech-blue transition-colors">{exp.position}</h3>
-                        <div className="flex items-center text-sm text-tech-blue w-full md:w-auto">
-                          <Calendar className="w-4 h-4 mr-1 flex-shrink-0" />
-                          <span className="truncate max-w-full">{exp.period}</span>
-                        </div>
-                      </div>
-                      
-                      <div className="mb-4">
-                        <h4 className="font-medium text-lg flex items-center">
-                          {exp.company}
-                          {index < 2 && <ExternalLink className="w-3.5 h-3.5 ml-1 text-tech-blue opacity-70" />}
-                        </h4>
-                        <p className="text-sm text-muted-foreground flex items-center">
-                          <MapPin className="w-3.5 h-3.5 mr-1" />
-                          {exp.location}
-                        </p>
-                      </div>
-
-                      <div className="my-3 border-t dark:border-gray-700/30 pt-3">
-                        <p className="text-sm font-medium text-tech-blue mb-2">Key Achievements:</p>
-                        <ul className="text-sm space-y-2">
-                          {exp.highlights.slice(0, 2).map((highlight, i) => (
-                            <li 
-                              key={i} 
-                              className="pl-5 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-3 before:h-3 before:rounded-full before:bg-tech-blue/20 before:border before:border-tech-blue/40"
-                            >
-                              {highlight}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {exp.highlights.length > 2 && (
-                        <Accordion type="single" collapsible className="w-full mt-2 border-t dark:border-gray-700/30 pt-2">
-                          <AccordionItem value="more-highlights" className="border-none">
-                            <AccordionTrigger className="py-2 text-sm text-tech-blue hover:text-tech-purple transition-colors hover:no-underline">
-                              Show more achievements
-                            </AccordionTrigger>
-                            <AccordionContent>
-                              <ul className="space-y-3 text-sm">
-                                {exp.highlights.slice(2).map((highlight, i) => (
-                                  <li 
-                                    key={i} 
-                                    className="pl-5 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-3 before:h-3 before:rounded-full before:bg-tech-blue/20 before:border before:border-tech-blue/40"
-                                  >
-                                    {highlight}
-                                  </li>
-                                ))}
-                              </ul>
-                            </AccordionContent>
-                          </AccordionItem>
-                        </Accordion>
-                      )}
-                      
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        <HoverCard>
-                          <HoverCardTrigger asChild>
-                            <Button variant="outline" size="sm" className="text-xs h-7">
-                              Skills Used
-                            </Button>
-                          </HoverCardTrigger>
-                          <HoverCardContent 
-                            side={index % 2 === 0 ? "right" : "left"} 
-                            sideOffset={10}
-                            align="start"
-                            className="w-80 z-50 bg-white dark:bg-tech-dark/90 border border-gray-200 dark:border-gray-700 shadow-lg rounded-lg"
-                          >
-                            <div className="space-y-2">
-                              <h4 className="text-sm font-semibold">Skills Applied at {exp.company}</h4>
-                              <div className="flex flex-wrap gap-1">
-                                {getSkillsForRole(exp.id).map((skill, i) => (
-                                  <div key={i} className="px-2 py-1 bg-tech-blue/10 dark:bg-tech-blue/20 text-tech-blue text-xs rounded-full">
-                                    {skill}
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </HoverCardContent>
-                        </HoverCard>
-                        
-                        <HoverCard>
-                          <HoverCardTrigger asChild>
-                            <Button variant="outline" size="sm" className="text-xs h-7">
-                              Role Impact
-                            </Button>
-                          </HoverCardTrigger>
-                          <HoverCardContent 
-                            side={index % 2 === 0 ? "right" : "left"} 
-                            sideOffset={10}
-                            align="start"
-                            className="w-80 z-50 bg-white dark:bg-tech-dark/90 border border-gray-200 dark:border-gray-700 shadow-lg rounded-lg"
-                          >
-                            <div className="space-y-2">
-                              <h4 className="text-sm font-semibold">Impact at {exp.company}</h4>
-                              <p className="text-xs">{getRoleImpact(exp.id)}</p>
-                            </div>
-                          </HoverCardContent>
-                        </HoverCard>
+                {/* Content */}
+                <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
+                  <div className="bg-white rounded-lg shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-xl font-semibold">{exp.position}</h3>
+                      <div className="flex items-center text-sm text-tech-blue">
+                        <Calendar className="w-4 h-4 mr-1" />
+                        <span>{exp.period}</span>
                       </div>
                     </div>
+                    
+                    <div className="mb-3">
+                      <h4 className="font-medium text-lg">{exp.company}</h4>
+                      <p className="text-sm text-muted-foreground">{exp.location}</p>
+                    </div>
+                    
+                    <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
+                      {exp.highlights.map((highlight, i) => (
+                        <li key={i}>{highlight}</li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
                 
+                {/* Empty space for the other side */}
                 <div className="hidden md:block md:w-1/2" />
               </div>
             ))}
@@ -282,39 +165,5 @@ const Experience = () => {
     </section>
   );
 };
-
-function getSkillsForRole(roleId: number): string[] {
-  switch (roleId) {
-    case 1: // American Place Casino
-      return ["CarbonBlack MDR", "AI Agents", "LLMs", "Compliance", "Endpoint Management", "Risk Reduction"];
-    case 2: // InglesFazBem
-      return ["WordPress", "Moodle", "MySQL", "Technical Leadership", "Platform Management"];
-    case 3: // ELCOMA
-      return ["Process Improvement", "Documentation", "Inventory Management", "Manufacturing"];
-    case 4: // UNIAESO
-      return ["Infrastructure Management", "Preventative Maintenance", "IT Support", "Problem Solving"];
-    case 5: // KEMIRA
-      return ["Technical Support", "Incident Resolution", "Service Desk", "Process Development"];
-    default:
-      return [];
-  }
-}
-
-function getRoleImpact(roleId: number): string {
-  switch (roleId) {
-    case 1: // American Place Casino
-      return "Implemented self-service portal that significantly reduced support tickets and improved security posture through proactive threat monitoring.";
-    case 2: // InglesFazBem
-      return "Led technical operations that enabled the company to deliver online English education to thousands of students across Brazil.";
-    case 3: // ELCOMA
-      return "Streamlined manufacturing processes and improved documentation standards, reducing assembly time and improving quality control.";
-    case 4: // UNIAESO
-      return "Maintained critical IT infrastructure for a university, ensuring 240+ workstations and classroom equipment remained operational for students.";
-    case 5: // KEMIRA
-      return "Managed high-volume support operations across 12 states, maintaining quick resolution times and improving support procedures.";
-    default:
-      return "";
-  }
-}
 
 export default Experience;

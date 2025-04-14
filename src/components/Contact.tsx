@@ -72,8 +72,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-medium text-white">Email</h4>
-                  <a href="mailto:daniel.brown@mail.deepfrog.com" className="text-tech-blue hover:underline">
-                    daniel.brown@mail.deepfrog.com
+                  <a href="mailto:daniel.brown@deepfrog.app" className="text-tech-blue hover:underline">
+                    daniel.brown@deepfrog.app
                   </a>
                 </div>
               </div>

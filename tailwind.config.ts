@@ -63,9 +63,10 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
+				// Custom tech-inspired colors
 				tech: {
 					blue: '#33C3F0',
-					purple: '#33C3F0',
+					purple: '#9b87f5',
 					dark: '#121218',
 					gray: '#8E9196',
 					light: '#C8C8C9',
@@ -124,24 +125,6 @@ export default {
 				'spin-slow': {
 					'0%': { transform: 'rotate(0deg)' },
 					'100%': { transform: 'rotate(360deg)' }
-				},
-				// World of Goo inspired animations
-				'blob-pulse': {
-					'0%, 100%': { transform: 'scale(1)', opacity: '0.2' },
-					'50%': { transform: 'scale(1.3)', opacity: '0.3' }
-				},
-				'goo-float': {
-					'0%, 100%': { transform: 'translateY(0)' },
-					'50%': { transform: 'translateY(-10px)' }
-				},
-				'goo-wiggle': {
-					'0%, 100%': { transform: 'rotate(-3deg)' },
-					'50%': { transform: 'rotate(3deg)' }
-				},
-				'goo-stretch': {
-					'0%': { transform: 'scaleX(1)' },
-					'50%': { transform: 'scaleX(1.1) scaleY(0.9)' },
-					'100%': { transform: 'scaleX(1)' }
 				}
 			},
 			animation: {
@@ -153,12 +136,7 @@ export default {
 				'float': 'float 6s ease-in-out infinite',
 				'pulse-soft': 'pulse-soft 3s ease-in-out infinite',
 				'gradient-x': 'gradient-x 15s ease infinite',
-				'spin-slow': 'spin-slow 20s linear infinite',
-				// World of Goo inspired animations
-				'blob-pulse': 'blob-pulse 8s ease-in-out infinite',
-				'goo-float': 'goo-float 6s ease-in-out infinite',
-				'goo-wiggle': 'goo-wiggle 7s ease-in-out infinite',
-				'goo-stretch': 'goo-stretch 8s ease-in-out infinite'
+				'spin-slow': 'spin-slow 20s linear infinite'
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
