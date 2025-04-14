@@ -1,8 +1,5 @@
-
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Calendar, MapPin, ExternalLink } from 'lucide-react';
-import { Collapsible, CollapsibleContent } from './ui/collapsible';
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { cn } from '@/lib/utils';
 import { 
   HoverCard,
@@ -96,7 +93,6 @@ const Experience = () => {
       (entries) => {
         const [entry] = entries;
         if (entry.isIntersecting) {
-          // Stagger the animation of experience items
           const animationInterval = setInterval(() => {
             setAnimatedItems(prev => {
               const nextItem = experiences.find(exp => !prev.includes(exp.id))?.id;
@@ -124,7 +120,7 @@ const Experience = () => {
   }, [experiences]);
   
   return (
-    <section id="experience" ref={sectionRef} className="py-24">
+    <section id="experience" ref={sectionRef} className="py-24 relative">
       <div className="section-container">
         <div className="mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-underline">Work Experience</h2>
@@ -134,16 +130,13 @@ const Experience = () => {
         </div>
         
         <div className="relative">
-          {/* Timeline line with animated gradient effect */}
           <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-tech-blue via-tech-purple to-tech-blue transform md:translate-x-px 
             before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2 before:w-3 before:h-3 before:rounded-full before:bg-tech-blue before:animate-pulse
             after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-3 after:h-3 after:rounded-full after:bg-tech-purple after:animate-pulse">
-            {/* Animated glow effect */}
             <div className="absolute w-full h-[30%] top-0 animate-slide-down bg-gradient-to-b from-tech-blue/0 via-tech-blue/30 to-tech-blue/0 opacity-50" 
                 style={{ animationDuration: '3s', animationIterationCount: 'infinite' }}></div>
           </div>
           
-          {/* Experience items */}
           <div className="space-y-12">
             {experiences.map((exp, index) => (
               <div 
@@ -154,7 +147,6 @@ const Experience = () => {
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 )}
               >
-                {/* Interactive timeline dot */}
                 <div 
                   className={cn(
                     "absolute left-0 md:left-1/2 w-5 h-5 rounded-full transform -translate-x-2 md:-translate-x-2.5 mt-1.5 transition-all duration-300",
@@ -169,7 +161,6 @@ const Experience = () => {
                   <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white animate-pulse"></span>
                 </div>
                 
-                {/* Content */}
                 <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'} z-20`}>
                   <div 
                     className={cn(
@@ -197,7 +188,6 @@ const Experience = () => {
                         </p>
                       </div>
 
-                      {/* Always visible key achievements */}
                       <div className="my-3 border-t dark:border-gray-700/30 pt-3">
                         <p className="text-sm font-medium text-tech-blue mb-2">Key Achievements:</p>
                         <ul className="text-sm space-y-2">
@@ -212,7 +202,6 @@ const Experience = () => {
                         </ul>
                       </div>
 
-                      {/* Show more highlights if available */}
                       {exp.highlights.length > 2 && (
                         <Accordion type="single" collapsible className="w-full mt-2 border-t dark:border-gray-700/30 pt-2">
                           <AccordionItem value="more-highlights" className="border-none">
@@ -235,7 +224,6 @@ const Experience = () => {
                         </Accordion>
                       )}
                       
-                      {/* Quick action buttons */}
                       <div className="mt-4 flex flex-wrap gap-2">
                         <HoverCard>
                           <HoverCardTrigger asChild>
@@ -243,7 +231,12 @@ const Experience = () => {
                               Skills Used
                             </Button>
                           </HoverCardTrigger>
-                          <HoverCardContent side={index % 2 === 0 ? "right" : "left"} className="w-80">
+                          <HoverCardContent 
+                            side={index % 2 === 0 ? "right" : "left"} 
+                            sideOffset={10}
+                            align="start"
+                            className="w-80 z-50 bg-white dark:bg-tech-dark/90 border border-gray-200 dark:border-gray-700 shadow-lg rounded-lg"
+                          >
                             <div className="space-y-2">
                               <h4 className="text-sm font-semibold">Skills Applied at {exp.company}</h4>
                               <div className="flex flex-wrap gap-1">
@@ -263,7 +256,12 @@ const Experience = () => {
                               Role Impact
                             </Button>
                           </HoverCardTrigger>
-                          <HoverCardContent side={index % 2 === 0 ? "right" : "left"} className="w-80">
+                          <HoverCardContent 
+                            side={index % 2 === 0 ? "right" : "left"} 
+                            sideOffset={10}
+                            align="start"
+                            className="w-80 z-50 bg-white dark:bg-tech-dark/90 border border-gray-200 dark:border-gray-700 shadow-lg rounded-lg"
+                          >
                             <div className="space-y-2">
                               <h4 className="text-sm font-semibold">Impact at {exp.company}</h4>
                               <p className="text-xs">{getRoleImpact(exp.id)}</p>
@@ -275,7 +273,6 @@ const Experience = () => {
                   </div>
                 </div>
                 
-                {/* Empty space for the other side */}
                 <div className="hidden md:block md:w-1/2" />
               </div>
             ))}
@@ -286,7 +283,6 @@ const Experience = () => {
   );
 };
 
-// Helper functions to provide additional context
 function getSkillsForRole(roleId: number): string[] {
   switch (roleId) {
     case 1: // American Place Casino
