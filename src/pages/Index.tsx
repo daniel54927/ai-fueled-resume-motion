@@ -6,7 +6,7 @@ import About from '../components/About';
 import Experience from '../components/Experience';
 import Skills from '../components/Skills';
 import Contact from '../components/Contact';
-import NeuralBackground from '../components/NeuralBackground';
+import ParticleBackground from '../components/ParticleBackground';
 import ScrollProgress from '../components/ScrollProgress';
 
 const Index = () => {
@@ -17,7 +17,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <ScrollProgress />
-      <NeuralBackground />
+      <ParticleBackground />
       <Header />
       
       <main>
