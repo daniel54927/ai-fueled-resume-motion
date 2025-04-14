@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import AnimatedCard from './AnimatedCard';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hover-card';
 import { Info, Database, Code, Shield, Server, Award, Brain, MoveRight } from 'lucide-react';
+import NeuralBackground from './NeuralBackground';
 
 interface SkillCategory {
   name: string;
@@ -212,8 +213,11 @@ const Skills = () => {
   }, []);
   
   return (
-    <section id="skills" ref={sectionRef} className="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-tech-dark dark:to-tech-dark">
-      <div className="section-container">
+    <section id="skills" ref={sectionRef} className="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-tech-dark dark:to-tech-dark relative overflow-hidden">
+      {/* Neural network background */}
+      <NeuralBackground />
+      
+      <div className="section-container relative z-10">
         <div className="mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-underline">Skills & Expertise</h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
@@ -247,7 +251,13 @@ const Skills = () => {
                           <MoveRight className={`w-3 h-3 ml-1 transition-all duration-300 opacity-0 -mr-2 group-hover:opacity-100 group-hover:mr-0`} />
                         </span>
                       </HoverCardTrigger>
-                      <HoverCardContent side="top" className="p-4 w-72 shadow-lg border-tech-blue/20 dark:bg-tech-dark/90">
+                      <HoverCardContent 
+                        side="top" 
+                        align="start"
+                        className="p-4 w-80 shadow-lg border-tech-blue/20 dark:bg-tech-dark/90 z-50"
+                        avoidCollisions={true}
+                        sideOffset={10}
+                      >
                         <h4 className="font-medium text-tech-blue mb-2">{skill.name}</h4>
                         <p className="text-sm text-muted-foreground">{skill.description}</p>
                       </HoverCardContent>
