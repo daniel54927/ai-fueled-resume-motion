@@ -6,7 +6,7 @@ import About from '../components/About';
 import Experience from '../components/Experience';
 import Skills from '../components/Skills';
 import Contact from '../components/Contact';
-import NeuralBackground from '../components/NeuralBackground';
+import GooBackground from '../components/GooBackground';
 import ScrollProgress from '../components/ScrollProgress';
 
 const Index = () => {
@@ -17,7 +17,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <ScrollProgress />
-      <NeuralBackground />
+      <GooBackground />
       <Header />
       
       <main>
@@ -28,13 +28,18 @@ const Index = () => {
         <Contact />
       </main>
       
-      <footer className="py-8 bg-gray-50 dark:bg-tech-dark/50 border-t border-gray-100 dark:border-gray-800">
+      <footer className="py-8 bg-gray-50 dark:bg-tech-dark/50 border-t border-gray-100 dark:border-tech-blue/10">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground text-sm">
             &copy; {new Date().getFullYear()} Daniel C. Brown. All rights reserved.
           </p>
         </div>
       </footer>
+      
+      {/* Decorative gooey blobs - World of Goo inspired */}
+      <div className="gooey-blob w-64 h-64 -top-32 -left-20 animate-float-goo" style={{ animationDelay: '0s' }}></div>
+      <div className="gooey-blob w-96 h-96 top-1/4 -right-48 animate-float-goo" style={{ animationDelay: '1s' }}></div>
+      <div className="gooey-blob w-80 h-80 bottom-1/4 -left-40 animate-float-goo" style={{ animationDelay: '2s' }}></div>
     </div>
   );
 };
