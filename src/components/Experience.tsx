@@ -1,9 +1,16 @@
 
 import { useEffect, useRef, useState } from 'react';
-import { Calendar, ChevronDown, ChevronUp, ExternalLink, MapPin } from 'lucide-react';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
+import { Calendar, MapPin, ExternalLink } from 'lucide-react';
+import { Collapsible, CollapsibleContent } from './ui/collapsible';
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { cn } from '@/lib/utils';
+import { 
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "./ui/hover-card";
+import { Button } from "./ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 
 interface ExperienceItem {
   id: number;
@@ -16,7 +23,6 @@ interface ExperienceItem {
 
 const Experience = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [expandedItem, setExpandedItem] = useState<number | null>(null);
   const [animatedItems, setAnimatedItems] = useState<number[]>([]);
   const [hoveredDot, setHoveredDot] = useState<number | null>(null);
   
@@ -116,10 +122,6 @@ const Experience = () => {
       }
     };
   }, [experiences]);
-
-  const toggleExpand = (id: number) => {
-    setExpandedItem(prevId => prevId === id ? null : id);
-  };
   
   return (
     <section id="experience" ref={sectionRef} className="py-24">
@@ -142,62 +144,49 @@ const Experience = () => {
           </div>
           
           {/* Experience items */}
-          <div className="space-y-16">
+          <div className="space-y-12">
             {experiences.map((exp, index) => (
               <div 
                 key={exp.id} 
                 className={cn(
-                  "experience-item relative flex flex-col md:flex-row transition-all duration-700",
+                  "experience-item relative flex flex-col md:flex-row transition-all duration-700 group",
                   animatedItems.includes(exp.id) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 )}
               >
-                {/* Timeline dot with enhanced interactive effects */}
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <div 
-                      className={cn(
-                        "absolute left-0 md:left-1/2 w-5 h-5 rounded-full transform -translate-x-2 md:-translate-x-2.5 mt-1.5 cursor-pointer transition-all duration-300",
-                        hoveredDot === exp.id ? 
-                          "bg-tech-purple scale-125 shadow-[0_0_10px_rgba(155,135,245,0.7)]" : 
-                          "bg-tech-blue shadow-[0_0_5px_rgba(0,149,255,0.5)]",
-                        "z-10"
-                      )}
-                      onMouseEnter={() => setHoveredDot(exp.id)}
-                      onMouseLeave={() => setHoveredDot(null)}
-                      onClick={() => toggleExpand(exp.id)}
-                    >
-                      <span className={cn(
-                        "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white",
-                        "animate-pulse"
-                      )}></span>
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent side={index % 2 === 0 ? "right" : "left"} className="bg-tech-dark/90 text-white border-tech-blue/20 text-xs">
-                    {exp.period}
-                  </TooltipContent>
-                </Tooltip>
+                {/* Interactive timeline dot */}
+                <div 
+                  className={cn(
+                    "absolute left-0 md:left-1/2 w-5 h-5 rounded-full transform -translate-x-2 md:-translate-x-2.5 mt-1.5 transition-all duration-300",
+                    hoveredDot === exp.id ? 
+                      "bg-tech-purple scale-125 shadow-[0_0_10px_rgba(155,135,245,0.7)]" : 
+                      "bg-tech-blue shadow-[0_0_5px_rgba(0,149,255,0.5)]",
+                    "z-10"
+                  )}
+                  onMouseEnter={() => setHoveredDot(exp.id)}
+                  onMouseLeave={() => setHoveredDot(null)}
+                >
+                  <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                </div>
                 
                 {/* Content */}
-                <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                  <Collapsible 
-                    open={expandedItem === exp.id}
-                    onOpenChange={() => toggleExpand(exp.id)}
+                <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'} z-20`}>
+                  <div 
                     className={cn(
-                      "bg-white rounded-lg shadow-md border border-gray-100 transition-all duration-300 overflow-hidden",
-                      expandedItem === exp.id ? "shadow-xl transform scale-[1.02]" : "hover:shadow-lg"
+                      "bg-white dark:bg-tech-dark/90 rounded-lg shadow-md border border-gray-100 dark:border-gray-800/30 transition-all duration-300 overflow-hidden",
+                      "hover:shadow-xl hover:transform hover:scale-[1.02] group-hover:border-tech-blue/30"
                     )}
                   >
                     <div className="p-6">
-                      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
-                        <h3 className="text-xl font-semibold mb-2 md:mb-0">{exp.position}</h3>
+                      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-3">
+                        <h3 className="text-xl font-semibold mb-2 md:mb-0 group-hover:text-tech-blue transition-colors">{exp.position}</h3>
                         <div className="flex items-center text-sm text-tech-blue w-full md:w-auto">
                           <Calendar className="w-4 h-4 mr-1 flex-shrink-0" />
                           <span className="truncate max-w-full">{exp.period}</span>
                         </div>
                       </div>
                       
-                      <div className="mb-3">
+                      <div className="mb-4">
                         <h4 className="font-medium text-lg flex items-center">
                           {exp.company}
                           {index < 2 && <ExternalLink className="w-3.5 h-3.5 ml-1 text-tech-blue opacity-70" />}
@@ -207,35 +196,83 @@ const Experience = () => {
                           {exp.location}
                         </p>
                       </div>
-                      
-                      <CollapsibleTrigger className="w-full flex justify-between items-center pt-2 text-tech-blue hover:text-tech-purple transition-colors">
-                        <span className="text-sm font-medium">{expandedItem === exp.id ? 'Hide details' : 'Show details'}</span>
-                        <div className="flex items-center">
-                          <span className={`text-xs mr-2 ${expandedItem === exp.id ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
-                            {exp.highlights.length} achievements
-                          </span>
-                          {expandedItem === exp.id ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                        </div>
-                      </CollapsibleTrigger>
-                      
-                      <CollapsibleContent className="pt-4 space-y-2">
-                        <ul className="list-none space-y-3 text-sm text-muted-foreground">
-                          {exp.highlights.map((highlight, i) => (
+
+                      {/* Always visible key achievements */}
+                      <div className="my-3 border-t dark:border-gray-700/30 pt-3">
+                        <p className="text-sm font-medium text-tech-blue mb-2">Key Achievements:</p>
+                        <ul className="text-sm space-y-2">
+                          {exp.highlights.slice(0, 2).map((highlight, i) => (
                             <li 
                               key={i} 
-                              className={cn(
-                                "transition-all duration-300 delay-75 pl-6 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-3 before:h-3 before:rounded-full before:bg-tech-blue/20 before:border before:border-tech-blue/40",
-                                expandedItem === exp.id ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                              )}
-                              style={{ transitionDelay: `${i * 75}ms` }}
+                              className="pl-5 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-3 before:h-3 before:rounded-full before:bg-tech-blue/20 before:border before:border-tech-blue/40"
                             >
                               {highlight}
                             </li>
                           ))}
                         </ul>
-                      </CollapsibleContent>
+                      </div>
+
+                      {/* Show more highlights if available */}
+                      {exp.highlights.length > 2 && (
+                        <Accordion type="single" collapsible className="w-full mt-2 border-t dark:border-gray-700/30 pt-2">
+                          <AccordionItem value="more-highlights" className="border-none">
+                            <AccordionTrigger className="py-2 text-sm text-tech-blue hover:text-tech-purple transition-colors hover:no-underline">
+                              Show more achievements
+                            </AccordionTrigger>
+                            <AccordionContent>
+                              <ul className="space-y-3 text-sm">
+                                {exp.highlights.slice(2).map((highlight, i) => (
+                                  <li 
+                                    key={i} 
+                                    className="pl-5 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-3 before:h-3 before:rounded-full before:bg-tech-blue/20 before:border before:border-tech-blue/40"
+                                  >
+                                    {highlight}
+                                  </li>
+                                ))}
+                              </ul>
+                            </AccordionContent>
+                          </AccordionItem>
+                        </Accordion>
+                      )}
+                      
+                      {/* Quick action buttons */}
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        <HoverCard>
+                          <HoverCardTrigger asChild>
+                            <Button variant="outline" size="sm" className="text-xs h-7">
+                              Skills Used
+                            </Button>
+                          </HoverCardTrigger>
+                          <HoverCardContent side={index % 2 === 0 ? "right" : "left"} className="w-80">
+                            <div className="space-y-2">
+                              <h4 className="text-sm font-semibold">Skills Applied at {exp.company}</h4>
+                              <div className="flex flex-wrap gap-1">
+                                {getSkillsForRole(exp.id).map((skill, i) => (
+                                  <div key={i} className="px-2 py-1 bg-tech-blue/10 dark:bg-tech-blue/20 text-tech-blue text-xs rounded-full">
+                                    {skill}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </HoverCardContent>
+                        </HoverCard>
+                        
+                        <HoverCard>
+                          <HoverCardTrigger asChild>
+                            <Button variant="outline" size="sm" className="text-xs h-7">
+                              Role Impact
+                            </Button>
+                          </HoverCardTrigger>
+                          <HoverCardContent side={index % 2 === 0 ? "right" : "left"} className="w-80">
+                            <div className="space-y-2">
+                              <h4 className="text-sm font-semibold">Impact at {exp.company}</h4>
+                              <p className="text-xs">{getRoleImpact(exp.id)}</p>
+                            </div>
+                          </HoverCardContent>
+                        </HoverCard>
+                      </div>
                     </div>
-                  </Collapsible>
+                  </div>
                 </div>
                 
                 {/* Empty space for the other side */}
@@ -248,5 +285,40 @@ const Experience = () => {
     </section>
   );
 };
+
+// Helper functions to provide additional context
+function getSkillsForRole(roleId: number): string[] {
+  switch (roleId) {
+    case 1: // American Place Casino
+      return ["CarbonBlack MDR", "AI Agents", "LLMs", "Compliance", "Endpoint Management", "Risk Reduction"];
+    case 2: // InglesFazBem
+      return ["WordPress", "Moodle", "MySQL", "Technical Leadership", "Platform Management"];
+    case 3: // ELCOMA
+      return ["Process Improvement", "Documentation", "Inventory Management", "Manufacturing"];
+    case 4: // UNIAESO
+      return ["Infrastructure Management", "Preventative Maintenance", "IT Support", "Problem Solving"];
+    case 5: // KEMIRA
+      return ["Technical Support", "Incident Resolution", "Service Desk", "Process Development"];
+    default:
+      return [];
+  }
+}
+
+function getRoleImpact(roleId: number): string {
+  switch (roleId) {
+    case 1: // American Place Casino
+      return "Implemented self-service portal that significantly reduced support tickets and improved security posture through proactive threat monitoring.";
+    case 2: // InglesFazBem
+      return "Led technical operations that enabled the company to deliver online English education to thousands of students across Brazil.";
+    case 3: // ELCOMA
+      return "Streamlined manufacturing processes and improved documentation standards, reducing assembly time and improving quality control.";
+    case 4: // UNIAESO
+      return "Maintained critical IT infrastructure for a university, ensuring 240+ workstations and classroom equipment remained operational for students.";
+    case 5: // KEMIRA
+      return "Managed high-volume support operations across 12 states, maintaining quick resolution times and improving support procedures.";
+    default:
+      return "";
+  }
+}
 
 export default Experience;
