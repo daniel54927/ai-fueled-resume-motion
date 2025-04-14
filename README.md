@@ -1,26 +1,32 @@
-# Welcome to your Lovable project
 
-## Project info
+# Daniel C. Brown - IT & Cybersecurity Portfolio
 
-**URL**: https://lovable.dev/projects/fbcd49b7-52bf-4f5e-85dc-11baa9439e33
+## Project Overview
 
-## How can I edit this code?
+This is a portfolio website showcasing my expertise as an IT Systems Administrator and Cybersecurity Specialist with experience in AI automation.
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- Responsive design optimized for all devices
+- Animated components for enhanced user experience
+- Interactive skills and experience sections
+- Contact form for professional inquiries
+- Dark mode design for optimal viewing
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/fbcd49b7-52bf-4f5e-85dc-11baa9439e33) and start prompting.
+## Technology Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+This project is built with:
 
-**Use your preferred IDE**
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
+- Particle effects for visual enhancement
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Local Development
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+To run this project locally:
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
@@ -36,38 +42,10 @@ npm i
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Deployment
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+This site can be deployed to any standard static site hosting platform like Vercel, Netlify, or GitHub Pages.
 
-**Use GitHub Codespaces**
+## Contact
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/fbcd49b7-52bf-4f5e-85dc-11baa9439e33) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+For inquiries, please use the contact form on the website or reach out directly via email.

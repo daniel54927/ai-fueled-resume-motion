@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,10 +62,9 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom tech-inspired colors
 				tech: {
 					blue: '#33C3F0',
-					purple: '#9b87f5',
+					purple: '#33C3F0',
 					dark: '#121218',
 					gray: '#8E9196',
 					light: '#C8C8C9',
