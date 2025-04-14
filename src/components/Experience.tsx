@@ -1,7 +1,8 @@
 
 import { useEffect, useRef, useState } from 'react';
-import { Calendar, ChevronDown, ChevronUp } from 'lucide-react';
+import { Calendar, ChevronDown, ChevronUp, ExternalLink, MapPin } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { cn } from '@/lib/utils';
 
 interface ExperienceItem {
@@ -17,6 +18,7 @@ const Experience = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
   const [animatedItems, setAnimatedItems] = useState<number[]>([]);
+  const [hoveredDot, setHoveredDot] = useState<number | null>(null);
   
   const experiences: ExperienceItem[] = [
     {
@@ -130,10 +132,13 @@ const Experience = () => {
         </div>
         
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-tech-blue/20 transform md:translate-x-px 
-            before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2 before:w-3 before:h-3 before:rounded-full before:bg-tech-blue
-            after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-3 after:h-3 after:rounded-full after:bg-tech-blue">
+          {/* Timeline line with animated gradient effect */}
+          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-tech-blue via-tech-purple to-tech-blue transform md:translate-x-px 
+            before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2 before:w-3 before:h-3 before:rounded-full before:bg-tech-blue before:animate-pulse
+            after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-3 after:h-3 after:rounded-full after:bg-tech-purple after:animate-pulse">
+            {/* Animated glow effect */}
+            <div className="absolute w-full h-[30%] top-0 animate-slide-down bg-gradient-to-b from-tech-blue/0 via-tech-blue/30 to-tech-blue/0 opacity-50" 
+                style={{ animationDuration: '3s', animationIterationCount: 'infinite' }}></div>
           </div>
           
           {/* Experience items */}
@@ -147,13 +152,31 @@ const Experience = () => {
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 )}
               >
-                {/* Timeline dot with pulse effect */}
-                <div 
-                  className={cn(
-                    "absolute left-0 md:left-1/2 w-4 h-4 bg-tech-blue rounded-full transform -translate-x-1.5 md:-translate-x-2 mt-1.5",
-                    "before:absolute before:w-full before:h-full before:rounded-full before:bg-tech-blue before:animate-ping before:opacity-75"
-                  )}
-                ></div>
+                {/* Timeline dot with enhanced interactive effects */}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div 
+                      className={cn(
+                        "absolute left-0 md:left-1/2 w-5 h-5 rounded-full transform -translate-x-2 md:-translate-x-2.5 mt-1.5 cursor-pointer transition-all duration-300",
+                        hoveredDot === exp.id ? 
+                          "bg-tech-purple scale-125 shadow-[0_0_10px_rgba(155,135,245,0.7)]" : 
+                          "bg-tech-blue shadow-[0_0_5px_rgba(0,149,255,0.5)]",
+                        "z-10"
+                      )}
+                      onMouseEnter={() => setHoveredDot(exp.id)}
+                      onMouseLeave={() => setHoveredDot(null)}
+                      onClick={() => toggleExpand(exp.id)}
+                    >
+                      <span className={cn(
+                        "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white",
+                        "animate-pulse"
+                      )}></span>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent side={index % 2 === 0 ? "right" : "left"} className="bg-tech-dark/90 text-white border-tech-blue/20 text-xs">
+                    {exp.period}
+                  </TooltipContent>
+                </Tooltip>
                 
                 {/* Content */}
                 <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
@@ -175,22 +198,33 @@ const Experience = () => {
                       </div>
                       
                       <div className="mb-3">
-                        <h4 className="font-medium text-lg">{exp.company}</h4>
-                        <p className="text-sm text-muted-foreground">{exp.location}</p>
+                        <h4 className="font-medium text-lg flex items-center">
+                          {exp.company}
+                          {index < 2 && <ExternalLink className="w-3.5 h-3.5 ml-1 text-tech-blue opacity-70" />}
+                        </h4>
+                        <p className="text-sm text-muted-foreground flex items-center">
+                          <MapPin className="w-3.5 h-3.5 mr-1" />
+                          {exp.location}
+                        </p>
                       </div>
                       
                       <CollapsibleTrigger className="w-full flex justify-between items-center pt-2 text-tech-blue hover:text-tech-purple transition-colors">
                         <span className="text-sm font-medium">{expandedItem === exp.id ? 'Hide details' : 'Show details'}</span>
-                        {expandedItem === exp.id ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                        <div className="flex items-center">
+                          <span className={`text-xs mr-2 ${expandedItem === exp.id ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
+                            {exp.highlights.length} achievements
+                          </span>
+                          {expandedItem === exp.id ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                        </div>
                       </CollapsibleTrigger>
                       
                       <CollapsibleContent className="pt-4 space-y-2">
-                        <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
+                        <ul className="list-none space-y-3 text-sm text-muted-foreground">
                           {exp.highlights.map((highlight, i) => (
                             <li 
                               key={i} 
                               className={cn(
-                                "transition-all duration-300 delay-75",
+                                "transition-all duration-300 delay-75 pl-6 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-3 before:h-3 before:rounded-full before:bg-tech-blue/20 before:border before:border-tech-blue/40",
                                 expandedItem === exp.id ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
                               )}
                               style={{ transitionDelay: `${i * 75}ms` }}
@@ -216,4 +250,3 @@ const Experience = () => {
 };
 
 export default Experience;
-
