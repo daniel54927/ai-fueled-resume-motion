@@ -1,28 +1,68 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Mail, Phone, MapPin, Linkedin } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus('submitting');
     
-    // Simulate form submission
-    setTimeout(() => {
-      setFormStatus('success');
+    // Get form data
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const message = formData.get('message') as string;
+    
+    // Send email using a public email API service
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/daniel.brown@deepfrog.app', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          _subject: `New contact from ${name} via Portfolio`,
+        }),
+      });
       
-      // Reset form
-      const form = e.target as HTMLFormElement;
-      form.reset();
-      
-      // Reset status after a delay
+      if (response.ok) {
+        setFormStatus('success');
+        toast({
+          title: "Message sent",
+          description: "Thank you for your message. I'll get back to you soon!",
+        });
+        form.reset();
+      } else {
+        setFormStatus('error');
+        toast({
+          title: "Error",
+          description: "There was a problem sending your message. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setFormStatus('error');
+      toast({
+        title: "Error",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setTimeout(() => {
         setFormStatus('idle');
       }, 3000);
-    }, 1500);
+    }
   };
   
   useEffect(() => {
@@ -128,6 +168,7 @@ const Contact = () => {
                 <input
                   type="text"
                   id="name"
+                  name="name"
                   className="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue bg-tech-dark/80 text-white"
                   required
                 />
@@ -140,6 +181,7 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   className="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue bg-tech-dark/80 text-white"
                   required
                 />
@@ -151,6 +193,7 @@ const Contact = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows={5}
                   className="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-blue bg-tech-dark/80 text-white"
                   required
