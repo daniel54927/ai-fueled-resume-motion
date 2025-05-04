@@ -23,7 +23,7 @@ const StickyImageGallery = ({ images, onImageClick }: StickyImageGalleryProps) =
   }, []);
 
   return (
-    <div className="md:sticky md:top-24 md:self-start bg-tech-dark/80 border-l border-tech-blue/10 p-8 h-fit">
+    <div className="md:sticky md:top-24 md:self-start bg-tech-dark/80 border-l border-tech-blue/10 p-8 h-fit pb-10">
       <div className="transition-all duration-200" style={{ 
         transform: `translateY(${Math.min(scrollPosition * 0.05, 50)}px)` 
       }}>
