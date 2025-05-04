@@ -92,17 +92,17 @@ const Projects = () => {
     ],
     features: [
       {
-        icon: "mail",
+        icon: "mail" as const,
         title: "Rapid Processing",
         description: "Handles 50 emails in just 3-4 minutes"
       },
       {
-        icon: "bot",
+        icon: "bot" as const,
         title: "AI-Driven Categorization",
         description: "Automatically sorts emails based on content and sender"
       },
       {
-        icon: "bot",
+        icon: "bot" as const,
         title: "Intelligent Draft Generation",
         description: "Uses AI to create contextually appropriate email responses"
       }
