@@ -1,10 +1,12 @@
 
-import { useEffect, useRef } from 'react';
-import { Mail, Bot, ArrowRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Mail, Bot, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 import N8nIcon from '../components/icons/N8nIcon';
 import ScrollProgress from '../components/ScrollProgress';
 import ParticleBackground from '../components/ParticleBackground';
 import Header from '../components/Header';
+import ImageModal from '../components/ImageModal';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 const Projects = () => {
   useEffect(() => {
@@ -12,6 +14,8 @@ const Projects = () => {
   }, []);
 
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [modalImage, setModalImage] = useState<{src: string, alt: string} | null>(null);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,6 +42,14 @@ const Projects = () => {
       }
     };
   }, []);
+
+  const openImageModal = (src: string, alt: string) => {
+    setModalImage({ src, alt });
+  };
+
+  const closeImageModal = () => {
+    setModalImage(null);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -92,11 +104,81 @@ const Projects = () => {
                         <li>Achieved a 93% reduction in time spent on email management</li>
                       </ul>
                     </div>
+                    
+                    <Collapsible 
+                      open={isDetailsOpen} 
+                      onOpenChange={setIsDetailsOpen}
+                      className="mt-6"
+                    >
+                      <CollapsibleTrigger className="flex items-center w-full bg-tech-blue/10 hover:bg-tech-blue/20 px-4 py-2 rounded-lg transition-colors">
+                        <span className="flex-1 text-left font-medium text-tech-blue">
+                          {isDetailsOpen ? 'Show Less Details' : 'Show More Details'}
+                        </span>
+                        {isDetailsOpen ? (
+                          <ChevronUp className="h-5 w-5 text-tech-blue" />
+                        ) : (
+                          <ChevronDown className="h-5 w-5 text-tech-blue" />
+                        )}
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="mt-4 space-y-4">
+                        <div>
+                          <h3 className="text-xl font-semibold text-white mb-2">Project Overview</h3>
+                          <p className="text-gray-300">
+                            This innovative system automates my email processing, dramatically reducing the time spent on email management. 
+                            As an MVP (Minimum Viable Product), this project demonstrates the viability of using AI to streamline daily 
+                            communication tasks while maintaining personal oversight.
+                          </p>
+                          <p className="text-gray-300 mt-2">
+                            The system processes 50 emails in just 3-4 minutes, using AI for email categorization and draft response generation. 
+                            It implements a Human in the Middle approach, ensuring quality control and maintaining the personal touch in all communications.
+                          </p>
+                          <p className="text-gray-300 mt-2">
+                            During MVP testing, the system achieved a 93% reduction in time spent on email management, 
+                            processing 600 emails in just 48 minutes - a task that would have typically taken 8 hours.
+                          </p>
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-xl font-semibold text-white mb-2">Multi-Department Support</h3>
+                          <p className="text-gray-300">
+                            The system provides customized workflows for different organizational levels (e.g., General Manager, 
+                            Directors, IT Team), ensuring that emails are handled appropriately according to departmental needs.
+                          </p>
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-xl font-semibold text-white mb-2">Integration with Existing Systems</h3>
+                          <p className="text-gray-300">
+                            The solution seamlessly works with Gmail for easy adoption, requiring minimal changes to existing 
+                            email workflows while providing substantial efficiency improvements.
+                          </p>
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-xl font-semibold text-white mb-2">Future Development</h3>
+                          <p className="text-gray-300">
+                            Future developments and enhancements could include:
+                          </p>
+                          <ul className="list-disc pl-5 space-y-1 text-gray-200 mt-2">
+                            <li>Integration with other email providers beyond Gmail</li>
+                            <li>Expanded AI capabilities for more nuanced email categorization and response generation</li>
+                            <li>Implementation of learning algorithms to improve accuracy over time based on user feedback</li>
+                            <li>Scaling the system to handle larger email volumes for enterprise-level use</li>
+                            <li>Addition of analytics features to provide insights into email patterns and productivity metrics</li>
+                          </ul>
+                          <p className="text-gray-300 mt-2">
+                            This MVP sets a strong foundation for further innovation in AI-driven productivity tools, 
+                            with the potential to revolutionize how professionals manage their daily communications.
+                          </p>
+                        </div>
+                      </CollapsibleContent>
+                    </Collapsible>
                   </div>
                 </div>
                 
                 <div className="bg-tech-dark border-l border-tech-blue/10 p-8">
-                  <div className="rounded-lg overflow-hidden mb-6">
+                  <div className="rounded-lg overflow-hidden mb-6 cursor-pointer transition-transform hover:scale-105" 
+                    onClick={() => openImageModal("/lovable-uploads/901cfb17-9e52-4fc5-8460-e7ecc46dc873.png", "AI Email Management System Overview")}>
                     <img 
                       src="/lovable-uploads/901cfb17-9e52-4fc5-8460-e7ecc46dc873.png" 
                       alt="AI Email Management System Overview" 
@@ -105,14 +187,16 @@ const Projects = () => {
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="rounded-lg overflow-hidden">
+                    <div className="rounded-lg overflow-hidden cursor-pointer transition-transform hover:scale-105"
+                      onClick={() => openImageModal("/lovable-uploads/80a006f4-1811-4306-8abf-d487bd689894.png", "Director's Email Draft Writer")}>
                       <img 
                         src="/lovable-uploads/80a006f4-1811-4306-8abf-d487bd689894.png" 
                         alt="Director's Email Draft Writer" 
                         className="w-full h-auto object-cover"
                       />
                     </div>
-                    <div className="rounded-lg overflow-hidden">
+                    <div className="rounded-lg overflow-hidden cursor-pointer transition-transform hover:scale-105"
+                      onClick={() => openImageModal("/lovable-uploads/499df142-5a73-4224-95be-4af68f15fa75.png", "Director's Workflow")}>
                       <img 
                         src="/lovable-uploads/499df142-5a73-4224-95be-4af68f15fa75.png" 
                         alt="Director's Workflow" 
@@ -197,6 +281,16 @@ const Projects = () => {
           </p>
         </div>
       </footer>
+
+      {/* Image Modal */}
+      {modalImage && (
+        <ImageModal 
+          isOpen={!!modalImage} 
+          onClose={closeImageModal} 
+          imageSrc={modalImage.src} 
+          imageAlt={modalImage.alt}
+        />
+      )}
     </div>
   );
 };
