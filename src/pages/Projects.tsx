@@ -16,6 +16,7 @@ const Projects = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [modalImage, setModalImage] = useState<{src: string, alt: string} | null>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,6 +42,16 @@ const Projects = () => {
         observer.unobserve(sectionRef.current);
       }
     };
+  }, []);
+  
+  // Track scroll position for sticky sidebar
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const openImageModal = (src: string, alt: string) => {
@@ -176,7 +187,8 @@ const Projects = () => {
                   </div>
                 </div>
                 
-                <div className="bg-tech-dark border-l border-tech-blue/10 p-8">
+                {/* Sticky images container */}
+                <div className="md:sticky md:top-24 md:self-start bg-tech-dark border-l border-tech-blue/10 p-8 h-fit">
                   <div className="rounded-lg overflow-hidden mb-6 cursor-pointer transition-transform hover:scale-105" 
                     onClick={() => openImageModal("/lovable-uploads/901cfb17-9e52-4fc5-8460-e7ecc46dc873.png", "AI Email Management System Overview")}>
                     <img 
