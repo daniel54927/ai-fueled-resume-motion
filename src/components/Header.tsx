@@ -32,6 +32,14 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [scrolled]);
+
+  // Get current path for active nav highlighting
+  const isActive = (path: string) => {
+    if (path === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname.startsWith(path);
+  };
   
   return (
     <header
@@ -48,23 +56,47 @@ const Header = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/" className={`nav-link ${location.pathname === '/' ? 'after:w-full text-white' : ''}`}>
-            Home
+          <Link 
+            to="/" 
+            className={`nav-link relative group ${isActive('/') ? 'text-white after:w-full' : ''}`}
+          >
+            <span className="relative z-10">Home</span>
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue transition-all duration-300 group-hover:w-full"></span>
           </Link>
-          <Link to="/projects" className={`nav-link ${location.pathname === '/projects' ? 'after:w-full text-white' : ''}`}>
-            Projects
+          <Link 
+            to="/projects" 
+            className={`nav-link relative group ${isActive('/projects') ? 'text-white after:w-full' : ''}`}
+          >
+            <span className="relative z-10">Projects</span>
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue transition-all duration-300 group-hover:w-full"></span>
           </Link>
-          <a href="#about" className="nav-link">
-            About
+          <a 
+            href="#about" 
+            className="nav-link relative group"
+          >
+            <span className="relative z-10">About</span>
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue transition-all duration-300 group-hover:w-full"></span>
           </a>
-          <a href="#experience" className="nav-link">
-            Experience
+          <a 
+            href="#experience" 
+            className="nav-link relative group"
+          >
+            <span className="relative z-10">Experience</span>
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue transition-all duration-300 group-hover:w-full"></span>
           </a>
-          <a href="#skills" className="nav-link">
-            Skills
+          <a 
+            href="#skills" 
+            className="nav-link relative group"
+          >
+            <span className="relative z-10">Skills</span>
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue transition-all duration-300 group-hover:w-full"></span>
           </a>
-          <a href="#contact" className="nav-link">
-            Contact
+          <a 
+            href="#contact" 
+            className="nav-link relative group"
+          >
+            <span className="relative z-10">Contact</span>
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue transition-all duration-300 group-hover:w-full"></span>
           </a>
         </nav>
         
@@ -81,22 +113,40 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-tech-dark/95 backdrop-blur-lg shadow-lg">
             <nav className="flex flex-col py-4">
-              <Link to="/" className="px-4 py-3 hover:bg-white/5">
+              <Link 
+                to="/" 
+                className={`px-4 py-3 hover:bg-white/5 transition-colors ${isActive('/') ? 'border-l-2 border-tech-blue bg-white/5' : ''}`}
+              >
                 Home
               </Link>
-              <Link to="/projects" className="px-4 py-3 hover:bg-white/5">
+              <Link 
+                to="/projects" 
+                className={`px-4 py-3 hover:bg-white/5 transition-colors ${isActive('/projects') ? 'border-l-2 border-tech-blue bg-white/5' : ''}`}
+              >
                 Projects
               </Link>
-              <a href="#about" className="px-4 py-3 hover:bg-white/5">
+              <a 
+                href="#about" 
+                className="px-4 py-3 hover:bg-white/5 transition-colors"
+              >
                 About
               </a>
-              <a href="#experience" className="px-4 py-3 hover:bg-white/5">
+              <a 
+                href="#experience" 
+                className="px-4 py-3 hover:bg-white/5 transition-colors"
+              >
                 Experience
               </a>
-              <a href="#skills" className="px-4 py-3 hover:bg-white/5">
+              <a 
+                href="#skills" 
+                className="px-4 py-3 hover:bg-white/5 transition-colors"
+              >
                 Skills
               </a>
-              <a href="#contact" className="px-4 py-3 hover:bg-white/5">
+              <a 
+                href="#contact" 
+                className="px-4 py-3 hover:bg-white/5 transition-colors"
+              >
                 Contact
               </a>
             </nav>
