@@ -1,0 +1,23 @@
+
+.section-container {
+  @apply container mx-auto px-4 md:px-6;
+}
+
+.tech-gradient-text {
+  @apply bg-gradient-to-r from-tech-blue to-blue-500 bg-clip-text text-transparent;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

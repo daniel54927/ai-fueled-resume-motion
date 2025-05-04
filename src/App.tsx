@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Projects from "./pages/Projects";
 import NotFound from "./pages/NotFound";
 import { ThemeProvider } from "./hooks/useTheme";
+import "./components/projects/Projects.module.css";
 
 const queryClient = new QueryClient();
 
