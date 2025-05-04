@@ -92,7 +92,7 @@ const ImageModal = ({ isOpen, onClose, imageSrc, imageAlt }: ImageModalProps) =>
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
-      <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 overflow-hidden bg-black/90">
+      <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 overflow-hidden bg-black/90" hideCloseButton>
         <DialogTitle className="sr-only">Image Viewer</DialogTitle>
         <div className="absolute right-4 top-4 z-50 flex space-x-2">
           <button 
