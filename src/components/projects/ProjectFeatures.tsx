@@ -2,6 +2,7 @@
 import React from 'react';
 import { Mail, Bot, ArrowRight } from 'lucide-react';
 import N8nIcon from '../icons/N8nIcon';
+import { Link } from 'react-router-dom';
 
 interface FeatureItem {
   icon: React.ReactNode;
@@ -53,10 +54,10 @@ const ProjectFeatures = ({ features, technologies, impactText }: ProjectFeatures
         <p className="text-gray-300">{impactText}</p>
         
         <div className="mt-6">
-          <a href="#contact" className="inline-flex items-center text-tech-blue hover:text-tech-blue/90 font-medium">
+          <Link to="/#contact" className="inline-flex items-center text-tech-blue hover:text-tech-blue/90 font-medium">
             <span>Contact me to learn more</span>
             <ArrowRight className="ml-2 h-4 w-4" />
-          </a>
+          </Link>
         </div>
       </div>
     </div>
