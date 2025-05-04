@@ -1,5 +1,7 @@
+
 import { useEffect, useRef } from 'react';
 import { ChevronDown, Briefcase, Cpu, Shield, Compass } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -31,7 +33,7 @@ const Hero = () => {
         </p>
 
         <p className="max-w-2xl mx-auto text-lg md:text-xl text-tech-blue mb-8 animate-fade-in font-medium" style={{ animationDelay: '0.3s' }}>
-          AI Projects Coming Soon!
+          AI Projects Now Available!
         </p>
         
         <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
@@ -63,12 +65,12 @@ const Hero = () => {
           >
             Get in Touch
           </a>
-          <a 
-            href="#about" 
+          <Link 
+            to="/projects" 
             className="bg-tech-dark/80 text-white backdrop-blur-sm hover:bg-tech-dark/90 border border-white/10 px-8 py-3 rounded-md shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5 font-medium"
           >
-            Explore My Journey
-          </a>
+            View AI Projects
+          </Link>
         </div>
       </div>
       
