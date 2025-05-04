@@ -33,12 +33,20 @@ const Header = () => {
     };
   }, [scrolled]);
 
-  // Get current path for active nav highlighting
+  // Improved active link detection
   const isActive = (path: string) => {
     if (path === '/') {
       return location.pathname === '/';
     }
-    return location.pathname.startsWith(path);
+    // Exact match for project pages
+    if (path === '/projects') {
+      return location.pathname === '/projects';
+    }
+    // For hash links like #about, check if they are in the current URL when on homepage
+    if (path.startsWith('#')) {
+      return location.pathname === '/' && location.hash === path;
+    }
+    return false;
   };
   
   return (
@@ -58,46 +66,50 @@ const Header = () => {
         <nav className="hidden md:flex items-center space-x-8">
           <Link 
             to="/" 
-            className={`nav-link relative group ${isActive('/') ? 'text-white after:w-full' : ''}`}
+            className={`nav-link relative group ${isActive('/') ? 'text-white font-medium' : 'text-white/80'}`}
           >
             <span className="relative z-10">Home</span>
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue transition-all duration-300 group-hover:w-full"></span>
+            <span className={`absolute bottom-0 left-0 h-0.5 bg-tech-blue transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
           <Link 
             to="/projects" 
-            className={`nav-link relative group ${isActive('/projects') ? 'text-white after:w-full' : ''}`}
+            className={`nav-link relative group ${isActive('/projects') ? 'text-white font-medium' : 'text-white/80'}`}
           >
             <span className="relative z-10">Projects</span>
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue transition-all duration-300 group-hover:w-full"></span>
+            <span className={`absolute bottom-0 left-0 h-0.5 bg-tech-blue transition-all duration-300 ${isActive('/projects') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
-          <a 
-            href="#about" 
-            className="nav-link relative group"
-          >
-            <span className="relative z-10">About</span>
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a 
-            href="#experience" 
-            className="nav-link relative group"
-          >
-            <span className="relative z-10">Experience</span>
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a 
-            href="#skills" 
-            className="nav-link relative group"
-          >
-            <span className="relative z-10">Skills</span>
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a 
-            href="#contact" 
-            className="nav-link relative group"
-          >
-            <span className="relative z-10">Contact</span>
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-tech-blue transition-all duration-300 group-hover:w-full"></span>
-          </a>
+          {location.pathname === '/' && (
+            <>
+              <a 
+                href="#about" 
+                className={`nav-link relative group ${isActive('#about') ? 'text-white font-medium' : 'text-white/80'}`}
+              >
+                <span className="relative z-10">About</span>
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-tech-blue transition-all duration-300 ${isActive('#about') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="#experience" 
+                className={`nav-link relative group ${isActive('#experience') ? 'text-white font-medium' : 'text-white/80'}`}
+              >
+                <span className="relative z-10">Experience</span>
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-tech-blue transition-all duration-300 ${isActive('#experience') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="#skills" 
+                className={`nav-link relative group ${isActive('#skills') ? 'text-white font-medium' : 'text-white/80'}`}
+              >
+                <span className="relative z-10">Skills</span>
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-tech-blue transition-all duration-300 ${isActive('#skills') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+              <a 
+                href="#contact" 
+                className={`nav-link relative group ${isActive('#contact') ? 'text-white font-medium' : 'text-white/80'}`}
+              >
+                <span className="relative z-10">Contact</span>
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-tech-blue transition-all duration-300 ${isActive('#contact') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </a>
+            </>
+          )}
         </nav>
         
         {/* Mobile Menu Button */}
@@ -115,40 +127,44 @@ const Header = () => {
             <nav className="flex flex-col py-4">
               <Link 
                 to="/" 
-                className={`px-4 py-3 hover:bg-white/5 transition-colors ${isActive('/') ? 'border-l-2 border-tech-blue bg-white/5' : ''}`}
+                className={`px-4 py-3 hover:bg-white/5 transition-colors ${isActive('/') ? 'border-l-2 border-tech-blue bg-white/5 font-medium' : ''}`}
               >
                 Home
               </Link>
               <Link 
                 to="/projects" 
-                className={`px-4 py-3 hover:bg-white/5 transition-colors ${isActive('/projects') ? 'border-l-2 border-tech-blue bg-white/5' : ''}`}
+                className={`px-4 py-3 hover:bg-white/5 transition-colors ${isActive('/projects') ? 'border-l-2 border-tech-blue bg-white/5 font-medium' : ''}`}
               >
                 Projects
               </Link>
-              <a 
-                href="#about" 
-                className="px-4 py-3 hover:bg-white/5 transition-colors"
-              >
-                About
-              </a>
-              <a 
-                href="#experience" 
-                className="px-4 py-3 hover:bg-white/5 transition-colors"
-              >
-                Experience
-              </a>
-              <a 
-                href="#skills" 
-                className="px-4 py-3 hover:bg-white/5 transition-colors"
-              >
-                Skills
-              </a>
-              <a 
-                href="#contact" 
-                className="px-4 py-3 hover:bg-white/5 transition-colors"
-              >
-                Contact
-              </a>
+              {location.pathname === '/' && (
+                <>
+                  <a 
+                    href="#about" 
+                    className={`px-4 py-3 hover:bg-white/5 transition-colors ${isActive('#about') ? 'border-l-2 border-tech-blue bg-white/5 font-medium' : ''}`}
+                  >
+                    About
+                  </a>
+                  <a 
+                    href="#experience" 
+                    className={`px-4 py-3 hover:bg-white/5 transition-colors ${isActive('#experience') ? 'border-l-2 border-tech-blue bg-white/5 font-medium' : ''}`}
+                  >
+                    Experience
+                  </a>
+                  <a 
+                    href="#skills" 
+                    className={`px-4 py-3 hover:bg-white/5 transition-colors ${isActive('#skills') ? 'border-l-2 border-tech-blue bg-white/5 font-medium' : ''}`}
+                  >
+                    Skills
+                  </a>
+                  <a 
+                    href="#contact" 
+                    className={`px-4 py-3 hover:bg-white/5 transition-colors ${isActive('#contact') ? 'border-l-2 border-tech-blue bg-white/5 font-medium' : ''}`}
+                  >
+                    Contact
+                  </a>
+                </>
+              )}
             </nav>
           </div>
         )}
