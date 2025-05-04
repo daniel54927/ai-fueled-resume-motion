@@ -88,6 +88,10 @@ const Projects = () => {
       {
         src: "/lovable-uploads/499df142-5a73-4224-95be-4af68f15fa75.png",
         alt: "Director's Workflow"
+      },
+      {
+        src: "/lovable-uploads/09441c07-9bd7-4a7a-94c6-467b40328932.png",
+        alt: "Email System Diagram"
       }
     ],
     features: [
