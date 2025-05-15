@@ -93,8 +93,8 @@ const PrivacyPolicy = () => {
               If you have any questions about this Privacy Policy, please contact us at:
             </p>
             <ul>
-              <li>Email: privacy@example.com</li>
-              <li>Address: 123 Privacy Street, Tech City, 12345</li>
+              <li>Email: danie.brown@deepfrog.app</li>
+              <li>Address: Lakehurst Drive, Waukegan, IL 60085</li>
             </ul>
           </div>
         </div>

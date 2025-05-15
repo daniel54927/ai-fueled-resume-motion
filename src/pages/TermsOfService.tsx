@@ -74,7 +74,7 @@ const TermsOfService = () => {
             
             <h2>Governing Law</h2>
             <p>
-              These Terms shall be governed and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflict of law provisions.
+              These Terms shall be governed and construed in accordance with the laws of Illinois, without regard to its conflict of law provisions.
             </p>
             
             <h2>Changes to Terms</h2>
@@ -87,8 +87,8 @@ const TermsOfService = () => {
               If you have any questions about these Terms, please contact us at:
             </p>
             <ul>
-              <li>Email: terms@example.com</li>
-              <li>Address: 123 Terms Street, Tech City, 12345</li>
+              <li>Email: danie.brown@deepfrog.app</li>
+              <li>Address: Lakehurst Drive, Waukegan, IL 60085</li>
             </ul>
           </div>
         </div>
