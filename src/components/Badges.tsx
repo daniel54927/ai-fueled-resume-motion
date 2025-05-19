@@ -24,59 +24,59 @@ const Badges = () => {
   
   const badges: Badge[] = [
     {
-      name: "CompTIA Security+",
+      name: "CompTIA Security+ Certification",
       issuer: "CompTIA",
       issuedDate: "May 2023",
-      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
-      credlyUrl: "https://www.credly.com/badges/341a8367-6436-44f6-b892-d66aeabd1be9"
+      imageUrl: "https://images.credly.com/size/680x680/images/74790a75-8451-400a-8536-92d792c5184a/CompTIA_Security_2Bce.png",
+      credlyUrl: "https://www.credly.com/badges/f3bb9acb-6243-43a8-a74f-df26e8ec74cd"
     },
     {
-      name: "CompTIA Network+",
+      name: "CompTIA Network+ Certification",
       issuer: "CompTIA",
       issuedDate: "Jan 2023",
-      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
+      imageUrl: "https://images.credly.com/size/680x680/images/be6dfc3d-f8a9-4814-b4b5-d61af8ffb2bc/infrastructure-network-comptia-network-certification-logo.png",
       credlyUrl: "https://www.credly.com/badges/cc94d4ef-1051-42ee-94c3-42a193ffd875"
     },
     {
-      name: "CompTIA A+",
+      name: "CompTIA A+ Certification",
       issuer: "CompTIA",
       issuedDate: "Dec 2022",
-      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
+      imageUrl: "https://images.credly.com/size/680x680/images/63482325-a0d6-4f64-ae75-f5f33922c7d0/CompTIA_A_2Bce.png",
       credlyUrl: "https://www.credly.com/badges/e750d210-34d4-4dba-b6b0-fa0c71e1d708"
     },
     {
       name: "CompTIA IT Fundamentals ITF+",
       issuer: "Quickstart Inc.",
       issuedDate: "Apr 2024",
-      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
+      imageUrl: "https://images.credly.com/size/680x680/images/649a0711-49b6-401a-9dc1-a10e7b238e2a/IFcomptia.png",
       credlyUrl: "https://www.credly.com/badges/e750d210-34d4-4dba-b6b0-fa0c71e1d708"
     },
     {
       name: "CompTIA Network+ (Exam N10-008)",
       issuer: "Quickstart Inc.",
       issuedDate: "May 2024",
-      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
+      imageUrl: "https://images.credly.com/size/680x680/images/be6dfc3d-f8a9-4814-b4b5-d61af8ffb2bc/infrastructure-network-comptia-network-certification-logo.png",
       credlyUrl: "https://www.credly.com/badges/cc94d4ef-1051-42ee-94c3-42a193ffd875"
     },
     {
       name: "Security Fundamentals",
       issuer: "Quickstart Inc.",
       issuedDate: "Jun 2024",
-      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
+      imageUrl: "https://images.credly.com/size/680x680/images/7957b6a2-97c0-4ae4-84b9-5fb9351e2dfe/04_SecurityFundamentals-01.png",
       credlyUrl: "https://www.credly.com/badges/341a8367-6436-44f6-b892-d66aeabd1be9"
     },
     {
       name: "Python for All",
       issuer: "Quickstart Inc.",
       issuedDate: "Jul 2024",
-      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
+      imageUrl: "https://images.credly.com/size/680x680/images/9178573c-73c8-42e4-963e-5537d8d165d8/08_PythonProgrammer-01.png",
       credlyUrl: "https://www.credly.com/badges/341a8367-6436-44f6-b892-d66aeabd1be9"
     },
     {
       name: "CompTIA Network+ ce Certification",
       issuer: "CompTIA",
       issuedDate: "Sep 2024",
-      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
+      imageUrl: "https://images.credly.com/size/680x680/images/be6dfc3d-f8a9-4814-b4b5-d61af8ffb2bc/infrastructure-network-comptia-network-certification-logo.png",
       credlyUrl: "https://www.credly.com/badges/cc94d4ef-1051-42ee-94c3-42a193ffd875"
     }
   ];
