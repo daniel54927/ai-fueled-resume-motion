@@ -34,7 +34,7 @@ const Badges = () => {
       name: "CompTIA Network+ Certification",
       issuer: "CompTIA",
       issuedDate: "Jan 2023",
-      imageUrl: "https://images.credly.com/size/680x680/images/be6dfc3d-f8a9-4814-b4b5-d61af8ffb2bc/infrastructure-network-comptia-network-certification-logo.png",
+      imageUrl: "/lovable-uploads/e18349bc-6d34-46d0-b667-7bd803cf97c3.png",
       credlyUrl: "https://www.credly.com/badges/cc94d4ef-1051-42ee-94c3-42a193ffd875"
     },
     {
@@ -48,36 +48,50 @@ const Badges = () => {
       name: "CompTIA IT Fundamentals ITF+",
       issuer: "Quickstart Inc.",
       issuedDate: "Apr 2024",
-      imageUrl: "https://images.credly.com/size/680x680/images/649a0711-49b6-401a-9dc1-a10e7b238e2a/IFcomptia.png",
+      imageUrl: "/lovable-uploads/a3fbcbb2-0909-400a-8cfc-3c3b05de2e31.png",
       credlyUrl: "https://www.credly.com/badges/e750d210-34d4-4dba-b6b0-fa0c71e1d708"
     },
     {
       name: "CompTIA Network+ (Exam N10-008)",
       issuer: "Quickstart Inc.",
       issuedDate: "May 2024",
-      imageUrl: "https://images.credly.com/size/680x680/images/be6dfc3d-f8a9-4814-b4b5-d61af8ffb2bc/infrastructure-network-comptia-network-certification-logo.png",
+      imageUrl: "/lovable-uploads/d49012d6-fd2c-464f-9007-68ac6419e178.png",
       credlyUrl: "https://www.credly.com/badges/cc94d4ef-1051-42ee-94c3-42a193ffd875"
     },
     {
       name: "Security Fundamentals",
       issuer: "Quickstart Inc.",
       issuedDate: "Jun 2024",
-      imageUrl: "https://images.credly.com/size/680x680/images/7957b6a2-97c0-4ae4-84b9-5fb9351e2dfe/04_SecurityFundamentals-01.png",
+      imageUrl: "/lovable-uploads/eed89495-3883-48ba-b738-937457170cea.png",
       credlyUrl: "https://www.credly.com/badges/341a8367-6436-44f6-b892-d66aeabd1be9"
     },
     {
       name: "Python for All",
       issuer: "Quickstart Inc.",
       issuedDate: "Jul 2024",
-      imageUrl: "https://images.credly.com/size/680x680/images/9178573c-73c8-42e4-963e-5537d8d165d8/08_PythonProgrammer-01.png",
+      imageUrl: "/lovable-uploads/5f4d3841-fbc9-4444-a488-d319fb2defc0.png",
       credlyUrl: "https://www.credly.com/badges/341a8367-6436-44f6-b892-d66aeabd1be9"
     },
     {
       name: "CompTIA Network+ ce Certification",
       issuer: "CompTIA",
       issuedDate: "Sep 2024",
-      imageUrl: "https://images.credly.com/size/680x680/images/be6dfc3d-f8a9-4814-b4b5-d61af8ffb2bc/infrastructure-network-comptia-network-certification-logo.png",
+      imageUrl: "/lovable-uploads/742d1579-0b20-4b26-8e6d-3613c94deaf4.png",
       credlyUrl: "https://www.credly.com/badges/cc94d4ef-1051-42ee-94c3-42a193ffd875"
+    },
+    {
+      name: "CompTIA CySA+ Cybersecurity Analyst",
+      issuer: "Quickstart Inc.",
+      issuedDate: "Oct 2024",
+      imageUrl: "/lovable-uploads/4a91e35e-26b7-4999-84a4-e6cb34e1ce30.png",
+      credlyUrl: "https://www.credly.com/badges/07f2a028-b61a-44ac-816f-1dc619d4e29f"
+    },
+    {
+      name: "CompTIA PenTest+ (Exam PT0-002)",
+      issuer: "Quickstart Inc.",
+      issuedDate: "Nov 2024",
+      imageUrl: "/lovable-uploads/c111cc34-bcd7-4a2a-af23-2395772ca87d.png",
+      credlyUrl: "https://www.credly.com/badges/07f2a028-b61a-44ac-816f-1dc619d4e29f"
     }
   ];
   
