@@ -150,7 +150,7 @@ const Badges = () => {
                   >
                     <AnimatedCard className="h-full flex flex-col items-center p-6 dark:bg-tech-dark/50 transition-all group-hover:scale-105">
                       <div className="relative mb-6 w-40 h-40">
-                        <div className="w-full h-full flex items-center justify-center border-2 border-tech-purple/30 rounded-full overflow-hidden">
+                        <div className="w-full h-full flex items-center justify-center border-2 border-tech-purple/30">
                           <img 
                             src={badge.imageUrl} 
                             alt={badge.name} 
