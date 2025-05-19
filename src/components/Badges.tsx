@@ -20,21 +20,21 @@ const Badges = () => {
       name: "CompTIA Security+",
       issuer: "CompTIA",
       issuedDate: "May 2023",
-      imageUrl: "https://images.credly.com/size/340x340/images/74790a75-8451-400a-8536-92d792c5184a/CompTIA_Security_2Bce.png",
+      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png", // Updated to use local image
       credlyUrl: "https://www.credly.com/badges/341a8367-6436-44f6-b892-d66aeabd1be9"
     },
     {
       name: "CompTIA Network+",
       issuer: "CompTIA",
       issuedDate: "Jan 2023",
-      imageUrl: "https://images.credly.com/size/340x340/images/e1fc05b2-959b-45a4-8d20-124b1df121fe/CompTIA_Network_2Bce.png",
+      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png", // Using same placeholder for now
       credlyUrl: "https://www.credly.com/badges/cc94d4ef-1051-42ee-94c3-42a193ffd875"
     },
     {
       name: "CompTIA A+",
       issuer: "CompTIA",
       issuedDate: "Dec 2022",
-      imageUrl: "https://images.credly.com/size/340x340/images/63482325-a0d6-4f64-ae75-f5f33922c7d0/CompTIA_A_2Bce.png",
+      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png", // Using same placeholder for now
       credlyUrl: "https://www.credly.com/badges/e750d210-34d4-4dba-b6b0-fa0c71e1d708"
     }
   ];
@@ -89,7 +89,7 @@ const Badges = () => {
                   <img 
                     src={badge.imageUrl} 
                     alt={badge.name} 
-                    className="w-40 h-40 object-contain" 
+                    className="w-40 h-40 object-contain rounded-full" 
                   />
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-center">{badge.name}</h3>
