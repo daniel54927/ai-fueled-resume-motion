@@ -149,12 +149,14 @@ const Badges = () => {
                     className="badge-item opacity-0 group block h-full"
                   >
                     <AnimatedCard className="h-full flex flex-col items-center p-6 dark:bg-tech-dark/50 transition-all group-hover:scale-105">
-                      <div className="mb-6 flex items-center justify-center w-40 h-40 rounded-full overflow-hidden border-2 border-tech-purple/30">
-                        <img 
-                          src={badge.imageUrl} 
-                          alt={badge.name} 
-                          className="w-full h-full object-cover" 
-                        />
+                      <div className="relative mb-6 w-40 h-40">
+                        <div className="absolute top-0 left-0 w-full h-full rounded-full overflow-hidden border-2 border-tech-purple/30">
+                          <img 
+                            src={badge.imageUrl} 
+                            alt={badge.name} 
+                            className="w-full h-full object-contain" 
+                          />
+                        </div>
                       </div>
                       <h3 className="text-xl font-semibold mb-2 text-center line-clamp-2">{badge.name}</h3>
                       <div className="flex flex-wrap gap-2 justify-center mb-2">
