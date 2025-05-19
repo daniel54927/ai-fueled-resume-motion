@@ -3,6 +3,13 @@ import { useEffect, useRef } from 'react';
 import { Badge } from "@/components/ui/badge";
 import AnimatedCard from './AnimatedCard';
 import { Award } from 'lucide-react';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from "@/components/ui/carousel";
 
 interface Badge {
   name: string;
@@ -20,22 +27,57 @@ const Badges = () => {
       name: "CompTIA Security+",
       issuer: "CompTIA",
       issuedDate: "May 2023",
-      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png", // Updated to use local image
+      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
       credlyUrl: "https://www.credly.com/badges/341a8367-6436-44f6-b892-d66aeabd1be9"
     },
     {
       name: "CompTIA Network+",
       issuer: "CompTIA",
       issuedDate: "Jan 2023",
-      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png", // Using same placeholder for now
+      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
       credlyUrl: "https://www.credly.com/badges/cc94d4ef-1051-42ee-94c3-42a193ffd875"
     },
     {
       name: "CompTIA A+",
       issuer: "CompTIA",
       issuedDate: "Dec 2022",
-      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png", // Using same placeholder for now
+      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
       credlyUrl: "https://www.credly.com/badges/e750d210-34d4-4dba-b6b0-fa0c71e1d708"
+    },
+    {
+      name: "CompTIA IT Fundamentals ITF+",
+      issuer: "Quickstart Inc.",
+      issuedDate: "Apr 2024",
+      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
+      credlyUrl: "https://www.credly.com/badges/e750d210-34d4-4dba-b6b0-fa0c71e1d708"
+    },
+    {
+      name: "CompTIA Network+ (Exam N10-008)",
+      issuer: "Quickstart Inc.",
+      issuedDate: "May 2024",
+      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
+      credlyUrl: "https://www.credly.com/badges/cc94d4ef-1051-42ee-94c3-42a193ffd875"
+    },
+    {
+      name: "Security Fundamentals",
+      issuer: "Quickstart Inc.",
+      issuedDate: "Jun 2024",
+      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
+      credlyUrl: "https://www.credly.com/badges/341a8367-6436-44f6-b892-d66aeabd1be9"
+    },
+    {
+      name: "Python for All",
+      issuer: "Quickstart Inc.",
+      issuedDate: "Jul 2024",
+      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
+      credlyUrl: "https://www.credly.com/badges/341a8367-6436-44f6-b892-d66aeabd1be9"
+    },
+    {
+      name: "CompTIA Network+ ce Certification",
+      issuer: "CompTIA",
+      issuedDate: "Sep 2024",
+      imageUrl: "/lovable-uploads/16767776-d8a8-492f-b84c-509458e28c76.png",
+      credlyUrl: "https://www.credly.com/badges/cc94d4ef-1051-42ee-94c3-42a193ffd875"
     }
   ];
   
@@ -75,39 +117,54 @@ const Badges = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
-          {badges.map((badge, index) => (
-            <a 
-              key={index} 
-              href={badge.credlyUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="badge-item opacity-0 group"
-            >
-              <AnimatedCard className="h-full flex flex-col items-center p-6 dark:bg-tech-dark/50 transition-all group-hover:scale-105">
-                <div className="mb-6 flex items-center justify-center">
-                  <img 
-                    src={badge.imageUrl} 
-                    alt={badge.name} 
-                    className="w-40 h-40 object-contain rounded-full" 
-                  />
-                </div>
-                <h3 className="text-xl font-semibold mb-2 text-center">{badge.name}</h3>
-                <div className="flex flex-wrap gap-2 justify-center mb-2">
-                  <Badge variant="outline" className="bg-tech-blue/10 text-tech-blue border-tech-blue/20">
-                    {badge.issuer}
-                  </Badge>
-                  <Badge variant="outline" className="bg-tech-purple/10 text-tech-purple border-tech-purple/20">
-                    {badge.issuedDate}
-                  </Badge>
-                </div>
-                <div className="mt-auto pt-4 flex items-center text-tech-blue">
-                  <Award className="h-4 w-4 mr-1" />
-                  <span className="text-sm">View on Credly</span>
-                </div>
-              </AnimatedCard>
-            </a>
-          ))}
+        <div className="relative px-4 sm:px-8 md:px-12 lg:px-16 mb-10">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {badges.map((badge, index) => (
+                <CarouselItem key={index} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <a 
+                    href={badge.credlyUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="badge-item opacity-0 group block h-full"
+                  >
+                    <AnimatedCard className="h-full flex flex-col items-center p-6 dark:bg-tech-dark/50 transition-all group-hover:scale-105">
+                      <div className="mb-6 flex items-center justify-center">
+                        <img 
+                          src={badge.imageUrl} 
+                          alt={badge.name} 
+                          className="w-40 h-40 object-contain rounded-full" 
+                        />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2 text-center line-clamp-2">{badge.name}</h3>
+                      <div className="flex flex-wrap gap-2 justify-center mb-2">
+                        <Badge variant="outline" className="bg-tech-blue/10 text-tech-blue border-tech-blue/20">
+                          {badge.issuer}
+                        </Badge>
+                        <Badge variant="outline" className="bg-tech-purple/10 text-tech-purple border-tech-purple/20">
+                          {badge.issuedDate}
+                        </Badge>
+                      </div>
+                      <div className="mt-auto pt-4 flex items-center text-tech-blue">
+                        <Award className="h-4 w-4 mr-1" />
+                        <span className="text-sm">View on Credly</span>
+                      </div>
+                    </AnimatedCard>
+                  </a>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="hidden sm:block">
+              <CarouselPrevious className="left-0" />
+              <CarouselNext className="right-0" />
+            </div>
+          </Carousel>
         </div>
         
         <div className="mt-8 text-center">
