@@ -6,6 +6,7 @@ import Hero from '../components/Hero';
 import About from '../components/About';
 import Experience from '../components/Experience';
 import Skills from '../components/Skills';
+import Badges from '../components/Badges';
 import Contact from '../components/Contact';
 import ParticleBackground from '../components/ParticleBackground';
 import ScrollProgress from '../components/ScrollProgress';
@@ -26,6 +27,7 @@ const Index = () => {
         <About />
         <Experience />
         <Skills />
+        <Badges />
         <Contact />
       </main>
       
