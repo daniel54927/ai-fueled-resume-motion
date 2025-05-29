@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 import { Badge } from "@/components/ui/badge";
 import AnimatedCard from './AnimatedCard';
@@ -146,7 +147,7 @@ const Badges = () => {
                       <div className="relative mb-6 w-40 h-40">
                         <div className="w-full h-full flex items-center justify-center border-transparent">
                           {badge.embedId ? (
-                            <CredlyEmbed badgeId={badge.embedId} width="150" height="270" />
+                            <CredlyEmbed badgeId={badge.embedId} width="120" height="180" />
                           ) : (
                             <img 
                               src={badge.imageUrl} 
