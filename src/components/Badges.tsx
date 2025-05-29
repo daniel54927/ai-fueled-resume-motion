@@ -1,7 +1,7 @@
-
 import { useEffect, useRef } from 'react';
 import { Badge } from "@/components/ui/badge";
 import AnimatedCard from './AnimatedCard';
+import CredlyEmbed from './CredlyEmbed';
 import { Award } from 'lucide-react';
 import { 
   Carousel, 
@@ -11,18 +11,19 @@ import {
   CarouselPrevious 
 } from "@/components/ui/carousel";
 
-interface Badge {
+interface BadgeData {
   name: string;
   issuer: string;
   issuedDate: string;
-  imageUrl: string;
+  imageUrl?: string;
   credlyUrl: string;
+  embedId?: string;
 }
 
 const Badges = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   
-  const badges: Badge[] = [
+  const badges: BadgeData[] = [
     {
       name: "CompTIA Security+ Certification",
       issuer: "CompTIA",
@@ -59,11 +60,11 @@ const Badges = () => {
       credlyUrl: "https://www.credly.com/badges/cc94d4ef-1051-42ee-94c3-42a193ffd875"
     },
     {
-      name: "Security Fundamentals",
-      issuer: "Quickstart Inc.",
-      issuedDate: "Jun 2024",
-      imageUrl: "/lovable-uploads/eed89495-3883-48ba-b738-937457170cea.png",
-      credlyUrl: "https://www.credly.com/badges/341a8367-6436-44f6-b892-d66aeabd1be9"
+      name: "CompTIA PenTest+",
+      issuer: "CompTIA",
+      issuedDate: "Nov 2024",
+      embedId: "d9e9c6f2-fbc2-4b73-9c16-9748ba46a819",
+      credlyUrl: "https://www.credly.com/badges/d9e9c6f2-fbc2-4b73-9c16-9748ba46a819/public_url"
     },
     {
       name: "Python for All",
@@ -85,13 +86,6 @@ const Badges = () => {
       issuedDate: "Oct 2024",
       imageUrl: "/lovable-uploads/ca4c30c3-38b1-4912-9c2d-a94059ce9c16.png",
       credlyUrl: "https://www.credly.com/badges/cf60abc3-3b0f-456a-b366-1621309ff0ce/public_url"
-    },
-    {
-      name: "CompTIA PenTest+",
-      issuer: "CompTIA",
-      issuedDate: "Nov 2024",
-      imageUrl: "/lovable-uploads/c111cc34-bcd7-4a2a-af23-2395772ca87d.png",
-      credlyUrl: "https://www.credly.com/badges/d9e9c6f2-fbc2-4b73-9c16-9748ba46a819/public_url"
     }
   ];
   
@@ -151,12 +145,16 @@ const Badges = () => {
                     <AnimatedCard className="h-full flex flex-col items-center p-6 dark:bg-tech-dark/50 transition-all group-hover:scale-105">
                       <div className="relative mb-6 w-40 h-40">
                         <div className="w-full h-full flex items-center justify-center border-transparent">
-                          <img 
-                            src={badge.imageUrl} 
-                            alt={badge.name} 
-                            className="max-w-full max-h-full object-contain" 
-                            style={{ width: "100%", height: "100%" }}
-                          />
+                          {badge.embedId ? (
+                            <CredlyEmbed badgeId={badge.embedId} width="150" height="270" />
+                          ) : (
+                            <img 
+                              src={badge.imageUrl} 
+                              alt={badge.name} 
+                              className="max-w-full max-h-full object-contain" 
+                              style={{ width: "100%", height: "100%" }}
+                            />
+                          )}
                         </div>
                       </div>
                       <h3 className="text-xl font-semibold mb-2 text-center line-clamp-2">{badge.name}</h3>
