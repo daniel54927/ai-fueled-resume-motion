@@ -64,7 +64,7 @@ const Badges = () => {
       name: "CompTIA PenTest+",
       issuer: "CompTIA",
       issuedDate: "Nov 2024",
-      embedId: "d9e9c6f2-fbc2-4b73-9c16-9748ba46a819",
+      imageUrl: "https://images.credly.com/size/680x680/images/9945dfcf-953d-4a0e-981b-962d107c8b64/CompTIA_PenTest_2Bce.png",
       credlyUrl: "https://www.credly.com/badges/d9e9c6f2-fbc2-4b73-9c16-9748ba46a819/public_url"
     },
     {
