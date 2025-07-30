@@ -66,7 +66,19 @@ const ProjectFeatures = ({ features, technologies, impactText, liveLogbookUrl }:
               <ExternalLink className="ml-2 h-4 w-4" />
             </a>
           )}
-          <Link to="/#contact" className="inline-flex items-center text-tech-blue hover:text-tech-blue/90 font-medium">
+          <Link 
+            to="/#contact" 
+            className="inline-flex items-center text-tech-blue hover:text-tech-blue/90 font-medium"
+            onClick={() => {
+              // Small delay to ensure navigation completes before scrolling
+              setTimeout(() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }, 100);
+            }}
+          >
             <span>Contact me to learn more</span>
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
