@@ -166,15 +166,18 @@ const ProgressPreview = ({ liveLogbookUrl, onPreviewClick }: ProgressPreviewProp
             </div>
           </div>
         ) : (
-          <div className="text-center py-4">
-            <div className="text-gray-400 mb-2">
-              <Calendar className="h-8 w-8 mx-auto mb-2 opacity-50" />
-              <p className="text-sm">Progress tracking in progress...</p>
-              <p className="text-xs mt-1">Click to view live tracker</p>
+          <div className="text-center py-6">
+            <div className="text-gray-400 mb-3">
+              <Calendar className="h-10 w-10 mx-auto mb-3 opacity-50" />
+              <h5 className="text-sm font-semibold text-white mb-2">Live Progress Tracker</h5>
+              <p className="text-xs mb-1">Real-time development log and daily updates</p>
+              <p className="text-xs opacity-75">Currently being set up - check back soon!</p>
             </div>
-            <div className="flex items-center justify-center text-tech-blue group-hover:text-blue-400 transition-colors mt-3">
-              <span className="text-xs font-medium mr-2">Open Progress Tracker</span>
-              <ExternalLink className="h-3 w-3" />
+            <div className="mt-4 pt-3 border-t border-tech-blue/10">
+              <div className="flex items-center justify-center text-tech-blue group-hover:text-blue-400 transition-colors">
+                <span className="text-xs font-medium mr-2">View Live Tracker</span>
+                <ExternalLink className="h-3 w-3" />
+              </div>
             </div>
           </div>
         )}
