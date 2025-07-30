@@ -186,11 +186,11 @@ const Projects = () => {
         <section ref={sectionRef} className="py-12 md:py-24">
           <div className="section-container">
             <ProjectCard 
-              {...emailProject}
+              {...agentApplyProject}
               onImageClick={openImageModal}
             />
             <ProjectCard 
-              {...agentApplyProject}
+              {...emailProject}
               onImageClick={openImageModal}
             />
           </div>
