@@ -36,28 +36,28 @@ const Badges = () => {
       name: "CompTIA Network+ Certification",
       issuer: "CompTIA",
       issuedDate: "Jan 2023",
-      imageUrl: "https://images.credly.com/size/680x680/images/4f5f64f4-65ac-4f1f-8b89-97100c2b670a/CompTIA_Network_2Bce.png",
+      imageUrl: "https://images.credly.com/images/c70ba73e-3c8a-46fa-9d60-4a9af94ad662/blob",
       credlyUrl: "https://www.credly.com/badges/cc94d4ef-1051-42ee-94c3-42a193ffd875"
     },
     {
       name: "CompTIA A+ Certification",
       issuer: "CompTIA",
       issuedDate: "Dec 2022",
-      imageUrl: "https://images.credly.com/size/680x680/images/63482325-a0d6-4f64-ae75-f5f33922c7d0/CompTIA_A_2Bce.png",
+      imageUrl: "https://images.credly.com/images/f6d62c5d-1e1d-4de6-92ee-8dc8c80b1c7b/blob",
       credlyUrl: "https://www.credly.com/badges/e750d210-34d4-4dba-b6b0-fa0c71e1d708"
     },
     {
       name: "CompTIA IT Fundamentals ITF+",
       issuer: "CompTIA",
       issuedDate: "Apr 2024",
-      imageUrl: "https://images.credly.com/size/680x680/images/a8ffa7b6-62b3-4048-8c71-c8e5e8b2d6b1/CompTIA_ITF_2Bce.png",
+      imageUrl: "https://images.credly.com/images/631eab71-1765-43ee-9db5-7a5062302a13/fdaf9fc61fe24ba78178b46809f84478.PNG.png",
       credlyUrl: "https://www.credly.com/badges/e750d210-34d4-4dba-b6b0-fa0c71e1d708"
     },
     {
       name: "CompTIA PenTest+",
       issuer: "CompTIA",
       issuedDate: "Nov 2024",
-      imageUrl: "https://images.credly.com/size/680x680/images/9945dfcf-953d-4a0e-981b-962d107c8b64/CompTIA_PenTest_2Bce.png",
+      imageUrl: "https://images.credly.com/images/8881885c-9234-4ee6-bf4b-d526ebc8e98a/tempfile20221205-50-dxl8g6.png",
       credlyUrl: "https://www.credly.com/badges/d9e9c6f2-fbc2-4b73-9c16-9748ba46a819/public_url"
     },
     {
