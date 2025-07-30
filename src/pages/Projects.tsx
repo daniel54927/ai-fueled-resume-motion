@@ -174,7 +174,7 @@ const Projects = () => {
       <Header />
       
       <main>
-        <section className="py-20 text-white">
+        <section className="pt-20 pb-8 text-white">
           <div className="section-container">
             <ProjectsHeader 
               title="My AI Projects"
@@ -184,7 +184,7 @@ const Projects = () => {
           </div>
         </section>
 
-        <section ref={sectionRef} className="py-12 md:py-24">
+        <section ref={sectionRef} className="pb-12 md:pb-24">
           <div className="section-container">
             <ProjectCard 
               {...agentApplyProject}
