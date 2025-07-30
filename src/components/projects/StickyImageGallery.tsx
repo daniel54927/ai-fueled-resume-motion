@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import ProgressPreview from './ProgressPreview';
+import DailyUpdates from './DailyUpdates';
 
 interface StickyImageGalleryProps {
   images: Array<{
@@ -51,6 +52,10 @@ const StickyImageGallery = ({ images, liveLogbookUrl, onImageClick }: StickyImag
             liveLogbookUrl={liveLogbookUrl}
             onPreviewClick={handleProgressClick}
           />
+        )}
+        
+        {liveLogbookUrl && (
+          <DailyUpdates />
         )}
         
         {images.length > 1 && (
