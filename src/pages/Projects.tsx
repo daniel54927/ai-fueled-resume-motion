@@ -115,6 +115,57 @@ const Projects = () => {
     impactText: "The AI-Powered Email Management System MVP has demonstrated significant potential in streamlining email management processes. By reducing email handling time by 93%, it allows for greater focus on high-value tasks and strategic thinking, significantly boosting overall productivity."
   };
 
+  const agentApplyProject = {
+    title: "AgentApply - AI Job Search Automation",
+    description: [
+      "Building a real-world AI job-hunting system in 14 days. AgentApply is an AI-powered, autonomous job-hunting system designed to search for roles, customize applications, and even contact recruiters and hiring managers on behalf of job seekers.",
+      "This is not just an experiment. It's a real solution to a real problem: How do you find your next opportunity when you're already working full-time and preparing to start an intensive course at MIT? AgentApply is more than a tool — it's a team of AI agents working together to automate the job search from end to end."
+    ],
+    results: {
+      title: "What AgentApply Does",
+      items: [
+        "Scouts relevant job listings automatically",
+        "Tailors resumes and cover letters for each application", 
+        "Submits applications on your behalf",
+        "Makes outbound calls to recruiters with AI-generated voice",
+        "Tracks all activity in a central log",
+        "Learns from outcomes and iterates daily"
+      ]
+    },
+    images: [
+      {
+        src: "/lovable-uploads/4991cc8d-1ef7-42c4-b890-a1b4f944ce2a.png",
+        alt: "AgentApply AI Job Search Automation System"
+      }
+    ],
+    features: [
+      {
+        icon: "bot" as const,
+        title: "Autonomous Job Scouting",
+        description: "AI agents continuously search and identify relevant job opportunities"
+      },
+      {
+        icon: "bot" as const,
+        title: "AI-Generated Applications",
+        description: "Automatically customizes resumes and cover letters for each role"
+      },
+      {
+        icon: "bot" as const,
+        title: "Recruiter Outreach",
+        description: "Makes live calls to recruiters with natural AI voice technology"
+      }
+    ],
+    technologies: [
+      "ChatGPT + OpenRouter",
+      "n8n Workflow Automation", 
+      "Postgres + Qdrant",
+      "Twilio + Eleven Labs",
+      "Google Sheets",
+      "Lovable.dev"
+    ],
+    impactText: "AgentApply represents the future of job searching - a comprehensive system that handles the entire job application process autonomously. This 14-day build challenge serves as a 'before-and-after' benchmark for growth before beginning the MIT xPRO course 'Designing and Building AI Products and Services'."
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <ScrollProgress />
@@ -136,6 +187,10 @@ const Projects = () => {
           <div className="section-container">
             <ProjectCard 
               {...emailProject}
+              onImageClick={openImageModal}
+            />
+            <ProjectCard 
+              {...agentApplyProject}
               onImageClick={openImageModal}
             />
           </div>
