@@ -77,6 +77,7 @@ const ProjectCard = ({
         
         <StickyImageGallery 
           images={images}
+          liveLogbookUrl={liveLogbookUrl}
           onImageClick={onImageClick}
         />
       </div>
