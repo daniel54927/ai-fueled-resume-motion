@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Mail, Bot, ArrowRight } from 'lucide-react';
+import { Mail, Bot, ArrowRight, ExternalLink } from 'lucide-react';
 import N8nIcon from '../icons/N8nIcon';
 import { Link } from 'react-router-dom';
 
@@ -19,9 +19,10 @@ interface ProjectFeaturesProps {
   features: FeatureItem[];
   technologies: TechnologyItem[];
   impactText: string;
+  liveLogbookUrl?: string;
 }
 
-const ProjectFeatures = ({ features, technologies, impactText }: ProjectFeaturesProps) => {
+const ProjectFeatures = ({ features, technologies, impactText, liveLogbookUrl }: ProjectFeaturesProps) => {
   return (
     <div className="p-8 md:p-12 border-t border-tech-blue/20 bg-tech-dark/90">
       <h3 className="text-xl font-bold text-white mb-4">Features</h3>
@@ -53,7 +54,18 @@ const ProjectFeatures = ({ features, technologies, impactText }: ProjectFeatures
         <h3 className="text-xl font-bold text-white mb-4">Impact</h3>
         <p className="text-gray-300">{impactText}</p>
         
-        <div className="mt-6">
+        <div className="mt-6 flex flex-col sm:flex-row gap-4">
+          {liveLogbookUrl && (
+            <a 
+              href={liveLogbookUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center bg-tech-blue hover:bg-tech-blue/90 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              <span>View Live Logbook</span>
+              <ExternalLink className="ml-2 h-4 w-4" />
+            </a>
+          )}
           <Link to="/#contact" className="inline-flex items-center text-tech-blue hover:text-tech-blue/90 font-medium">
             <span>Contact me to learn more</span>
             <ArrowRight className="ml-2 h-4 w-4" />

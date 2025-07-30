@@ -24,6 +24,7 @@ interface ProjectCardProps {
   }>;
   technologies: string[];
   impactText: string;
+  liveLogbookUrl?: string;
   onImageClick: (src: string, alt: string) => void;
 }
 
@@ -35,6 +36,7 @@ const ProjectCard = ({
   features,
   technologies,
   impactText,
+  liveLogbookUrl,
   onImageClick
 }: ProjectCardProps) => {
   
@@ -83,6 +85,7 @@ const ProjectCard = ({
         features={featureItems}
         technologies={techItems}
         impactText={impactText}
+        liveLogbookUrl={liveLogbookUrl}
       />
     </div>
   );

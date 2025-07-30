@@ -163,6 +163,7 @@ const Projects = () => {
       "Google Sheets",
       "Lovable.dev"
     ],
+    liveLogbookUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQnojjeq_IuMzBA_bjgZxAKQN_-Ui3Y_JFAQvgImaCrWmzi60RNXPKevsvyy1OduImho6jwlQl7hilC/pubhtml?gid=0&single=true&widget=true&headers=false",
     impactText: "AgentApply represents the future of job searching - a comprehensive system that handles the entire job application process autonomously. This 14-day build challenge serves as a 'before-and-after' benchmark for growth before beginning the MIT xPRO course 'Designing and Building AI Products and Services'."
   };
 
