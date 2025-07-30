@@ -29,7 +29,7 @@ const Badges = () => {
       name: "CompTIA Security+ Certification",
       issuer: "CompTIA",
       issuedDate: "May 2023",
-      imageUrl: "https://images.credly.com/size/680x680/images/74790a75-8451-400a-8536-92d792c5184a/CompTIA_Security_2Bce.png",
+      imageUrl: "https://images.credly.com/images/74790a75-8451-400a-8536-92d792c5184a/CompTIA_Security_2Bce.png",
       credlyUrl: "https://www.credly.com/badges/f3bb9acb-6243-43a8-a74f-df26e8ec74cd"
     },
     {
@@ -64,7 +64,7 @@ const Badges = () => {
       name: "CompTIA CySA+ Cybersecurity Analyst",
       issuer: "CompTIA",
       issuedDate: "Oct 2024",
-      imageUrl: "https://images.credly.com/size/680x680/images/9b75a8c1-8b52-4e3e-9b7e-15e95e43cc2c/CompTIA_CySA_2Bce.png",
+      imageUrl: "https://images.credly.com/images/dcd99b5b-da24-40a6-9364-62126d590c37/blob",
       credlyUrl: "https://www.credly.com/badges/cf60abc3-3b0f-456a-b366-1621309ff0ce/public_url"
     },
     {
