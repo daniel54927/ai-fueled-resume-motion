@@ -68,11 +68,11 @@ const Badges = () => {
       credlyUrl: "https://www.credly.com/badges/cf60abc3-3b0f-456a-b366-1621309ff0ce/public_url"
     },
     {
-      name: "Python Programming",
-      issuer: "Python Institute",
+      name: "Python for All",
+      issuer: "Quickstart Inc.",
       issuedDate: "Jul 2024",
-      imageUrl: "https://images.credly.com/size/680x680/images/68c0b94d-f6ac-40b1-a0e0-921439eb092e/image.png",
-      credlyUrl: "https://www.credly.com/badges/341a8367-6436-44f6-b892-d66aeabd1be9"
+      imageUrl: "https://images.credly.com/size/340x340/images/0252ceb2-35ba-43bb-892d-7c7742c7d724/image.png",
+      credlyUrl: "https://www.credly.com/badges/19c10610-55dc-495e-b001-10d3ba96bcc5/public_url"
     }
   ];
   
