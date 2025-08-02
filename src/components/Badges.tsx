@@ -33,11 +33,11 @@ const Badges = () => {
       credlyUrl: "https://www.credly.com/badges/f3bb9acb-6243-43a8-a74f-df26e8ec74cd"
     },
     {
-      name: "CompTIA Network+ Certification",
+      name: "CompTIA Network+ ce Certification",
       issuer: "CompTIA",
-      issuedDate: "Jan 2023",
-      imageUrl: "https://images.credly.com/images/c70ba73e-3c8a-46fa-9d60-4a9af94ad662/blob",
-      credlyUrl: "https://www.credly.com/badges/cc94d4ef-1051-42ee-94c3-42a193ffd875"
+      issuedDate: "Sep 2024",
+      imageUrl: "https://images.credly.com/size/340x340/images/c70ba73e-3c8a-46fa-9d60-4a9af94ad662/blob",
+      credlyUrl: "https://www.credly.com/badges/9a5ce4a7-a184-4b1b-a6ae-2caef64b2281/public_url"
     },
     {
       name: "CompTIA A+ Certification",
