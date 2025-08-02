@@ -61,10 +61,10 @@ const Badges = () => {
       credlyUrl: "https://www.credly.com/badges/d9e9c6f2-fbc2-4b73-9c16-9748ba46a819/public_url"
     },
     {
-      name: "CompTIA CySA+ Cybersecurity Analyst",
-      issuer: "CompTIA",
+      name: "CompTIA CySA+ Cybersecurity Analyst (CS0-002)",
+      issuer: "Quickstart Inc.",
       issuedDate: "Oct 2024",
-      imageUrl: "https://images.credly.com/images/dcd99b5b-da24-40a6-9364-62126d590c37/blob",
+      imageUrl: "https://images.credly.com/size/340x340/images/5d6e2c5c-82b8-4a8e-8b71-7371ada873c0/tempfile20211108-65-lek5f3.png",
       credlyUrl: "https://www.credly.com/badges/cf60abc3-3b0f-456a-b366-1621309ff0ce/public_url"
     },
     {
