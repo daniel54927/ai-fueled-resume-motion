@@ -54,10 +54,10 @@ const Badges = () => {
       credlyUrl: "https://www.credly.com/badges/e750d210-34d4-4dba-b6b0-fa0c71e1d708"
     },
     {
-      name: "CompTIA PenTest+",
-      issuer: "CompTIA",
-      issuedDate: "Nov 2024",
-      imageUrl: "https://images.credly.com/images/8881885c-9234-4ee6-bf4b-d526ebc8e98a/tempfile20221205-50-dxl8g6.png",
+      name: "CompTIA PenTest+ (Exam PT0-002)",
+      issuer: "Quickstart Inc.",
+      issuedDate: "Oct 2024",
+      imageUrl: "https://images.credly.com/size/340x340/images/8881885c-9234-4ee6-bf4b-d526ebc8e98a/tempfile20221205-50-dxl8g6.png",
       credlyUrl: "https://www.credly.com/badges/d9e9c6f2-fbc2-4b73-9c16-9748ba46a819/public_url"
     },
     {
