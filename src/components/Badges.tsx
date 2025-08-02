@@ -47,13 +47,6 @@ const Badges = () => {
       credlyUrl: "https://www.credly.com/badges/e750d210-34d4-4dba-b6b0-fa0c71e1d708"
     },
     {
-      name: "CompTIA IT Fundamentals ITF+",
-      issuer: "CompTIA",
-      issuedDate: "Apr 2024",
-      imageUrl: "https://images.credly.com/images/631eab71-1765-43ee-9db5-7a5062302a13/fdaf9fc61fe24ba78178b46809f84478.PNG.png",
-      credlyUrl: "https://www.credly.com/badges/e750d210-34d4-4dba-b6b0-fa0c71e1d708"
-    },
-    {
       name: "CompTIA PenTest+ (Exam PT0-002)",
       issuer: "Quickstart Inc.",
       issuedDate: "Oct 2024",
