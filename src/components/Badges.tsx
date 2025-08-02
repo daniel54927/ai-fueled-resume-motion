@@ -26,11 +26,11 @@ const Badges = () => {
   
   const badges: BadgeData[] = [
     {
-      name: "CompTIA Security+ Certification",
+      name: "CompTIA Security+ ce Certification",
       issuer: "CompTIA",
-      issuedDate: "May 2023",
-      imageUrl: "https://images.credly.com/size/340x340/images/74790a75-8451-400a-8536-92d792c5184a/CompTIA_Security_2Bce.png",
-      credlyUrl: "https://www.credly.com/badges/f3bb9acb-6243-43a8-a74f-df26e8ec74cd"
+      issuedDate: "Oct 2024",
+      imageUrl: "https://images.credly.com/size/340x340/images/80d8a06a-c384-42bf-ad36-db81bce5adce/blob",
+      credlyUrl: "https://www.credly.com/badges/73de6044-de25-4f04-9074-5d7a922b422c/public_url"
     },
     {
       name: "CompTIA Network+ ce Certification",
