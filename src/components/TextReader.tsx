@@ -129,10 +129,10 @@ const TextReader = () => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-tech-blue">
           <Mic className="h-6 w-6" />
-          Pro Voice Reader
+          Personal Text Reader
         </CardTitle>
         <CardDescription>
-          Convert any text to natural speech using your browser's built-in voices
+          Accessibility tool for ADHD and dyslexia - transform text into natural speech for better focus and comprehension
         </CardDescription>
       </CardHeader>
       

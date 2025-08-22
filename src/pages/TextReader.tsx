@@ -6,7 +6,7 @@ import TextReaderComponent from '../components/TextReader';
 
 const TextReaderPage = () => {
   useEffect(() => {
-    document.title = "Pro Voice Reader - Daniel C. Brown";
+    document.title = "Personal Text Reader - Daniel C. Brown";
   }, []);
 
   return (
@@ -20,11 +20,11 @@ const TextReaderPage = () => {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Pro Voice Reader
+                Personal Text Reader
               </h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Convert any text to natural speech using your browser's built-in voices. 
-                Perfect for accessibility, multitasking, or consuming content on-the-go.
+                An accessibility tool for ADHD and dyslexia support. Convert any text to speech 
+                for better focus and comprehension when traditional reading becomes challenging.
               </p>
             </div>
             

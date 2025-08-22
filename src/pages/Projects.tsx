@@ -169,43 +169,43 @@ const Projects = () => {
   };
 
   const textReaderProject = {
-    title: "Pro Voice Reader",
+    title: "Personal Text Reader",
     description: [
-      "A professional text-to-speech application that transforms any written content into natural, high-quality audio using your browser's built-in speech synthesis capabilities. Perfect for accessibility, multitasking, or consuming content on-the-go.",
-      "Built with React and leveraging the Web Speech API, this tool provides a seamless experience for converting text to speech with full control over voice selection, speech rate, and pitch. All processing happens locally in your browser - no external services required."
+      "A personal accessibility tool designed to support learning and comprehension for individuals with ADHD and dyslexia. This reader converts text content into natural speech, enabling better focus and understanding when traditional reading becomes challenging.",
+      "As someone who learns more effectively through auditory processing, this tool transforms any written material into spoken content. Whether it's work documents, articles, or study materials, the reader provides an alternative way to consume information that aligns with different learning styles and cognitive needs."
     ],
     results: {
-      title: "Key Features & Capabilities",
+      title: "Accessibility & Learning Benefits",
       items: [
-        "Supports all browser-native voices (Microsoft, Google, and system voices)",
-        "Real-time voice preview and selection",
-        "Adjustable speech rate and pitch controls",
-        "Responsive design for desktop and mobile usage",
-        "Privacy-focused: all processing happens locally",
-        "No API costs - completely free to use"
+        "Supports auditory learning for ADHD and dyslexia",
+        "Reduces cognitive load when reading lengthy documents",
+        "Enables multitasking while consuming content",
+        "Improves comprehension and retention",
+        "Works offline with complete privacy",
+        "Customizable speech settings for personal comfort"
       ]
     },
     images: [
       {
         src: textReaderImage,
-        alt: "Pro Voice Reader Interface"
+        alt: "Personal Text Reader Interface"
       }
     ],
     features: [
       {
         icon: "mic" as const,
-        title: "Natural Voice Synthesis",
-        description: "High-quality text-to-speech using browser's native voices"
+        title: "Accessibility-First Design",
+        description: "Designed specifically for ADHD and dyslexia support"
       },
       {
         icon: "mic" as const,
-        title: "Full Playback Control",
-        description: "Play, pause, resume, and stop with responsive controls"
+        title: "Personalized Controls",
+        description: "Adjustable speech rate and pitch for optimal learning"
       },
       {
         icon: "mic" as const,
-        title: "Voice Customization",
-        description: "Adjust speech rate, pitch, and select from available voices"
+        title: "Focus Enhancement",
+        description: "Reduces reading strain and improves content retention"
       }
     ],
     technologies: [
@@ -215,7 +215,7 @@ const Projects = () => {
       "Shadcn/ui Components"
     ],
     liveLogbookUrl: "/text-reader",
-    impactText: "The Pro Voice Reader demonstrates the power of modern web APIs to create accessibility-focused tools. By leveraging browser-native capabilities, it provides a robust text-to-speech solution without requiring external services or API costs, making it perfect for personal and professional use."
+    impactText: "This Personal Text Reader demonstrates how technology can be leveraged to create inclusive tools that support different learning styles. By addressing specific accessibility needs, it transforms challenging reading tasks into manageable, auditory learning experiences."
   };
 
   return (
