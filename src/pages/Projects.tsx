@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import ImageModal from '../components/ImageModal';
 import ProjectsHeader from '../components/projects/ProjectsHeader';
 import ProjectCard from '../components/projects/ProjectCard';
+import textReaderImage from '../assets/text-reader-preview.jpg';
 
 const Projects = () => {
   useEffect(() => {
@@ -167,6 +168,56 @@ const Projects = () => {
     impactText: "AgentApply represents the future of job searching - a comprehensive system that handles the entire job application process autonomously. This 14-day build challenge serves as a 'before-and-after' benchmark for growth before beginning the MIT xPRO course 'Designing and Building AI Products and Services'."
   };
 
+  const textReaderProject = {
+    title: "Pro Voice Reader",
+    description: [
+      "A professional text-to-speech application that transforms any written content into natural, high-quality audio using your browser's built-in speech synthesis capabilities. Perfect for accessibility, multitasking, or consuming content on-the-go.",
+      "Built with React and leveraging the Web Speech API, this tool provides a seamless experience for converting text to speech with full control over voice selection, speech rate, and pitch. All processing happens locally in your browser - no external services required."
+    ],
+    results: {
+      title: "Key Features & Capabilities",
+      items: [
+        "Supports all browser-native voices (Microsoft, Google, and system voices)",
+        "Real-time voice preview and selection",
+        "Adjustable speech rate and pitch controls",
+        "Responsive design for desktop and mobile usage",
+        "Privacy-focused: all processing happens locally",
+        "No API costs - completely free to use"
+      ]
+    },
+    images: [
+      {
+        src: textReaderImage,
+        alt: "Pro Voice Reader Interface"
+      }
+    ],
+    features: [
+      {
+        icon: "mic" as const,
+        title: "Natural Voice Synthesis",
+        description: "High-quality text-to-speech using browser's native voices"
+      },
+      {
+        icon: "mic" as const,
+        title: "Full Playback Control",
+        description: "Play, pause, resume, and stop with responsive controls"
+      },
+      {
+        icon: "mic" as const,
+        title: "Voice Customization",
+        description: "Adjust speech rate, pitch, and select from available voices"
+      }
+    ],
+    technologies: [
+      "React + TypeScript",
+      "Web Speech API",
+      "Tailwind CSS",
+      "Shadcn/ui Components"
+    ],
+    liveLogbookUrl: "/text-reader",
+    impactText: "The Pro Voice Reader demonstrates the power of modern web APIs to create accessibility-focused tools. By leveraging browser-native capabilities, it provides a robust text-to-speech solution without requiring external services or API costs, making it perfect for personal and professional use."
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <ScrollProgress />
@@ -188,6 +239,10 @@ const Projects = () => {
           <div className="section-container">
             <ProjectCard 
               {...agentApplyProject}
+              onImageClick={openImageModal}
+            />
+            <ProjectCard 
+              {...textReaderProject}
               onImageClick={openImageModal}
             />
             <ProjectCard 

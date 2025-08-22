@@ -3,7 +3,7 @@ import React from 'react';
 import ProjectDetails from './ProjectDetails';
 import StickyImageGallery from './StickyImageGallery';
 import ProjectFeatures from './ProjectFeatures';
-import { Mail, Bot } from 'lucide-react';
+import { Mail, Bot, Mic } from 'lucide-react';
 import N8nIcon from '../icons/N8nIcon';
 
 interface ProjectCardProps {
@@ -20,7 +20,7 @@ interface ProjectCardProps {
   features: Array<{
     title: string;
     description: string;
-    icon: 'mail' | 'bot';
+    icon: 'mail' | 'bot' | 'mic';
   }>;
   technologies: string[];
   impactText: string;
@@ -46,6 +46,8 @@ const ProjectCard = ({
     description: feature.description,
     icon: feature.icon === 'mail' 
       ? <Mail className="h-5 w-5 text-tech-blue" /> 
+      : feature.icon === 'mic'
+      ? <Mic className="h-5 w-5 text-tech-blue" />
       : <Bot className="h-5 w-5 text-tech-blue" />
   }));
   
