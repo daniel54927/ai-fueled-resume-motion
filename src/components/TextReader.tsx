@@ -382,150 +382,152 @@ const TextReader = () => {
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto bg-tech-dark/80 border-tech-blue/20">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-tech-blue">
-          <Mic className="h-6 w-6" />
-          Personal Text Reader
-        </CardTitle>
-        <CardDescription>
-          Accessibility tool for ADHD and dyslexia - transform text into natural speech for better focus and comprehension
-        </CardDescription>
-      </CardHeader>
-      
-      <CardContent className="space-y-6">
-        {/* Voice Controls */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">Voice</label>
-            <Select value={selectedVoice} onValueChange={handleVoiceChange}>
-              <SelectTrigger className="bg-background/50 border-tech-blue/30">
-                <SelectValue placeholder="Select a voice" />
-              </SelectTrigger>
-              <SelectContent className="bg-tech-dark border-tech-blue/30 max-h-60">
-                {voices.map((voice) => (
-                  <SelectItem key={voice.name} value={voice.name}>
-                    {voice.name} — {voice.lang}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Volume2 className="h-4 w-4" />
-              Rate: {rate[0].toFixed(1)}x
-            </label>
-            <Slider
-              value={rate}
-              onValueChange={handleRateChange}
-              min={0.5}
-              max={1.4}
-              step={0.05}
-              className="w-full"
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">
-              Pitch: {pitch[0].toFixed(1)}
-            </label>
-            <Slider
-              value={pitch}
-              onValueChange={handlePitchChange}
-              min={0.5}
-              max={1.5}
-              step={0.05}
-              className="w-full"
-            />
-          </div>
+    <div className="w-full max-w-4xl mx-auto bg-background min-h-screen">
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 border-b border-border">
+        <div className="flex items-center gap-3">
+          <Mic className="h-6 w-6 text-primary" />
+          <h1 className="text-lg font-medium">Personal Text Reader</h1>
         </div>
-
-        {/* File Upload */}
-        <div className="space-y-2">
-          <Label htmlFor="file-upload" className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Upload className="h-4 w-4" />
-            Upload Document
-          </Label>
-          <div className="flex items-center gap-4">
+        
+        {/* Voice Selection */}
+        <div className="flex items-center gap-4">
+          <Select value={selectedVoice} onValueChange={handleVoiceChange}>
+            <SelectTrigger className="w-48 bg-primary text-primary-foreground rounded-full">
+              <SelectValue placeholder="Select Voice" />
+            </SelectTrigger>
+            <SelectContent className="bg-background border-border max-h-60">
+              {voices.map((voice) => (
+                <SelectItem key={voice.name} value={voice.name}>
+                  {voice.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          
+          {/* File Upload */}
+          <div className="relative">
             <Input
               id="file-upload"
               type="file"
               accept=".pdf,.doc,.docx,.txt"
               onChange={handleFileUpload}
-              className="bg-background/50 border-tech-blue/30 file:bg-tech-blue file:text-white file:border-0 file:rounded file:px-3 file:py-1"
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
             />
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <FileText className="h-3 w-3" />
-              <span>PDF, Word, or Text files</span>
+            <Button size="sm" variant="outline" className="rounded-full">
+              <Upload className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content Area */}
+      <div className="flex-1 p-6">
+        {/* Text Display Area */}
+        <div className="relative">
+          <div className="bg-card border border-border rounded-3xl p-8 min-h-[400px] mb-8 shadow-lg">
+            <Textarea
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Paste or type your text here..."
+              className="w-full h-full min-h-[350px] bg-transparent border-0 text-lg leading-relaxed resize-none focus:outline-none focus:ring-0 placeholder:text-muted-foreground/50"
+            />
+            
+            {/* Code Icon */}
+            <Button
+              size="sm"
+              variant="ghost"
+              className="absolute top-4 right-4 rounded-full bg-muted/50 hover:bg-muted"
+            >
+              <File className="h-4 w-4" />
+            </Button>
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center justify-center gap-8 mb-8">
+            {/* Mic Button */}
+            <Button
+              size="sm"
+              variant="outline"
+              className="rounded-full w-12 h-12"
+            >
+              <Mic className="h-5 w-5" />
+            </Button>
+
+            {/* Main Play/Pause Button */}
+            <Button
+              onClick={isPlaying && !isPaused ? pause : isPaused ? resume : speak}
+              disabled={!text.trim()}
+              size="lg"
+              className="rounded-full w-16 h-16 bg-primary hover:bg-primary/90 text-primary-foreground"
+            >
+              {isPlaying && !isPaused ? (
+                <Pause className="h-8 w-8" />
+              ) : (
+                <Play className="h-8 w-8" />
+              )}
+            </Button>
+
+            {/* Forward Button */}
+            <Button
+              onClick={stop}
+              disabled={!isPlaying && !isPaused}
+              size="sm"
+              variant="outline"
+              className="rounded-full w-12 h-12"
+            >
+              <RotateCcw className="h-5 w-5" />
+            </Button>
+          </div>
+
+          {/* Settings Panel */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <label className="text-sm font-medium flex items-center gap-2">
+                  <Volume2 className="h-4 w-4" />
+                  Speed
+                </label>
+                <span className="text-sm text-muted-foreground">{rate[0].toFixed(1)}x</span>
+              </div>
+              <Slider
+                value={rate}
+                onValueChange={handleRateChange}
+                min={0.5}
+                max={1.4}
+                step={0.05}
+                className="w-full"
+              />
+            </div>
+            
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <label className="text-sm font-medium">Pitch</label>
+                <span className="text-sm text-muted-foreground">{pitch[0].toFixed(1)}</span>
+              </div>
+              <Slider
+                value={pitch}
+                onValueChange={handlePitchChange}
+                min={0.5}
+                max={1.5}
+                step={0.05}
+                className="w-full"
+              />
             </div>
           </div>
-        </div>
 
-        {/* Text Input */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-muted-foreground">Text to Read</label>
-          <Textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Paste or type your text here..."
-            className="min-h-[200px] bg-background/50 border-tech-blue/30 resize-none"
-          />
+          {/* Status Indicator */}
+          {isPlaying && (
+            <div className="flex items-center justify-center gap-2 text-primary">
+              <div className="animate-pulse w-2 h-2 bg-primary rounded-full"></div>
+              <span className="text-sm">
+                {isPaused ? 'Paused' : 'Speaking...'}
+              </span>
+            </div>
+          )}
         </div>
-
-        {/* Control Buttons */}
-        <div className="flex flex-wrap gap-3">
-          <Button
-            onClick={speak}
-            disabled={!text.trim() || isPlaying}
-            className="bg-tech-blue hover:bg-tech-blue/80"
-          >
-            <Play className="h-4 w-4 mr-2" />
-            Speak
-          </Button>
-          
-          <Button
-            onClick={pause}
-            disabled={!isPlaying || isPaused}
-            variant="outline"
-            className="border-tech-blue/30 hover:bg-tech-blue/10"
-          >
-            <Pause className="h-4 w-4 mr-2" />
-            Pause
-          </Button>
-          
-          <Button
-            onClick={resume}
-            disabled={!isPaused}
-            variant="outline"
-            className="border-tech-blue/30 hover:bg-tech-blue/10"
-          >
-            <RotateCcw className="h-4 w-4 mr-2" />
-            Resume
-          </Button>
-          
-          <Button
-            onClick={stop}
-            disabled={!isPlaying && !isPaused}
-            variant="destructive"
-          >
-            <Square className="h-4 w-4 mr-2" />
-            Stop
-          </Button>
-        </div>
-
-        {/* Status Indicator */}
-        {isPlaying && (
-          <div className="flex items-center gap-2 text-tech-blue">
-            <div className="animate-pulse w-2 h-2 bg-tech-blue rounded-full"></div>
-            <span className="text-sm">
-              {isPaused ? 'Paused' : 'Speaking...'}
-            </span>
-          </div>
-        )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 
