@@ -19,9 +19,13 @@ const TextReader = () => {
   const [pitch, setPitch] = useState([1]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [currentPosition, setCurrentPosition] = useState(0);
+  const [isResuming, setIsResuming] = useState(false);
   
   const synthRef = useRef<SpeechSynthesis | null>(null);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const startTimeRef = useRef<number>(0);
+  const pausedTimeRef = useRef<number>(0);
 
   // Handle voice selection change
   const handleVoiceChange = (voiceName: string) => {
@@ -35,9 +39,9 @@ const TextReader = () => {
     setRate(newRate);
     localStorage.setItem('speechRate', newRate[0].toString());
     
-    // If currently speaking, restart with new rate for real-time feedback
-    if (isPlaying && !isPaused) {
-      restartSpeechWithNewSettings(newRate[0], pitch[0]);
+    // If currently speaking, restart from current position with new rate
+    if (isPlaying && !isPaused && !isResuming) {
+      restartFromCurrentPosition(newRate[0], pitch[0]);
     }
   };
 
@@ -46,21 +50,54 @@ const TextReader = () => {
     setPitch(newPitch);
     localStorage.setItem('speechPitch', newPitch[0].toString());
     
-    // If currently speaking, restart with new pitch for real-time feedback
-    if (isPlaying && !isPaused) {
-      restartSpeechWithNewSettings(rate[0], newPitch[0]);
+    // If currently speaking, restart from current position with new pitch
+    if (isPlaying && !isPaused && !isResuming) {
+      restartFromCurrentPosition(rate[0], newPitch[0]);
     }
   };
 
-  // Restart speech with new settings for real-time updates
-  const restartSpeechWithNewSettings = (newRate: number, newPitch: number) => {
+  // Calculate approximate reading position based on time and rate
+  const calculateCurrentPosition = () => {
+    if (!isPlaying || isPaused || !text.trim()) return 0;
+    
+    const elapsedTime = (Date.now() - startTimeRef.current) / 1000;
+    const wordsPerSecond = (rate[0] * 2.5); // Average speaking rate adjustment
+    const estimatedWordsRead = elapsedTime * wordsPerSecond;
+    const words = text.trim().split(/\s+/);
+    const wordIndex = Math.floor(Math.min(estimatedWordsRead, words.length));
+    
+    // Find character position of the word
+    let charPosition = 0;
+    for (let i = 0; i < wordIndex && i < words.length; i++) {
+      charPosition += words[i].length + 1; // +1 for space
+    }
+    
+    return Math.min(charPosition, text.length);
+  };
+
+  // Restart speech from current position with new settings
+  const restartFromCurrentPosition = (newRate: number, newPitch: number) => {
     if (!synthRef.current || !text.trim()) return;
+    
+    setIsResuming(true);
+    
+    // Calculate current position
+    const position = calculateCurrentPosition();
+    setCurrentPosition(position);
     
     // Cancel current speech
     synthRef.current.cancel();
     
-    // Create new utterance with updated settings
-    const utterance = new SpeechSynthesisUtterance(text);
+    // Get remaining text from current position
+    const remainingText = text.substring(position);
+    if (!remainingText.trim()) {
+      setIsPlaying(false);
+      setIsResuming(false);
+      return;
+    }
+    
+    // Create new utterance with remaining text
+    const utterance = new SpeechSynthesisUtterance(remainingText);
     const voice = voices.find(v => v.name === selectedVoice);
     
     if (voice) {
@@ -71,18 +108,23 @@ const TextReader = () => {
     utterance.pitch = newPitch;
     
     utterance.onstart = () => {
+      startTimeRef.current = Date.now();
       setIsPlaying(true);
       setIsPaused(false);
+      setIsResuming(false);
     };
     
     utterance.onend = () => {
       setIsPlaying(false);
       setIsPaused(false);
+      setCurrentPosition(0);
     };
     
     utterance.onerror = () => {
       setIsPlaying(false);
       setIsPaused(false);
+      setIsResuming(false);
+      setCurrentPosition(0);
     };
     
     utteranceRef.current = utterance;
@@ -198,6 +240,9 @@ const TextReader = () => {
     // Cancel any ongoing speech
     synthRef.current.cancel();
     
+    // Reset position for new speech
+    setCurrentPosition(0);
+    
     const utterance = new SpeechSynthesisUtterance(text);
     const voice = voices.find(v => v.name === selectedVoice);
     
@@ -211,6 +256,7 @@ const TextReader = () => {
     // Voice preference is already saved when user changes dropdown
     
     utterance.onstart = () => {
+      startTimeRef.current = Date.now();
       setIsPlaying(true);
       setIsPaused(false);
     };
@@ -218,11 +264,13 @@ const TextReader = () => {
     utterance.onend = () => {
       setIsPlaying(false);
       setIsPaused(false);
+      setCurrentPosition(0);
     };
     
     utterance.onerror = () => {
       setIsPlaying(false);
       setIsPaused(false);
+      setCurrentPosition(0);
     };
     
     utteranceRef.current = utterance;
@@ -231,6 +279,9 @@ const TextReader = () => {
 
   const pause = () => {
     if (synthRef.current && isPlaying) {
+      const position = calculateCurrentPosition();
+      setCurrentPosition(position);
+      pausedTimeRef.current = Date.now() - startTimeRef.current;
       synthRef.current.pause();
       setIsPaused(true);
     }
@@ -238,6 +289,7 @@ const TextReader = () => {
 
   const resume = () => {
     if (synthRef.current && isPaused) {
+      startTimeRef.current = Date.now() - pausedTimeRef.current;
       synthRef.current.resume();
       setIsPaused(false);
     }
@@ -248,6 +300,7 @@ const TextReader = () => {
       synthRef.current.cancel();
       setIsPlaying(false);
       setIsPaused(false);
+      setCurrentPosition(0);
     }
   };
 
