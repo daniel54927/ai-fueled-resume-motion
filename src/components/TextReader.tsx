@@ -10,6 +10,7 @@ import { Play, Pause, Square, RotateCcw, Volume2, Mic, Upload, FileText, File } 
 import { toast } from 'sonner';
 import * as pdfjsLib from 'pdfjs-dist';
 import mammoth from 'mammoth';
+import { pipeline, env } from '@huggingface/transformers';
 
 const TextReader = () => {
   const [text, setText] = useState('');
@@ -161,6 +162,10 @@ const TextReader = () => {
     // Configure PDF.js worker
     pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
     
+    // Configure transformers.js for AI OCR
+    env.allowLocalModels = false;
+    env.useBrowserCache = true;
+    
     const getVoicesFiltered = () => {
       const allVoices = synthRef.current?.getVoices() || [];
       
@@ -304,12 +309,76 @@ const TextReader = () => {
     }
   };
 
+  const extractTextWithAI = async (imageData: string): Promise<string> => {
+    try {
+      toast.info('Using AI to extract text from image...');
+      
+      // Initialize OCR pipeline
+      const ocr = await pipeline('image-to-text', 'microsoft/trocr-base-printed', {
+        device: 'webgpu'
+      });
+      
+      // Extract text using AI OCR
+      const result = await ocr(imageData) as any;
+      
+      // Handle different possible return formats
+      let extractedText = '';
+      if (Array.isArray(result)) {
+        extractedText = result[0]?.generated_text || result[0]?.text || '';
+      } else {
+        extractedText = result?.generated_text || result?.text || '';
+      }
+      
+      return extractedText;
+    } catch (error) {
+      console.error('AI OCR failed:', error);
+      // Fallback to basic OCR if AI fails
+      try {
+        const ocr = await pipeline('image-to-text', 'microsoft/trocr-base-printed');
+        const result = await ocr(imageData) as any;
+        
+        let extractedText = '';
+        if (Array.isArray(result)) {
+          extractedText = result[0]?.generated_text || result[0]?.text || '';
+        } else {
+          extractedText = result?.generated_text || result?.text || '';
+        }
+        
+        return extractedText;
+      } catch (fallbackError) {
+        console.error('Fallback OCR also failed:', fallbackError);
+        throw new Error('AI text extraction failed');
+      }
+    }
+  };
+
+  const convertPDFPageToImage = async (page: any): Promise<string> => {
+    const viewport = page.getViewport({ scale: 2.0 });
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    
+    if (!context) throw new Error('Could not get canvas context');
+    
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    
+    const renderContext = {
+      canvasContext: context,
+      viewport: viewport,
+    };
+    
+    await page.render(renderContext).promise;
+    return canvas.toDataURL('image/png');
+  };
+
   const extractTextFromPDF = async (file: File): Promise<string> => {
     try {
       const arrayBuffer = await file.arrayBuffer();
       const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
       let fullText = '';
+      let shouldUseAI = false;
       
+      // First, try standard text extraction
       for (let i = 1; i <= pdf.numPages; i++) {
         const page = await pdf.getPage(i);
         const textContent = await page.getTextContent();
@@ -319,9 +388,48 @@ const TextReader = () => {
         fullText += pageText + '\n';
       }
       
-      return fullText.trim();
+      const extractedText = fullText.trim();
+      
+      // Check if extraction was successful (has meaningful text)
+      if (!extractedText || extractedText.length < 50 || /^[\s\n\r]*$/.test(extractedText)) {
+        shouldUseAI = true;
+        toast.info('PDF appears to be scanned or image-based, switching to AI extraction...');
+      }
+      
+      // If standard extraction failed or returned minimal text, use AI OCR
+      if (shouldUseAI) {
+        let aiExtractedText = '';
+        
+        for (let i = 1; i <= Math.min(pdf.numPages, 10); i++) { // Limit to 10 pages for performance
+          try {
+            const page = await pdf.getPage(i);
+            const imageData = await convertPDFPageToImage(page);
+            const pageText = await extractTextWithAI(imageData);
+            
+            if (pageText.trim()) {
+              aiExtractedText += pageText + '\n\n';
+            }
+          } catch (pageError) {
+            console.error(`Failed to extract text from page ${i}:`, pageError);
+            // Continue with next page
+          }
+        }
+        
+        if (aiExtractedText.trim()) {
+          return aiExtractedText.trim();
+        }
+      }
+      
+      if (!extractedText) {
+        throw new Error('No text could be extracted from PDF');
+      }
+      
+      return extractedText;
     } catch (error) {
       console.error('Error extracting PDF text:', error);
+      if (error instanceof Error && error.message.includes('AI')) {
+        throw error;
+      }
       throw new Error('Failed to extract text from PDF. Please try a different file.');
     }
   };
