@@ -4,7 +4,12 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Play, Pause, Square, RotateCcw, Volume2, Mic } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Play, Pause, Square, RotateCcw, Volume2, Mic, Upload, FileText, File } from 'lucide-react';
+import { toast } from 'sonner';
+import * as pdfjsLib from 'pdfjs-dist';
+import mammoth from 'mammoth';
 
 const TextReader = () => {
   const [text, setText] = useState('');
@@ -21,35 +26,33 @@ const TextReader = () => {
   useEffect(() => {
     synthRef.current = window.speechSynthesis;
     
+    // Configure PDF.js worker
+    pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
+    
+    const getVoicesFiltered = () => {
+      const wantEnglishFirst = (v: SpeechSynthesisVoice) => /^en(-|_|$)/i.test(v.lang || '');
+      const allVoices = synthRef.current?.getVoices() || [];
+      const voices = allVoices.sort((a, b) => a.name.localeCompare(b.name));
+      
+      // Prefer high-quality "Microsoft ... Online (Natural)" or Google voices when present
+      const preferred = voices.filter(v => /Microsoft .*Online.*Natural/i.test(v.name));
+      const google = voices.filter(v => /Google/i.test(v.name));
+      const english = voices.filter(wantEnglishFirst);
+      const rest = voices.filter(v => !preferred.includes(v) && !google.includes(v) && !english.includes(v));
+      
+      return [...preferred, ...google, ...english, ...rest];
+    };
+    
     const updateVoices = () => {
-      const availableVoices = synthRef.current?.getVoices() || [];
-      
-      // Filter and sort voices - prefer English first, then high-quality voices
-      const filteredVoices = availableVoices
-        .filter(voice => voice.localService) // Prefer local/free voices
-        .sort((a, b) => {
-          const aEnglish = /^en(-|_|$)/i.test(a.lang || '');
-          const bEnglish = /^en(-|_|$)/i.test(b.lang || '');
-          
-          if (aEnglish && !bEnglish) return -1;
-          if (!aEnglish && bEnglish) return 1;
-          
-          // Prefer high-quality voices
-          const aQuality = /natural|premium|enhanced/i.test(a.name);
-          const bQuality = /natural|premium|enhanced/i.test(b.name);
-          
-          if (aQuality && !bQuality) return -1;
-          if (!aQuality && bQuality) return 1;
-          
-          return a.name.localeCompare(b.name);
-        });
-      
+      const filteredVoices = getVoicesFiltered();
       setVoices(filteredVoices);
       
-      // Auto-select first English voice if available
-      if (filteredVoices.length > 0 && !selectedVoice) {
-        const englishVoice = filteredVoices.find(v => /^en(-|_|$)/i.test(v.lang || ''));
-        setSelectedVoice(englishVoice?.name || filteredVoices[0].name);
+      // Auto-select saved voice or first available
+      const savedVoice = localStorage.getItem('voiceName');
+      if (savedVoice && filteredVoices.some(v => v.name === savedVoice)) {
+        setSelectedVoice(savedVoice);
+      } else if (filteredVoices.length > 0 && !selectedVoice) {
+        setSelectedVoice(filteredVoices[0].name);
       }
     };
 
@@ -82,6 +85,9 @@ const TextReader = () => {
     
     utterance.rate = rate[0];
     utterance.pitch = pitch[0];
+    
+    // Save selected voice to localStorage
+    localStorage.setItem('voiceName', selectedVoice);
     
     utterance.onstart = () => {
       setIsPlaying(true);
@@ -122,6 +128,83 @@ const TextReader = () => {
       setIsPlaying(false);
       setIsPaused(false);
     }
+  };
+
+  const extractTextFromPDF = async (file: File): Promise<string> => {
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      let fullText = '';
+      
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const textContent = await page.getTextContent();
+        const pageText = textContent.items
+          .map((item: any) => item.str)
+          .join(' ');
+        fullText += pageText + '\n';
+      }
+      
+      return fullText.trim();
+    } catch (error) {
+      console.error('Error extracting PDF text:', error);
+      throw new Error('Failed to extract text from PDF. Please try a different file.');
+    }
+  };
+
+  const extractTextFromWord = async (file: File): Promise<string> => {
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const result = await mammoth.extractRawText({ arrayBuffer });
+      return result.value.trim();
+    } catch (error) {
+      console.error('Error extracting Word document text:', error);
+      throw new Error('Failed to extract text from Word document. Please try a different file.');
+    }
+  };
+
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Check file size (limit to 10MB for performance)
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error('File is too large. Please select a file under 10MB.');
+      return;
+    }
+
+    try {
+      let extractedText = '';
+      
+      if (file.type === 'application/pdf') {
+        toast.info('Extracting text from PDF...');
+        extractedText = await extractTextFromPDF(file);
+      } else if (
+        file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
+        file.type === 'application/msword'
+      ) {
+        toast.info('Extracting text from Word document...');
+        extractedText = await extractTextFromWord(file);
+      } else if (file.type === 'text/plain') {
+        toast.info('Loading text file...');
+        extractedText = await file.text();
+      } else {
+        toast.error('Unsupported file type. Please upload a PDF, Word document, or text file.');
+        return;
+      }
+
+      if (extractedText.trim()) {
+        setText(extractedText);
+        toast.success(`Successfully loaded ${file.name}`);
+      } else {
+        toast.error('No text found in the file.');
+      }
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Failed to process file.');
+    }
+    
+    // Reset the input
+    event.target.value = '';
   };
 
   return (
@@ -182,6 +265,27 @@ const TextReader = () => {
               step={0.05}
               className="w-full"
             />
+          </div>
+        </div>
+
+        {/* File Upload */}
+        <div className="space-y-2">
+          <Label htmlFor="file-upload" className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+            <Upload className="h-4 w-4" />
+            Upload Document
+          </Label>
+          <div className="flex items-center gap-4">
+            <Input
+              id="file-upload"
+              type="file"
+              accept=".pdf,.doc,.docx,.txt"
+              onChange={handleFileUpload}
+              className="bg-background/50 border-tech-blue/30 file:bg-tech-blue file:text-white file:border-0 file:rounded file:px-3 file:py-1"
+            />
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <FileText className="h-3 w-3" />
+              <span>PDF, Word, or Text files</span>
+            </div>
           </div>
         </div>
 
