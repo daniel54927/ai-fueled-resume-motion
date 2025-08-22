@@ -30,6 +30,38 @@ const TextReader = () => {
     localStorage.setItem('voiceName', voiceName);
   };
 
+  // Handle rate change
+  const handleRateChange = (newRate: number[]) => {
+    setRate(newRate);
+    localStorage.setItem('speechRate', newRate[0].toString());
+  };
+
+  // Handle pitch change
+  const handlePitchChange = (newPitch: number[]) => {
+    setPitch(newPitch);
+    localStorage.setItem('speechPitch', newPitch[0].toString());
+  };
+
+  // Load saved settings on component mount
+  useEffect(() => {
+    const savedRate = localStorage.getItem('speechRate');
+    const savedPitch = localStorage.getItem('speechPitch');
+    
+    if (savedRate) {
+      const rateValue = parseFloat(savedRate);
+      if (rateValue >= 0.5 && rateValue <= 1.4) {
+        setRate([rateValue]);
+      }
+    }
+    
+    if (savedPitch) {
+      const pitchValue = parseFloat(savedPitch);
+      if (pitchValue >= 0.5 && pitchValue <= 1.5) {
+        setPitch([pitchValue]);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     synthRef.current = window.speechSynthesis;
     
@@ -283,7 +315,7 @@ const TextReader = () => {
             </label>
             <Slider
               value={rate}
-              onValueChange={setRate}
+              onValueChange={handleRateChange}
               min={0.5}
               max={1.4}
               step={0.05}
@@ -297,7 +329,7 @@ const TextReader = () => {
             </label>
             <Slider
               value={pitch}
-              onValueChange={setPitch}
+              onValueChange={handlePitchChange}
               min={0.5}
               max={1.5}
               step={0.05}
