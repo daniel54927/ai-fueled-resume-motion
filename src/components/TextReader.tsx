@@ -34,12 +34,63 @@ const TextReader = () => {
   const handleRateChange = (newRate: number[]) => {
     setRate(newRate);
     localStorage.setItem('speechRate', newRate[0].toString());
+    
+    // If currently speaking, restart with new rate for real-time feedback
+    if (isPlaying && !isPaused) {
+      restartSpeechWithNewSettings(newRate[0], pitch[0]);
+    }
   };
 
   // Handle pitch change
   const handlePitchChange = (newPitch: number[]) => {
     setPitch(newPitch);
     localStorage.setItem('speechPitch', newPitch[0].toString());
+    
+    // If currently speaking, restart with new pitch for real-time feedback
+    if (isPlaying && !isPaused) {
+      restartSpeechWithNewSettings(rate[0], newPitch[0]);
+    }
+  };
+
+  // Restart speech with new settings for real-time updates
+  const restartSpeechWithNewSettings = (newRate: number, newPitch: number) => {
+    if (!synthRef.current || !text.trim()) return;
+    
+    // Cancel current speech
+    synthRef.current.cancel();
+    
+    // Create new utterance with updated settings
+    const utterance = new SpeechSynthesisUtterance(text);
+    const voice = voices.find(v => v.name === selectedVoice);
+    
+    if (voice) {
+      utterance.voice = voice;
+    }
+    
+    utterance.rate = newRate;
+    utterance.pitch = newPitch;
+    
+    utterance.onstart = () => {
+      setIsPlaying(true);
+      setIsPaused(false);
+    };
+    
+    utterance.onend = () => {
+      setIsPlaying(false);
+      setIsPaused(false);
+    };
+    
+    utterance.onerror = () => {
+      setIsPlaying(false);
+      setIsPaused(false);
+    };
+    
+    utteranceRef.current = utterance;
+    
+    // Small delay to ensure the cancel operation completes
+    setTimeout(() => {
+      synthRef.current?.speak(utterance);
+    }, 50);
   };
 
   // Load saved settings on component mount
