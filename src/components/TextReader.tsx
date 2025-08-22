@@ -23,6 +23,13 @@ const TextReader = () => {
   const synthRef = useRef<SpeechSynthesis | null>(null);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
+  // Handle voice selection change
+  const handleVoiceChange = (voiceName: string) => {
+    setSelectedVoice(voiceName);
+    // Save immediately when user changes voice
+    localStorage.setItem('voiceName', voiceName);
+  };
+
   useEffect(() => {
     synthRef.current = window.speechSynthesis;
     
@@ -100,7 +107,7 @@ const TextReader = () => {
         synthRef.current.onvoiceschanged = null;
       }
     };
-  }, [selectedVoice]);
+  }, []); // Remove selectedVoice dependency to prevent infinite loops
 
   const speak = () => {
     if (!synthRef.current || !text.trim()) return;
@@ -118,8 +125,7 @@ const TextReader = () => {
     utterance.rate = rate[0];
     utterance.pitch = pitch[0];
     
-    // Save selected voice to localStorage
-    localStorage.setItem('voiceName', selectedVoice);
+    // Voice preference is already saved when user changes dropdown
     
     utterance.onstart = () => {
       setIsPlaying(true);
@@ -256,7 +262,7 @@ const TextReader = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-2">
             <label className="text-sm font-medium text-muted-foreground">Voice</label>
-            <Select value={selectedVoice} onValueChange={setSelectedVoice}>
+            <Select value={selectedVoice} onValueChange={handleVoiceChange}>
               <SelectTrigger className="bg-background/50 border-tech-blue/30">
                 <SelectValue placeholder="Select a voice" />
               </SelectTrigger>
