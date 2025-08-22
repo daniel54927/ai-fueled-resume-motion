@@ -30,29 +30,61 @@ const TextReader = () => {
     pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
     
     const getVoicesFiltered = () => {
-      const wantEnglishFirst = (v: SpeechSynthesisVoice) => /^en(-|_|$)/i.test(v.lang || '');
       const allVoices = synthRef.current?.getVoices() || [];
-      const voices = allVoices.sort((a, b) => a.name.localeCompare(b.name));
       
-      // Prefer high-quality "Microsoft ... Online (Natural)" or Google voices when present
-      const preferred = voices.filter(v => /Microsoft .*Online.*Natural/i.test(v.name));
-      const google = voices.filter(v => /Google/i.test(v.name));
-      const english = voices.filter(wantEnglishFirst);
-      const rest = voices.filter(v => !preferred.includes(v) && !google.includes(v) && !english.includes(v));
+      // Find Google Translate voice specifically (often named "Google US English" or similar)
+      const googleTranslateVoice = allVoices.find(v => 
+        /google.*us.*english/i.test(v.name) || 
+        (/google/i.test(v.name) && /en.*us/i.test(v.lang))
+      );
       
-      return [...preferred, ...google, ...english, ...rest];
+      // Categorize voices with Google Translate voice first
+      const googleTranslate = googleTranslateVoice ? [googleTranslateVoice] : [];
+      const otherGoogle = allVoices.filter(v => 
+        /google/i.test(v.name) && v !== googleTranslateVoice
+      );
+      const microsoft = allVoices.filter(v => 
+        /microsoft/i.test(v.name) && !/google/i.test(v.name)
+      );
+      const english = allVoices.filter(v => 
+        /^en(-|_|$)/i.test(v.lang || '') && 
+        !/google|microsoft/i.test(v.name)
+      );
+      const rest = allVoices.filter(v => 
+        !googleTranslate.includes(v) && 
+        !otherGoogle.includes(v) && 
+        !microsoft.includes(v) && 
+        !english.includes(v)
+      );
+      
+      return [...googleTranslate, ...otherGoogle, ...microsoft, ...english, ...rest];
     };
     
     const updateVoices = () => {
       const filteredVoices = getVoicesFiltered();
       setVoices(filteredVoices);
       
-      // Auto-select saved voice or first available
+      // Auto-select Google Translate voice first, then saved voice, then first available
       const savedVoice = localStorage.getItem('voiceName');
-      if (savedVoice && filteredVoices.some(v => v.name === savedVoice)) {
-        setSelectedVoice(savedVoice);
-      } else if (filteredVoices.length > 0 && !selectedVoice) {
-        setSelectedVoice(filteredVoices[0].name);
+      
+      if (filteredVoices.length > 0) {
+        // Priority 1: Google Translate voice if available
+        const googleTranslateVoice = filteredVoices.find(v => 
+          /google.*us.*english/i.test(v.name) || 
+          (/google/i.test(v.name) && /en.*us/i.test(v.lang))
+        );
+        
+        if (googleTranslateVoice && !selectedVoice) {
+          setSelectedVoice(googleTranslateVoice.name);
+        }
+        // Priority 2: Saved voice preference
+        else if (savedVoice && filteredVoices.some(v => v.name === savedVoice)) {
+          setSelectedVoice(savedVoice);
+        }
+        // Priority 3: First available voice
+        else if (!selectedVoice) {
+          setSelectedVoice(filteredVoices[0].name);
+        }
       }
     };
 
