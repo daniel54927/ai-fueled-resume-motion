@@ -189,6 +189,10 @@ const Projects = () => {
       {
         src: textReaderImage,
         alt: "Personal Text Reader Interface"
+      },
+      {
+        src: "/lovable-uploads/4eae1f57-41be-4f0a-a045-ff780a4ad3bb.png",
+        alt: "Personal Text Reader Project Details"
       }
     ],
     features: [
