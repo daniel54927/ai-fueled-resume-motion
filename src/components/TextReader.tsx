@@ -161,8 +161,22 @@ const TextReader = () => {
   useEffect(() => {
     synthRef.current = window.speechSynthesis;
     
-    // Configure PDF.js worker
-    pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
+    // Configure PDF.js worker with better compatibility
+    const configurePDFWorker = () => {
+      try {
+        // Use local worker if available, fallback to CDN
+        pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+          'pdfjs-dist/build/pdf.worker.min.js',
+          import.meta.url
+        ).toString();
+      } catch (error) {
+        // Fallback to CDN with version-specific path
+        console.log('Using CDN worker as fallback');
+        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.4.168/build/pdf.worker.min.js`;
+      }
+    };
+    
+    configurePDFWorker();
     
     // Configure transformers.js for AI OCR
     env.allowLocalModels = false;
@@ -375,26 +389,60 @@ const TextReader = () => {
 
   const extractTextFromPDF = async (file: File): Promise<string> => {
     try {
+      console.log('Starting PDF text extraction for file:', file.name);
+      
       const arrayBuffer = await file.arrayBuffer();
-      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      console.log('File loaded into array buffer, size:', arrayBuffer.byteLength);
+      
+      // Add timeout and better error handling
+      const loadingTask = pdfjsLib.getDocument({ 
+        data: arrayBuffer,
+        standardFontDataUrl: 'https://unpkg.com/pdfjs-dist@4.4.168/standard_fonts/',
+        verbosity: 0 // Reduce console output
+      });
+      
+      console.log('PDF loading task created');
+      
+      const pdf = await Promise.race([
+        loadingTask.promise,
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('PDF loading timeout')), 30000)
+        )
+      ]) as any;
+      
+      console.log('PDF loaded successfully, pages:', pdf.numPages);
+      
       let fullText = '';
       let shouldUseAI = false;
       
       // First, try standard text extraction
       for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const textContent = await page.getTextContent();
-        const pageText = textContent.items
-          .map((item: any) => item.str)
-          .join(' ');
-        fullText += pageText + '\n';
+        try {
+          console.log('Processing page', i);
+          const page = await pdf.getPage(i);
+          const textContent = await page.getTextContent();
+          const pageText = textContent.items
+            .filter((item: any) => item.str && item.str.trim()) // Filter out empty strings
+            .map((item: any) => item.str)
+            .join(' ');
+          
+          if (pageText.trim()) {
+            fullText += pageText + '\n';
+            console.log(`Page ${i} extracted ${pageText.length} characters`);
+          }
+        } catch (pageError) {
+          console.error(`Error processing page ${i}:`, pageError);
+          // Continue with next page
+        }
       }
       
       const extractedText = fullText.trim();
+      console.log('Total extracted text length:', extractedText.length);
       
       // Check if extraction was successful (has meaningful text)
       if (!extractedText || extractedText.length < 50 || /^[\s\n\r]*$/.test(extractedText)) {
         shouldUseAI = true;
+        console.log('Standard extraction failed, switching to AI...');
         toast.info('PDF appears to be scanned or image-based, switching to AI extraction...');
       }
       
@@ -402,14 +450,16 @@ const TextReader = () => {
       if (shouldUseAI) {
         let aiExtractedText = '';
         
-        for (let i = 1; i <= Math.min(pdf.numPages, 10); i++) { // Limit to 10 pages for performance
+        for (let i = 1; i <= Math.min(pdf.numPages, 5); i++) { // Limit to 5 pages for performance
           try {
+            console.log('AI processing page', i);
             const page = await pdf.getPage(i);
             const imageData = await convertPDFPageToImage(page);
             const pageText = await extractTextWithAI(imageData);
             
             if (pageText.trim()) {
               aiExtractedText += pageText + '\n\n';
+              console.log(`AI extracted ${pageText.length} characters from page ${i}`);
             }
           } catch (pageError) {
             console.error(`Failed to extract text from page ${i}:`, pageError);
@@ -418,21 +468,34 @@ const TextReader = () => {
         }
         
         if (aiExtractedText.trim()) {
+          console.log('AI extraction successful, total length:', aiExtractedText.length);
           return aiExtractedText.trim();
         }
       }
       
       if (!extractedText) {
-        throw new Error('No text could be extracted from PDF');
+        throw new Error('No text could be extracted from PDF - the document may be empty or corrupted');
       }
       
+      console.log('PDF text extraction completed successfully');
       return extractedText;
     } catch (error) {
       console.error('Error extracting PDF text:', error);
-      if (error instanceof Error && error.message.includes('AI')) {
-        throw error;
+      
+      // Provide more specific error messages
+      if (error instanceof Error) {
+        if (error.message.includes('timeout')) {
+          throw new Error('PDF processing timed out. The file may be too large or complex.');
+        } else if (error.message.includes('Invalid PDF')) {
+          throw new Error('Invalid PDF file. Please ensure the file is not corrupted.');
+        } else if (error.message.includes('AI')) {
+          throw error;
+        } else if (error.message.includes('worker')) {
+          throw new Error('PDF processing failed due to worker issues. Please try refreshing the page.');
+        }
       }
-      throw new Error('Failed to extract text from PDF. Please try a different file.');
+      
+      throw new Error('Failed to extract text from PDF. Please try a different file or refresh the page.');
     }
   };
 
