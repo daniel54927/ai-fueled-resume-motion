@@ -6,7 +6,7 @@ import { Slider } from '@/components/ui/slider';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Play, Pause, Square, RotateCcw, Volume2, Mic, Upload, FileText, File } from 'lucide-react';
+import { Play, Pause, Square, RotateCcw, Volume2, Mic, Upload, FileText, File, Globe, ExternalLink } from 'lucide-react';
 import { toast } from 'sonner';
 import * as pdfjsLib from 'pdfjs-dist';
 import mammoth from 'mammoth';
@@ -22,6 +22,8 @@ const TextReader = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [currentPosition, setCurrentPosition] = useState(0);
   const [isResuming, setIsResuming] = useState(false);
+  const [url, setUrl] = useState('');
+  const [isLoadingUrl, setIsLoadingUrl] = useState(false);
   
   const synthRef = useRef<SpeechSynthesis | null>(null);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
@@ -489,6 +491,115 @@ const TextReader = () => {
     event.target.value = '';
   };
 
+  const extractTextFromHTML = (htmlString: string): string => {
+    // Create a temporary DOM element to parse HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlString;
+    
+    // Remove script and style elements
+    const scriptsAndStyles = tempDiv.querySelectorAll('script, style, nav, footer, aside, .ad, .advertisement, .sidebar');
+    scriptsAndStyles.forEach(el => el.remove());
+    
+    // Focus on main content areas
+    const mainContent = tempDiv.querySelector('main, article, .content, .post, .entry') || tempDiv;
+    
+    // Extract text content
+    let text = mainContent.textContent || (mainContent as HTMLElement).innerText || '';
+    
+    // Clean up the text
+    text = text
+      .replace(/\s+/g, ' ') // Replace multiple whitespace with single space
+      .replace(/\n\s*\n/g, '\n\n') // Preserve paragraph breaks
+      .trim();
+    
+    return text;
+  };
+
+  const fetchWebpageContent = async (url: string): Promise<string> => {
+    try {
+      // Validate URL
+      const urlObj = new URL(url);
+      if (!['http:', 'https:'].includes(urlObj.protocol)) {
+        throw new Error('Only HTTP and HTTPS URLs are supported');
+      }
+
+      // Try to fetch directly first (will work for CORS-enabled sites)
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const html = await response.text();
+        return extractTextFromHTML(html);
+      } catch (corsError) {
+        // If direct fetch fails due to CORS, try using a CORS proxy
+        console.log('Direct fetch failed, trying CORS proxy...');
+        
+        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+        const proxyResponse = await fetch(proxyUrl);
+        
+        if (!proxyResponse.ok) {
+          throw new Error(`Proxy request failed: ${proxyResponse.statusText}`);
+        }
+        
+        const proxyData = await proxyResponse.json();
+        return extractTextFromHTML(proxyData.contents);
+      }
+    } catch (error) {
+      console.error('Error fetching webpage:', error);
+      throw error;
+    }
+  };
+
+  const handleUrlLoad = async () => {
+    if (!url.trim()) {
+      toast.error('Please enter a valid URL');
+      return;
+    }
+
+    setIsLoadingUrl(true);
+    
+    try {
+      toast.info('Fetching webpage content...');
+      
+      // Add protocol if missing
+      let processedUrl = url.trim();
+      if (!processedUrl.startsWith('http://') && !processedUrl.startsWith('https://')) {
+        processedUrl = 'https://' + processedUrl;
+      }
+      
+      const extractedText = await fetchWebpageContent(processedUrl);
+      
+      if (extractedText.trim()) {
+        setText(extractedText);
+        toast.success('Successfully loaded webpage content');
+      } else {
+        toast.error('No readable text found on the webpage');
+      }
+    } catch (error) {
+      console.error('Error loading URL:', error);
+      
+      if (error instanceof Error) {
+        if (error.message.includes('CORS') || error.message.includes('Failed to fetch')) {
+          toast.error('Cannot access this webpage due to security restrictions. Try copying the text manually or use a different URL.');
+        } else {
+          toast.error(error.message);
+        }
+      } else {
+        toast.error('Failed to load webpage content');
+      }
+    } finally {
+      setIsLoadingUrl(false);
+    }
+  };
+
   return (
     <div className="w-full max-w-4xl mx-auto bg-background min-h-screen">
       {/* Header */}
@@ -512,6 +623,31 @@ const TextReader = () => {
               ))}
             </SelectContent>
           </Select>
+          
+          {/* URL Input */}
+          <div className="flex items-center gap-2">
+            <Input
+              placeholder="Enter webpage URL..."
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleUrlLoad()}
+              className="w-64 rounded-full"
+              disabled={isLoadingUrl}
+            />
+            <Button 
+              size="sm" 
+              variant="outline" 
+              className="rounded-full"
+              onClick={handleUrlLoad}
+              disabled={isLoadingUrl || !url.trim()}
+            >
+              {isLoadingUrl ? (
+                <div className="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full" />
+              ) : (
+                <Globe className="h-4 w-4" />
+              )}
+            </Button>
+          </div>
           
           {/* File Upload */}
           <div className="relative">
@@ -537,7 +673,7 @@ const TextReader = () => {
             <Textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
-              placeholder="Paste or type your text here..."
+              placeholder="Paste or type your text here, upload a file, or enter a webpage URL above..."
               className="w-full h-full min-h-[350px] bg-transparent border-0 text-lg leading-relaxed resize-none focus:outline-none focus:ring-0 placeholder:text-muted-foreground/50"
             />
             
