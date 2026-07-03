@@ -45,15 +45,15 @@ const About = () => {
         
         <div className="grid md:grid-cols-2 gap-12 items-center stagger-animation">
           <div>
-            <h3 className="text-2xl font-semibold mb-4">My Passion for Technology</h3>
+            <h3 className="text-2xl font-semibold mb-4">AI automation that survives production</h3>
             <p className="mb-6 text-muted-foreground">
-              I build production AI automation that takes real work off people's plates, backed by 15+ years running the infrastructure it has to run on.
+              Most people building "AI agents" have a demo. I have production. At a 24/7 regulated casino, I designed and deployed an autonomous voice AI agent that verifies callers against Active Directory, triages true emergencies from routine requests, routes critical incidents to on-call staff, and auto-creates tickets for everything else — cutting non-emergency after-hours calls by roughly 90%.
             </p>
             <p className="mb-6 text-muted-foreground">
-              Most recently at American Place Casino I designed and deployed an autonomous voice AI agent that handles overnight IT helpdesk calls end to end, plus n8n + LLM agent pipelines that standardize repeatable work across the property. I serve on APC's internal AI Taskforce.
+              That reliability isn't luck. It's built on 15+ years running the infrastructure automation has to live on — VMware, Windows and SQL Server, networking, and security operations — so the systems I ship hold up under real users, real load, and real audits, not just the happy path.
             </p>
             <p className="text-muted-foreground">
-              I pair AI-native engineering with a deep systems foundation — VMware, Windows/SQL, networking, and security operations — to ship automation that's reliable in 24/7 environments. Open to 100% remote, work-from-anywhere AI roles.
+              I build n8n and LLM agent pipelines that standardize repeatable work, and I serve on my company's internal AI Taskforce. If you need someone who can take an AI idea from prototype to something that runs reliably in production, that's exactly what I do — open to 100% remote roles and contracts, worldwide.
             </p>
           </div>
 
@@ -61,33 +61,33 @@ const About = () => {
           <div className="grid grid-cols-2 gap-6">
             <AnimatedCard className="p-6 dark:bg-tech-dark/50">
               <Cpu className="h-10 w-10 text-tech-blue mb-4" />
-              <h4 className="text-xl font-semibold mb-2">AI Automation</h4>
+              <h4 className="text-xl font-semibold mb-2">AI Agents & Automation</h4>
               <p className="text-sm text-muted-foreground">
-                Building intelligent systems using LLMs and n8n for enhanced efficiency and reduced manual workload.
-              </p>
-            </AnimatedCard>
-            
-            <AnimatedCard className="p-6 dark:bg-tech-dark/50">
-              <Lock className="h-10 w-10 text-tech-purple mb-4" />
-              <h4 className="text-xl font-semibold mb-2">Cybersecurity</h4>
-              <p className="text-sm text-muted-foreground">
-                Protecting systems with advanced monitoring, threat detection, and incident response.
-              </p>
-            </AnimatedCard>
-            
-            <AnimatedCard className="p-6 dark:bg-tech-dark/50">
-              <Server className="h-10 w-10 text-tech-blue mb-4" />
-              <h4 className="text-xl font-semibold mb-2">Systems Admin</h4>
-              <p className="text-sm text-muted-foreground">
-                Managing complex IT infrastructure with a focus on reliability and performance.
+                Autonomous agents and n8n/LLM pipelines that remove repetitive work.
               </p>
             </AnimatedCard>
             
             <AnimatedCard className="p-6 dark:bg-tech-dark/50">
               <Network className="h-10 w-10 text-tech-purple mb-4" />
-              <h4 className="text-xl font-semibold mb-2">Network Admin</h4>
+              <h4 className="text-xl font-semibold mb-2">Workflow Orchestration</h4>
               <p className="text-sm text-muted-foreground">
-                Designing and maintaining secure network infrastructure across diverse environments.
+                Connect tools, APIs, and AI services into reliable end-to-end automation.
+              </p>
+            </AnimatedCard>
+            
+            <AnimatedCard className="p-6 dark:bg-tech-dark/50">
+              <Server className="h-10 w-10 text-tech-blue mb-4" />
+              <h4 className="text-xl font-semibold mb-2">Production Reliability</h4>
+              <p className="text-sm text-muted-foreground">
+                15+ years of infrastructure so what I build survives real load and audits.
+              </p>
+            </AnimatedCard>
+            
+            <AnimatedCard className="p-6 dark:bg-tech-dark/50">
+              <Lock className="h-10 w-10 text-tech-purple mb-4" />
+              <h4 className="text-xl font-semibold mb-2">Security & Compliance</h4>
+              <p className="text-sm text-muted-foreground">
+                Automation designed for regulated, 24/7 environments.
               </p>
             </AnimatedCard>
           </div>
