@@ -67,13 +67,13 @@ const Hero = () => {
             to="/projects" 
             className="bg-tech-blue hover:bg-tech-blue/90 text-white px-8 py-3 rounded-md shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5 font-medium"
           >
-            See Projects
+            See Live Projects
           </Link>
           <a 
             href="#contact" 
             className="bg-tech-dark/80 text-white backdrop-blur-sm hover:bg-tech-dark/90 border border-white/10 px-8 py-3 rounded-md shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5 font-medium"
           >
-            Contact
+            Work with me
           </a>
         </div>
 
