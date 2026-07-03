@@ -91,7 +91,7 @@ const Projects = () => {
   const dashboardProject = {
     title: "deepfrog Project Dashboard",
     description: [
-      "A private dashboard I built to track 56+ active projects — a Next.js app self-hosted on my VPS behind Caddy, with a vector-database \"brain\" for semantic search across project history."
+      "A private dashboard I built to track 56+ active projects. It's a Next.js app self-hosted on my VPS behind Caddy, with a vector-database \"brain\" for semantic search across project history."
     ],
     features: [
       { icon: 'dashboard' as const, title: '56+ Projects Tracked', description: 'One pane of glass across every active initiative.' },
