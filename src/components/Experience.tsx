@@ -86,7 +86,7 @@ const Experience = () => {
       location: "Kennesaw, GA",
       period: "2003 - 2006",
       highlights: [
-        "Delivered technical support to 500+ end-users across 12 states, managing ~130 tickets weekly",
+        "Delivered technical support to 500+ end-users across 12 states, managing roughly 130 tickets weekly",
         "Maintained an average resolution time of 10-30 minutes per incident",
         "Developed formal support procedures, enhancing workflow consistency and productivity"
       ]
