@@ -37,7 +37,7 @@ const Experience = () => {
       highlights: [
         "Led a pilot project for a local AI agent using LLMs, n8n, and relational/vector databases to support compliance and risk reduction",
         "Launched a Self-Service Portal that reduced software deployment time and cut support tickets across 287 endpoints",
-        "Monitored and responded to real-time threats using SentinelOne MDR (migrated from Carbon Black) and incident response protocols, resolving 150–200 alerts monthly",
+        "Monitored and responded to real-time threats using SentinelOne MDR (migrated from Carbon Black) and incident response protocols, resolving 150 to 200 alerts monthly",
         "Maintained secure infrastructure across hybrid systems, supporting endpoint management and user education"
       ]
     },
