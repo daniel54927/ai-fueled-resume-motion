@@ -22,7 +22,7 @@ const Badges = () => {
     {
       name: "CompTIA Security+ ce Certification",
       issuer: "CompTIA",
-      issuedDate: "Oct 2024 – Oct 2027",
+      issuedDate: "Oct 2024 to Oct 2027",
       imageUrl: "https://images.credly.com/size/340x340/images/80d8a06a-c384-42bf-ad36-db81bce5adce/blob",
       credlyUrl: "https://www.credly.com/badges/73de6044-de25-4f04-9074-5d7a922b422c/public_url"
     },
