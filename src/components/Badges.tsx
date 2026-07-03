@@ -175,7 +175,7 @@ const Badges = () => {
         <div>
           <h3 className="text-2xl font-semibold mb-2 text-center tech-gradient-text">Training & Education</h3>
           <p className="text-center text-sm text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Course completions. These are not CompTIA exam certifications.
+            Professional programs and course completions.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {training.map((b, i) => renderCard(b, i, true))}
