@@ -37,12 +37,13 @@ const Badges = () => {
 
   const training: BadgeData[] = [
     {
-      name: "Designing & Building AI Products and Services",
+      name: "MIT xPRO: Designing & Building AI Products and Services",
       issuer: "MIT xPRO",
       issuedDate: "Oct 2025",
+      imageUrl: "https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/164579250",
       externalUrl: "https://certificates.emeritus.org/52bec1ba-d0c2-429b-b0ae-f4c96d043c96?friendsui=true",
       linkLabel: "View certificate",
-      note: "Certificate of Completion"
+      note: "Professional Certificate"
     },
     {
       name: "Cybersecurity Immersive Bootcamp",
@@ -174,7 +175,7 @@ const Badges = () => {
         <div>
           <h3 className="text-2xl font-semibold mb-2 text-center tech-gradient-text">Training & Education</h3>
           <p className="text-center text-sm text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Course completions. These are not CompTIA exam certifications.
+            Professional programs and course completions.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {training.map((b, i) => renderCard(b, i, true))}
