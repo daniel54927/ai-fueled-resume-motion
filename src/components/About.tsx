@@ -47,18 +47,16 @@ const About = () => {
           <div>
             <h3 className="text-2xl font-semibold mb-4">My Passion for Technology</h3>
             <p className="mb-6 text-muted-foreground">
-              With over 15 years in the IT industry, I've developed a deep passion for creating systems that combine security, efficiency, and automation. 
-              I believe that well-designed technology should empower organizations and individuals alike.
+              I build production AI automation that takes real work off people's plates, backed by 15+ years running the infrastructure it has to run on.
             </p>
             <p className="mb-6 text-muted-foreground">
-              My career has taken me across different countries and industries, from educational institutions to casinos, 
-              giving me a unique perspective on how technology can be adapted to various environments and challenges.
+              Most recently at American Place Casino I designed and deployed an autonomous voice AI agent that handles overnight IT helpdesk calls end to end, plus n8n + LLM agent pipelines that standardize repeatable work across the property. I serve on APC's internal AI Taskforce.
             </p>
             <p className="text-muted-foreground">
-              I'm particularly excited about the potential of AI-driven automation to transform IT operations, 
-              making systems more responsive, secure, and intelligent.
+              I pair AI-native engineering with a deep systems foundation — VMware, Windows/SQL, networking, and security operations — to ship automation that's reliable in 24/7 environments. Open to 100% remote, work-from-anywhere AI roles.
             </p>
           </div>
+
           
           <div className="grid grid-cols-2 gap-6">
             <AnimatedCard className="p-6 dark:bg-tech-dark/50">

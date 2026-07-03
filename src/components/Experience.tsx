@@ -16,18 +16,32 @@ const Experience = () => {
   
   const experiences: ExperienceItem[] = [
     {
-      id: 1,
+      id: 0,
       company: "American Place Casino",
-      position: "IT Systems Administrator/Cybersecurity Specialist",
+      position: "IT Systems Engineer",
       location: "Waukegan, IL",
-      period: "2024 - Present",
+      period: "Dec 2025 - Present",
       highlights: [
-        "Leading a pilot project for a local AI agent using LLMs, n8n, and relational/vector databases to support compliance and risk reduction",
-        "Launched a Self-Service Portal that reduced software deployment time and cut support tickets across 287 endpoints",
-        "Monitor and respond to real-time threats using CarbonBlack MDR and incident response protocols, resolving 150–200 alerts monthly",
-        "Maintain secure infrastructure across hybrid systems, supporting endpoint management and user education"
+        "Design & deploy production AI automation (voice agent; n8n + LLM agent pipelines; ServiceDesk Plus → Motion orchestration)",
+        "Member of APC's internal AI Taskforce",
+        "Lead infrastructure modernization: VMware ESXi 56+ server estate, Windows/SQL, networking/firewalls",
+        "Security operations lead — migrated managed detection & response from Carbon Black to SentinelOne; triage 150–200 alerts/month"
       ]
     },
+    {
+      id: 1,
+      company: "American Place Casino",
+      position: "IT Systems Administrator / Cybersecurity Specialist",
+      location: "Waukegan, IL",
+      period: "2024 - 2025",
+      highlights: [
+        "Led a pilot project for a local AI agent using LLMs, n8n, and relational/vector databases to support compliance and risk reduction",
+        "Launched a Self-Service Portal that reduced software deployment time and cut support tickets across 287 endpoints",
+        "Monitored and responded to real-time threats using SentinelOne MDR (migrated from Carbon Black) and incident response protocols, resolving 150–200 alerts monthly",
+        "Maintained secure infrastructure across hybrid systems, supporting endpoint management and user education"
+      ]
+    },
+
     {
       id: 2,
       company: "InglesFazBem.com.br",

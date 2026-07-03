@@ -6,7 +6,6 @@ import Header from '../components/Header';
 import ImageModal from '../components/ImageModal';
 import ProjectsHeader from '../components/projects/ProjectsHeader';
 import ProjectCard from '../components/projects/ProjectCard';
-import textReaderImage from '../assets/text-reader-preview.jpg';
 
 const Projects = () => {
   useEffect(() => {
@@ -14,9 +13,8 @@ const Projects = () => {
   }, []);
 
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [modalImage, setModalImage] = useState<{src: string, alt: string} | null>(null);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  
+  const [modalImage, setModalImage] = useState<{ src: string; alt: string } | null>(null);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -31,191 +29,80 @@ const Projects = () => {
       },
       { threshold: 0.1 }
     );
-    
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
     };
   }, []);
-  
-  // Track scroll position for sticky sidebar
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
-  const openImageModal = (src: string, alt: string) => {
-    setModalImage({ src, alt });
-  };
+  const openImageModal = (src: string, alt: string) => setModalImage({ src, alt });
+  const closeImageModal = () => setModalImage(null);
 
-  const closeImageModal = () => {
-    setModalImage(null);
-  };
-
-  // Project data
-  const emailProject = {
-    title: "AI-Powered Email Management System",
+  const voiceAgentProject = {
+    title: "Production Voice AI Agent — American Place Casino",
     description: [
-      "This innovative system automates email processing, dramatically reducing the time spent on email management. As an MVP, it demonstrates the viability of using AI to streamline daily communication tasks while maintaining personal oversight.",
-      "The system processes 50 emails in just 3-4 minutes, using AI for email categorization and draft response generation. It implements a Human in the Middle approach, ensuring quality control and maintaining the personal touch in all communications."
-    ],
-    results: {
-      title: "Key Results from MVP Testing",
-      items: [
-        "Processed 600 emails over a 3-day period",
-        "Reduced email handling time from 8 hours to just 48 minutes",
-        "Saved over 7 hours of email processing time",
-        "Achieved a 93% reduction in time spent on email management"
-      ]
-    },
-    images: [
-      {
-        src: "/lovable-uploads/901cfb17-9e52-4fc5-8460-e7ecc46dc873.png",
-        alt: "AI Email Management System Overview"
-      },
-      {
-        src: "/lovable-uploads/80a006f4-1811-4306-8abf-d487bd689894.png",
-        alt: "Director's Email Draft Writer"
-      },
-      {
-        src: "/lovable-uploads/499df142-5a73-4224-95be-4af68f15fa75.png",
-        alt: "Director's Workflow"
-      }
+      "Designed and deployed from scratch an autonomous voice AI agent that fields overnight IT helpdesk calls end to end: verifies callers against Active Directory (hangs up on failed auth), triages true emergencies vs. routine requests, routes critical incidents to on-call staff, and auto-creates tickets for the rest.",
+      "Reduced non-emergency after-hours calls by ~90%."
     ],
     features: [
-      {
-        icon: "mail" as const,
-        title: "Rapid Processing",
-        description: "Handles 50 emails in just 3-4 minutes"
-      },
-      {
-        icon: "bot" as const,
-        title: "AI-Driven Categorization",
-        description: "Automatically sorts emails based on content and sender"
-      },
-      {
-        icon: "bot" as const,
-        title: "Intelligent Draft Generation",
-        description: "Uses AI to create contextually appropriate email responses"
-      }
+      { icon: 'phone' as const, title: 'AD-Verified Callers', description: 'Authenticates against Active Directory; hangs up on failed auth.' },
+      { icon: 'bot' as const, title: 'Autonomous Triage', description: 'Distinguishes true emergencies from routine requests in real time.' },
+      { icon: 'activity' as const, title: 'Routes & Ticketing', description: 'Escalates critical incidents to on-call staff, auto-creates tickets for the rest.' },
     ],
-    technologies: [
-      "n8n Workflow Automation",
-      "OpenAI",
-      "Gmail API"
-    ],
-    impactText: "The AI-Powered Email Management System MVP has demonstrated significant potential in streamlining email management processes. By reducing email handling time by 93%, it allows for greater focus on high-value tasks and strategic thinking, significantly boosting overall productivity."
+    technologies: ['Voice AI', 'LLMs', 'Active Directory', 'ServiceDesk Plus', 'n8n'],
+    impactText: "Handles overnight IT helpdesk calls end to end and cut non-emergency after-hours calls by ~90%, freeing on-call staff for real incidents.",
+    ctaNote: 'Live demo available on request',
   };
 
-  const agentApplyProject = {
-    title: "AgentApply - AI Job Search Automation",
+  const pokeCheckProject = {
+    title: "PokeCheck — Type 1 Diabetes Glucose Monitoring",
     description: [
-      "Building a real-world AI job-hunting system in 14 days. AgentApply is an AI-powered, autonomous job-hunting system designed to search for roles, customize applications, and even contact recruiters and hiring managers on behalf of job seekers.",
-      "This is not just an experiment. It's a real solution to a real problem: How do you find your next opportunity when you're already working full-time and preparing to start an intensive course at MIT? AgentApply is more than a tool — it's a team of AI agents working together to automate the job search from end to end."
-    ],
-    results: {
-      title: "What AgentApply Does",
-      items: [
-        "Scouts relevant job listings automatically",
-        "Tailors resumes and cover letters for each application", 
-        "Submits applications on your behalf",
-        "Makes outbound calls to recruiters with AI-generated voice",
-        "Tracks all activity in a central log",
-        "Learns from outcomes and iterates daily"
-      ]
-    },
-    images: [
-      {
-        src: "/lovable-uploads/4991cc8d-1ef7-42c4-b890-a1b4f944ce2a.png",
-        alt: "AgentApply AI Job Search Automation System"
-      }
+      "A records-only glucose-monitoring app I built for my family's Type 1 Diabetes management. Deliberate safety boundary: it records and summarizes readings — it never calculates insulin doses.",
+      "Admin-provisioned authentication. The clinical summary was adopted by our physician."
     ],
     features: [
-      {
-        icon: "bot" as const,
-        title: "Autonomous Job Scouting",
-        description: "AI agents continuously search and identify relevant job opportunities"
-      },
-      {
-        icon: "bot" as const,
-        title: "AI-Generated Applications",
-        description: "Automatically customizes resumes and cover letters for each role"
-      },
-      {
-        icon: "bot" as const,
-        title: "Recruiter Outreach",
-        description: "Makes live calls to recruiters with natural AI voice technology"
-      }
+      { icon: 'activity' as const, title: 'Records-Only by Design', description: 'Logs and summarizes readings; never calculates insulin doses.' },
+      { icon: 'bot' as const, title: 'Clinical Summary', description: 'Physician-adopted summary format used in real T1D care.' },
+      { icon: 'mail' as const, title: 'Admin-Provisioned Auth', description: 'Access is admin-controlled — no open sign-ups.' },
     ],
-    technologies: [
-      "ChatGPT + OpenRouter",
-      "n8n Workflow Automation", 
-      "Postgres + Qdrant",
-      "Twilio + Eleven Labs",
-      "Google Sheets",
-      "Lovable.dev"
-    ],
-    liveLogbookUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQnojjeq_IuMzBA_bjgZxAKQN_-Ui3Y_JFAQvgImaCrWmzi60RNXPKevsvyy1OduImho6jwlQl7hilC/pubhtml?gid=0&single=true",
-    impactText: "AgentApply represents the future of job searching - a comprehensive system that handles the entire job application process autonomously. This 14-day build challenge serves as a 'before-and-after' benchmark for growth before beginning the MIT xPRO course 'Designing and Building AI Products and Services'."
+    technologies: ['React', 'TypeScript', 'Postgres', 'Auth'],
+    impactText: "A safe, family-facing T1D companion whose clinical summary was adopted by our physician — proof that AI-adjacent tooling can add value while respecting hard clinical safety boundaries.",
+    externalUrl: 'https://pokecheck.deepfrog.app',
+    externalLabel: 'View live app',
+    externalNote: 'login-gated · access on request',
   };
 
-  const textReaderProject = {
-    title: "Personal Text Reader",
+  const hermesProject = {
+    title: "Hermes + Honcho — Multi-Agent Fleet",
     description: [
-      "A personal accessibility tool designed to support learning and comprehension for individuals with ADHD and dyslexia. This reader converts text content into natural speech, enabling better focus and understanding when traditional reading becomes challenging.",
-      "As someone who learns more effectively through auditory processing, this tool transforms any written material into spoken content. Whether it's work documents, articles, or study materials, the reader provides an alternative way to consume information that aligns with different learning styles and cognitive needs."
-    ],
-    results: {
-      title: "Accessibility & Learning Benefits",
-      items: [
-        "Supports auditory learning for ADHD and dyslexia",
-        "Reduces cognitive load when reading lengthy documents",
-        "Enables multitasking while consuming content",
-        "Improves comprehension and retention",
-        "Works offline with complete privacy",
-        "Customizable speech settings for personal comfort"
-      ]
-    },
-    images: [
-      {
-        src: "/lovable-uploads/59a3abd7-a4e2-4bda-80d3-9045468f43e7.png",
-        alt: "Personal Text Reader Interface"
-      }
+      "A personal multi-agent system on my own VPS (Docker): multiple Hermes agents across different machines share one centralized memory (\"brain\", via Honcho) and a common skill set, each doing real work on its local machine.",
+      "Per-user memory isolation; role-based permissions are the next phase — a distributed-systems proof of multi-tenant memory isolation, shared skills, and per-desktop deployment."
     ],
     features: [
-      {
-        icon: "mic" as const,
-        title: "Accessibility-First Design",
-        description: "Designed specifically for ADHD and dyslexia support"
-      },
-      {
-        icon: "mic" as const,
-        title: "Personalized Controls",
-        description: "Adjustable speech rate and pitch for optimal learning"
-      },
-      {
-        icon: "mic" as const,
-        title: "Focus Enhancement",
-        description: "Reduces reading strain and improves content retention"
-      }
+      { icon: 'network' as const, title: 'Distributed Agents', description: 'Multiple Hermes agents across machines, each acting on its local host.' },
+      { icon: 'bot' as const, title: 'Shared Brain (Honcho)', description: 'Centralized memory with per-user isolation across the fleet.' },
+      { icon: 'activity' as const, title: 'Common Skill Set', description: 'Agents share a reusable skill library; role-based permissions next.' },
     ],
-    technologies: [
-      "React + TypeScript",
-      "Web Speech API",
-      "Tailwind CSS",
-      "Shadcn/ui Components"
+    technologies: ['Docker', 'VPS', 'Hermes', 'Honcho', 'Python', 'Vector DB'],
+    impactText: "A working proof of multi-tenant memory isolation, shared skills, and per-desktop deployment for a personal AI fleet.",
+  };
+
+  const dashboardProject = {
+    title: "deepfrog Project Dashboard",
+    description: [
+      "A private dashboard I built to track 56+ active projects — a Next.js app self-hosted on my VPS behind Caddy, with a vector-database \"brain\" for semantic search across project history."
     ],
-    liveLogbookUrl: "/text-reader",
-    impactText: "This Personal Text Reader demonstrates how technology can be leveraged to create inclusive tools that support different learning styles. By addressing specific accessibility needs, it transforms challenging reading tasks into manageable, auditory learning experiences."
+    features: [
+      { icon: 'dashboard' as const, title: '56+ Projects Tracked', description: 'One pane of glass across every active initiative.' },
+      { icon: 'bot' as const, title: 'Semantic Search', description: 'Vector-database brain surfaces past decisions and context on demand.' },
+      { icon: 'network' as const, title: 'Self-Hosted', description: 'Next.js app on my own VPS, fronted by Caddy.' },
+    ],
+    technologies: ['Next.js', 'Caddy', 'VPS', 'Vector DB'],
+    impactText: "A personal command center that keeps a large, parallel project portfolio coherent and searchable.",
+    externalUrl: 'https://projects.deepfrog.app',
+    externalLabel: 'Visit dashboard',
+    externalNote: 'login-gated',
   };
 
   return (
@@ -223,36 +110,28 @@ const Projects = () => {
       <ScrollProgress />
       <ParticleBackground />
       <Header />
-      
+
       <main>
         <section className="pt-20 pb-8 text-white">
           <div className="section-container">
-            <ProjectsHeader 
-              title="My AI Projects"
-              subtitle="Leveraging artificial intelligence and automation to solve real-world problems and improve efficiency."
-              badgeText="AI & Automation Projects"
+            <ProjectsHeader
+              title="Live AI Projects"
+              subtitle="Production AI automation, personal systems, and tooling — everything here is running right now."
+              badgeText="AI Automation Projects"
             />
           </div>
         </section>
 
         <section ref={sectionRef} className="pb-12 md:pb-24">
           <div className="section-container">
-            <ProjectCard 
-              {...agentApplyProject}
-              onImageClick={openImageModal}
-            />
-            <ProjectCard 
-              {...textReaderProject}
-              onImageClick={openImageModal}
-            />
-            <ProjectCard 
-              {...emailProject}
-              onImageClick={openImageModal}
-            />
+            <ProjectCard {...voiceAgentProject} onImageClick={openImageModal} />
+            <ProjectCard {...pokeCheckProject} onImageClick={openImageModal} />
+            <ProjectCard {...hermesProject} onImageClick={openImageModal} />
+            <ProjectCard {...dashboardProject} onImageClick={openImageModal} />
           </div>
         </section>
       </main>
-      
+
       <footer className="py-8 bg-gray-50 dark:bg-tech-dark/50 border-t border-gray-100 dark:border-gray-800">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground text-sm">
@@ -261,12 +140,11 @@ const Projects = () => {
         </div>
       </footer>
 
-      {/* Image Modal */}
       {modalImage && (
-        <ImageModal 
-          isOpen={!!modalImage} 
-          onClose={closeImageModal} 
-          imageSrc={modalImage.src} 
+        <ImageModal
+          isOpen={!!modalImage}
+          onClose={closeImageModal}
+          imageSrc={modalImage.src}
           imageAlt={modalImage.alt}
         />
       )}

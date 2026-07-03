@@ -13,11 +13,15 @@ const Skills = () => {
   const skillCategories: SkillCategory[] = [
     {
       name: "AI & Automation",
-      skills: ["LLMs", "n8n", "Scripting", "Process Optimization", "Relational & Vector Databases"]
+      skills: ["LLMs", "AI Agents", "Multi-Agent Systems", "n8n", "Python", "Prompt Engineering", "Docker", "Vector Databases"]
     },
     {
-      name: "Cybersecurity",
-      skills: ["NIST Framework", "ISO 27001", "SIEM Tools", "CarbonBlack MDR", "Vulnerability Scanning", "Endpoint Protection"]
+      name: "Infrastructure",
+      skills: ["VMware vSphere/ESXi", "Windows Server", "SQL Server", "Active Directory", "Networking", "Backup/Disaster Recovery"]
+    },
+    {
+      name: "Security Operations",
+      skills: ["SentinelOne (MDR)", "SIEM/Triage", "CIS Controls", "ITIL", "Vulnerability Management"]
     },
     {
       name: "Systems Administration",
@@ -30,12 +34,9 @@ const Skills = () => {
     {
       name: "Virtualization & Management",
       skills: ["VMware", "vCenter", "Endpoint Central", "Lifecycle Management", "Software Deployment"]
-    },
-    {
-      name: "Certifications",
-      skills: ["CompTIA Security+", "CompTIA Network+", "Network Administration", "A+ Certified Professional"]
     }
   ];
+
   
   useEffect(() => {
     const observer = new IntersectionObserver(
