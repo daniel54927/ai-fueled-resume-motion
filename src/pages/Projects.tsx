@@ -56,21 +56,21 @@ const Projects = () => {
   };
 
   const pokeCheckProject = {
-    title: "PokeCheck — Type 1 Diabetes Glucose Monitoring",
+    title: "PokeCheck, Type 1 Diabetes Glucose Monitoring",
     description: [
-      "A records-only glucose-monitoring app I built for my family's Type 1 Diabetes management. Deliberate safety boundary: it records and summarizes readings — it never calculates insulin doses.",
+      "A records-only glucose-monitoring app I built for my family's Type 1 Diabetes management. Deliberate safety boundary: it records and summarizes readings. It never calculates insulin doses.",
       "Admin-provisioned authentication. The clinical summary was adopted by our physician."
     ],
     features: [
       { icon: 'activity' as const, title: 'Records-Only by Design', description: 'Logs and summarizes readings; never calculates insulin doses.' },
       { icon: 'bot' as const, title: 'Clinical Summary', description: 'Physician-adopted summary format used in real T1D care.' },
-      { icon: 'mail' as const, title: 'Admin-Provisioned Auth', description: 'Access is admin-controlled — no open sign-ups.' },
+      { icon: 'mail' as const, title: 'Admin-Provisioned Auth', description: 'Access is admin-controlled. No open sign-ups.' },
     ],
     technologies: ['React', 'TypeScript', 'Postgres', 'Auth'],
-    impactText: "A safe, family-facing T1D companion whose clinical summary was adopted by our physician — proof that AI-adjacent tooling can add value while respecting hard clinical safety boundaries.",
+    impactText: "A safe, family-facing T1D companion whose clinical summary was adopted by our physician. Proof that AI-adjacent tooling can add value while respecting hard clinical safety boundaries.",
     externalUrl: 'https://pokecheck.deepfrog.app',
     externalLabel: 'View live app',
-    externalNote: 'login-gated · access on request',
+    externalNote: 'login-gated, access on request',
   };
 
   const hermesProject = {
