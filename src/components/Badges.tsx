@@ -111,19 +111,20 @@ const Badges = () => {
         {badge.note && (
           <p className="text-xs text-muted-foreground text-center mt-2 italic">{badge.note}</p>
         )}
-        {badge.credlyUrl && (
+        {(badge.credlyUrl || badge.externalUrl) && (
           <div className="mt-auto pt-4 flex items-center text-tech-blue">
             <Award className="h-4 w-4 mr-1" />
-            <span className="text-sm">View on Credly</span>
+            <span className="text-sm">{badge.linkLabel || (badge.credlyUrl ? "View on Credly" : "View certificate")}</span>
           </div>
         )}
       </AnimatedCard>
     );
 
-    return badge.credlyUrl ? (
+    const href = badge.credlyUrl || badge.externalUrl;
+    return href ? (
       <a
         key={index}
-        href={badge.credlyUrl}
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
         className="badge-item opacity-0 group block h-full"
