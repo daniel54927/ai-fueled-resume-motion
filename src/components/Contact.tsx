@@ -136,7 +136,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-medium text-white">Location</h4>
-                  <p className="text-gray-200">Waukegan, IL 60085</p>
+                  <p className="text-gray-200">Remote — Americas time zones</p>
+
                 </div>
               </div>
               
