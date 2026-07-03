@@ -22,10 +22,10 @@ const Experience = () => {
       location: "Waukegan, IL",
       period: "Dec 2025 - Present",
       highlights: [
-        "Design & deploy production AI automation (voice agent; n8n + LLM agent pipelines; ServiceDesk Plus → Motion orchestration)",
+        "Design & deploy production AI automation (voice agent; n8n + LLM agent pipelines; ServiceDesk Plus to Motion orchestration)",
         "Member of APC's internal AI Taskforce",
         "Lead infrastructure modernization: VMware ESXi 56+ server estate, Windows/SQL, networking/firewalls",
-        "Security operations lead — migrated managed detection & response from Carbon Black to SentinelOne; triage 150–200 alerts/month"
+        "Security operations lead: migrated managed detection & response from Carbon Black to SentinelOne; triage 150 to 200 alerts/month"
       ]
     },
     {
@@ -37,7 +37,7 @@ const Experience = () => {
       highlights: [
         "Led a pilot project for a local AI agent using LLMs, n8n, and relational/vector databases to support compliance and risk reduction",
         "Launched a Self-Service Portal that reduced software deployment time and cut support tickets across 287 endpoints",
-        "Monitored and responded to real-time threats using SentinelOne MDR (migrated from Carbon Black) and incident response protocols, resolving 150–200 alerts monthly",
+        "Monitored and responded to real-time threats using SentinelOne MDR (migrated from Carbon Black) and incident response protocols, resolving 150 to 200 alerts monthly",
         "Maintained secure infrastructure across hybrid systems, supporting endpoint management and user education"
       ]
     },
@@ -86,7 +86,7 @@ const Experience = () => {
       location: "Kennesaw, GA",
       period: "2003 - 2006",
       highlights: [
-        "Delivered technical support to 500+ end-users across 12 states, managing ~130 tickets weekly",
+        "Delivered technical support to 500+ end-users across 12 states, managing roughly 130 tickets weekly",
         "Maintained an average resolution time of 10-30 minutes per incident",
         "Developed formal support procedures, enhancing workflow consistency and productivity"
       ]

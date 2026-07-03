@@ -47,13 +47,13 @@ const About = () => {
           <div>
             <h3 className="text-2xl font-semibold mb-4">AI automation that survives production</h3>
             <p className="mb-6 text-muted-foreground">
-              Most people building "AI agents" have a demo. I have production. At a 24/7 regulated casino, I designed and deployed an autonomous voice AI agent that verifies callers against Active Directory, triages true emergencies from routine requests, routes critical incidents to on-call staff, and auto-creates tickets for everything else — cutting non-emergency after-hours calls by roughly 90%.
+              Most people building "AI agents" have a demo. I have production. At a 24/7 regulated casino, I designed and deployed an autonomous voice AI agent that verifies callers against Active Directory, triages true emergencies from routine requests, routes critical incidents to on-call staff, and auto-creates tickets for everything else. It cut non-emergency after-hours calls by roughly 90%.
             </p>
             <p className="mb-6 text-muted-foreground">
-              That reliability isn't luck. It's built on 15+ years running the infrastructure automation has to live on — VMware, Windows and SQL Server, networking, and security operations — so the systems I ship hold up under real users, real load, and real audits, not just the happy path.
+              That reliability isn't luck. It's built on 15+ years running the infrastructure automation has to live on: VMware, Windows and SQL Server, networking, and security operations. The systems I ship hold up under real users, real load, and real audits, not just the happy path.
             </p>
             <p className="text-muted-foreground">
-              I build n8n and LLM agent pipelines that standardize repeatable work, and I serve on my company's internal AI Taskforce. If you need someone who can take an AI idea from prototype to something that runs reliably in production, that's exactly what I do — open to 100% remote roles and contracts, worldwide.
+              I build n8n and LLM agent pipelines that standardize repeatable work, and I serve on my company's internal AI Taskforce. If you need someone who can take an AI idea from prototype to something that runs reliably in production, that's exactly what I do. I'm open to 100% remote roles and contracts, worldwide.
             </p>
           </div>
 

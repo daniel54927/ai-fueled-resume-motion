@@ -22,14 +22,14 @@ const Badges = () => {
     {
       name: "CompTIA Security+ ce Certification",
       issuer: "CompTIA",
-      issuedDate: "Oct 2024 – Oct 2027",
+      issuedDate: "Oct 2024 to Oct 2027",
       imageUrl: "https://images.credly.com/size/340x340/images/80d8a06a-c384-42bf-ad36-db81bce5adce/blob",
       credlyUrl: "https://www.credly.com/badges/73de6044-de25-4f04-9074-5d7a922b422c/public_url"
     },
     {
       name: "CompTIA Network+ ce Certification",
       issuer: "CompTIA",
-      issuedDate: "Sep 2024 – Sep 2027",
+      issuedDate: "Sep 2024 to Sep 2027",
       imageUrl: "https://images.credly.com/size/340x340/images/c70ba73e-3c8a-46fa-9d60-4a9af94ad662/blob",
       credlyUrl: "https://www.credly.com/badges/9a5ce4a7-a184-4b1b-a6ae-2caef64b2281/public_url"
     }
@@ -174,7 +174,7 @@ const Badges = () => {
         <div>
           <h3 className="text-2xl font-semibold mb-2 text-center tech-gradient-text">Training & Education</h3>
           <p className="text-center text-sm text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Course completions — these are not CompTIA exam certifications.
+            Course completions. These are not CompTIA exam certifications.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {training.map((b, i) => renderCard(b, i, true))}

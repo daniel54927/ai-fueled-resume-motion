@@ -40,10 +40,10 @@ const Projects = () => {
   const closeImageModal = () => setModalImage(null);
 
   const voiceAgentProject = {
-    title: "Production Voice AI Agent — American Place Casino",
+    title: "Production Voice AI Agent for American Place Casino",
     description: [
       "Designed and deployed from scratch an autonomous voice AI agent that fields overnight IT helpdesk calls end to end: verifies callers against Active Directory (hangs up on failed auth), triages true emergencies vs. routine requests, routes critical incidents to on-call staff, and auto-creates tickets for the rest.",
-      "Reduced non-emergency after-hours calls by ~90%."
+      "Reduced non-emergency after-hours calls by roughly 90%."
     ],
     features: [
       { icon: 'phone' as const, title: 'AD-Verified Callers', description: 'Authenticates against Active Directory; hangs up on failed auth.' },
@@ -51,33 +51,33 @@ const Projects = () => {
       { icon: 'activity' as const, title: 'Routes & Ticketing', description: 'Escalates critical incidents to on-call staff, auto-creates tickets for the rest.' },
     ],
     technologies: ['Voice AI', 'LLMs', 'Active Directory', 'ServiceDesk Plus', 'n8n'],
-    impactText: "Handles overnight IT helpdesk calls end to end and cut non-emergency after-hours calls by ~90%, freeing on-call staff for real incidents.",
+    impactText: "Handles overnight IT helpdesk calls end to end and cut non-emergency after-hours calls by roughly 90%, freeing on-call staff for real incidents.",
     ctaNote: 'Live demo available on request',
   };
 
   const pokeCheckProject = {
-    title: "PokeCheck — Type 1 Diabetes Glucose Monitoring",
+    title: "PokeCheck, Type 1 Diabetes Glucose Monitoring",
     description: [
-      "A records-only glucose-monitoring app I built for my family's Type 1 Diabetes management. Deliberate safety boundary: it records and summarizes readings — it never calculates insulin doses.",
+      "A records-only glucose-monitoring app I built for my family's Type 1 Diabetes management. Deliberate safety boundary: it records and summarizes readings. It never calculates insulin doses.",
       "Admin-provisioned authentication. The clinical summary was adopted by our physician."
     ],
     features: [
       { icon: 'activity' as const, title: 'Records-Only by Design', description: 'Logs and summarizes readings; never calculates insulin doses.' },
       { icon: 'bot' as const, title: 'Clinical Summary', description: 'Physician-adopted summary format used in real T1D care.' },
-      { icon: 'mail' as const, title: 'Admin-Provisioned Auth', description: 'Access is admin-controlled — no open sign-ups.' },
+      { icon: 'mail' as const, title: 'Admin-Provisioned Auth', description: 'Access is admin-controlled. No open sign-ups.' },
     ],
     technologies: ['React', 'TypeScript', 'Postgres', 'Auth'],
-    impactText: "A safe, family-facing T1D companion whose clinical summary was adopted by our physician — proof that AI-adjacent tooling can add value while respecting hard clinical safety boundaries.",
+    impactText: "A safe, family-facing T1D companion whose clinical summary was adopted by our physician. Proof that AI-adjacent tooling can add value while respecting hard clinical safety boundaries.",
     externalUrl: 'https://pokecheck.deepfrog.app',
     externalLabel: 'View live app',
-    externalNote: 'login-gated · access on request',
+    externalNote: 'login-gated, access on request',
   };
 
   const hermesProject = {
-    title: "Hermes + Honcho — Multi-Agent Fleet",
+    title: "Hermes + Honcho, Multi-Agent Fleet",
     description: [
       "A personal multi-agent system on my own VPS (Docker): multiple Hermes agents across different machines share one centralized memory (\"brain\", via Honcho) and a common skill set, each doing real work on its local machine.",
-      "Per-user memory isolation; role-based permissions are the next phase — a distributed-systems proof of multi-tenant memory isolation, shared skills, and per-desktop deployment."
+      "Per-user memory isolation; role-based permissions are the next phase. A distributed-systems proof of multi-tenant memory isolation, shared skills, and per-desktop deployment."
     ],
     features: [
       { icon: 'network' as const, title: 'Distributed Agents', description: 'Multiple Hermes agents across machines, each acting on its local host.' },
@@ -91,7 +91,7 @@ const Projects = () => {
   const dashboardProject = {
     title: "deepfrog Project Dashboard",
     description: [
-      "A private dashboard I built to track 56+ active projects — a Next.js app self-hosted on my VPS behind Caddy, with a vector-database \"brain\" for semantic search across project history."
+      "A private dashboard I built to track 56+ active projects. It's a Next.js app self-hosted on my VPS behind Caddy, with a vector-database \"brain\" for semantic search across project history."
     ],
     features: [
       { icon: 'dashboard' as const, title: '56+ Projects Tracked', description: 'One pane of glass across every active initiative.' },
@@ -116,7 +116,7 @@ const Projects = () => {
           <div className="section-container">
             <ProjectsHeader
               title="Live AI Projects"
-              subtitle="Production AI automation and the systems behind it — everything here is running right now, not slideware."
+              subtitle="Production AI automation and the systems behind it. Everything here is running right now, not slideware."
               badgeText="AI Automation Projects"
             />
           </div>
