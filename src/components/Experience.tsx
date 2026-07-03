@@ -22,10 +22,10 @@ const Experience = () => {
       location: "Waukegan, IL",
       period: "Dec 2025 - Present",
       highlights: [
-        "Design & deploy production AI automation (voice agent; n8n + LLM agent pipelines; ServiceDesk Plus → Motion orchestration)",
+        "Design & deploy production AI automation (voice agent; n8n + LLM agent pipelines; ServiceDesk Plus to Motion orchestration)",
         "Member of APC's internal AI Taskforce",
         "Lead infrastructure modernization: VMware ESXi 56+ server estate, Windows/SQL, networking/firewalls",
-        "Security operations lead — migrated managed detection & response from Carbon Black to SentinelOne; triage 150–200 alerts/month"
+        "Security operations lead: migrated managed detection & response from Carbon Black to SentinelOne; triage 150 to 200 alerts/month"
       ]
     },
     {
