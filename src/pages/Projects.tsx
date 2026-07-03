@@ -40,10 +40,10 @@ const Projects = () => {
   const closeImageModal = () => setModalImage(null);
 
   const voiceAgentProject = {
-    title: "Production Voice AI Agent — American Place Casino",
+    title: "Production Voice AI Agent for American Place Casino",
     description: [
       "Designed and deployed from scratch an autonomous voice AI agent that fields overnight IT helpdesk calls end to end: verifies callers against Active Directory (hangs up on failed auth), triages true emergencies vs. routine requests, routes critical incidents to on-call staff, and auto-creates tickets for the rest.",
-      "Reduced non-emergency after-hours calls by ~90%."
+      "Reduced non-emergency after-hours calls by roughly 90%."
     ],
     features: [
       { icon: 'phone' as const, title: 'AD-Verified Callers', description: 'Authenticates against Active Directory; hangs up on failed auth.' },
