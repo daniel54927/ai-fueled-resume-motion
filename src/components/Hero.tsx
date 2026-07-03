@@ -29,15 +29,15 @@ const Hero = () => {
         </h1>
         
         <p className="max-w-2xl mx-auto text-lg md:text-xl text-white mb-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          I build AI agents and automation that take real work off people's plates — and mine are already running in production, inside a 24/7 regulated environment.
+          I build AI agents and automation that take real work off people's plates. Mine are already running in production, inside a 24/7 regulated environment.
         </p>
 
         <p className="max-w-2xl mx-auto text-base md:text-lg text-tech-blue mb-2 animate-fade-in font-medium italic" style={{ animationDelay: '0.3s' }}>
-          Everything here is live — call it, click it, or watch it run.
+          Everything here is live. Call it, click it, or watch it run.
         </p>
 
         <p className="max-w-2xl mx-auto text-sm md:text-base text-gray-400 mb-8 animate-fade-in" style={{ animationDelay: '0.35s' }}>
-          One of my agents cut after-hours IT calls by ~90%. You can phone it right now.
+          One of my agents cut after-hours IT calls by roughly 90%. You can phone it right now.
         </p>
         
         <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
