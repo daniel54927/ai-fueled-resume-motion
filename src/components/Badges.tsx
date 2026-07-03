@@ -42,14 +42,28 @@ const Badges = () => {
       issuedDate: "Oct 2025",
       externalUrl: "https://certificates.emeritus.org/52bec1ba-d0c2-429b-b0ae-f4c96d043c96?friendsui=true",
       linkLabel: "View certificate",
-      note: "Course completion"
+      note: "Certificate of Completion"
     },
     {
-      name: "Cybersecurity Bootcamp (incl. CySA+ & PenTest+ training)",
+      name: "Cybersecurity Immersive Bootcamp",
       issuer: "Northeastern Illinois University / QuickStart",
       issuedDate: "2024",
       credlyUrl: "https://www.credly.com/badges/dea00ee0-4942-4571-a736-9d071431f899/public_url",
-      note: "Course completion — not a CompTIA exam certification"
+      note: "Certificate of Completion"
+    },
+    {
+      name: "CompTIA CySA+ Cybersecurity Analyst (CS0-002)",
+      issuer: "CompTIA (via QuickStart)",
+      issuedDate: "2024",
+      credlyUrl: "https://www.credly.com/badges/cf60abc3-3b0f-456a-b366-1621309ff0ce/public_url",
+      note: "Certificate of Completion"
+    },
+    {
+      name: "CompTIA PenTest+ (PT0-002)",
+      issuer: "CompTIA (via QuickStart)",
+      issuedDate: "2024",
+      credlyUrl: "https://www.credly.com/badges/d9e9c6f2-fbc2-4b73-9c16-9748ba46a819/public_url",
+      note: "Certificate of Completion"
     },
     {
       name: "Python for All",
@@ -57,7 +71,7 @@ const Badges = () => {
       issuedDate: "Jul 2024",
       imageUrl: "https://images.credly.com/size/340x340/images/0252ceb2-35ba-43bb-892d-7c7742c7d724/image.png",
       credlyUrl: "https://www.credly.com/badges/19c10610-55dc-495e-b001-10d3ba96bcc5/public_url",
-      note: "Course completion"
+      note: "Certificate of Completion"
     }
   ];
 

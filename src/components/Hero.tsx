@@ -29,11 +29,15 @@ const Hero = () => {
         </h1>
         
         <p className="max-w-2xl mx-auto text-lg md:text-xl text-white mb-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          Building production AI agents & automation — LLMs, n8n, Python — backed by 15+ years running the infrastructure it has to run on.
+          I build AI agents and automation that take real work off people's plates — and mine are already running in production, inside a 24/7 regulated environment.
         </p>
 
-        <p className="max-w-2xl mx-auto text-base md:text-lg text-tech-blue mb-8 animate-fade-in font-medium italic" style={{ animationDelay: '0.3s' }}>
-          Everything here is live — you can call it, click it, or watch it run.
+        <p className="max-w-2xl mx-auto text-base md:text-lg text-tech-blue mb-2 animate-fade-in font-medium italic" style={{ animationDelay: '0.3s' }}>
+          Everything here is live — call it, click it, or watch it run.
+        </p>
+
+        <p className="max-w-2xl mx-auto text-sm md:text-base text-gray-400 mb-8 animate-fade-in" style={{ animationDelay: '0.35s' }}>
+          One of my agents cut after-hours IT calls by ~90%. You can phone it right now.
         </p>
         
         <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
@@ -63,13 +67,13 @@ const Hero = () => {
             to="/projects" 
             className="bg-tech-blue hover:bg-tech-blue/90 text-white px-8 py-3 rounded-md shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5 font-medium"
           >
-            See Projects
+            See Live Projects
           </Link>
           <a 
             href="#contact" 
             className="bg-tech-dark/80 text-white backdrop-blur-sm hover:bg-tech-dark/90 border border-white/10 px-8 py-3 rounded-md shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5 font-medium"
           >
-            Contact
+            Work with me
           </a>
         </div>
 

@@ -116,7 +116,7 @@ const Projects = () => {
           <div className="section-container">
             <ProjectsHeader
               title="Live AI Projects"
-              subtitle="Production AI automation, personal systems, and tooling — everything here is running right now."
+              subtitle="Production AI automation and the systems behind it — everything here is running right now, not slideware."
               badgeText="AI Automation Projects"
             />
           </div>
