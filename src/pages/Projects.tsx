@@ -51,7 +51,7 @@ const Projects = () => {
       { icon: 'activity' as const, title: 'Routes & Ticketing', description: 'Escalates critical incidents to on-call staff, auto-creates tickets for the rest.' },
     ],
     technologies: ['Voice AI', 'LLMs', 'Active Directory', 'ServiceDesk Plus', 'n8n'],
-    impactText: "Handles overnight IT helpdesk calls end to end and cut non-emergency after-hours calls by ~90%, freeing on-call staff for real incidents.",
+    impactText: "Handles overnight IT helpdesk calls end to end and cut non-emergency after-hours calls by roughly 90%, freeing on-call staff for real incidents.",
     ctaNote: 'Live demo available on request',
   };
 
