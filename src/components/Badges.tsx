@@ -49,6 +49,7 @@ const Badges = () => {
       name: "Cybersecurity Immersive Bootcamp",
       issuer: "Northeastern Illinois University / QuickStart",
       issuedDate: "2024",
+      imageUrl: "https://images.credly.com/size/340x340/images/583c0e33-f5f7-4279-9720-62e95a3095c7/tempfile20210817-66-173x699.png",
       credlyUrl: "https://www.credly.com/badges/dea00ee0-4942-4571-a736-9d071431f899/public_url",
       note: "Certificate of Completion"
     },
@@ -56,6 +57,7 @@ const Badges = () => {
       name: "CompTIA CySA+ Cybersecurity Analyst (CS0-002)",
       issuer: "CompTIA (via QuickStart)",
       issuedDate: "2024",
+      imageUrl: "https://images.credly.com/size/340x340/images/5d6e2c5c-82b8-4a8e-8b71-7371ada873c0/tempfile20211108-65-lek5f3.png",
       credlyUrl: "https://www.credly.com/badges/cf60abc3-3b0f-456a-b366-1621309ff0ce/public_url",
       note: "Certificate of Completion"
     },
@@ -63,6 +65,7 @@ const Badges = () => {
       name: "CompTIA PenTest+ (PT0-002)",
       issuer: "CompTIA (via QuickStart)",
       issuedDate: "2024",
+      imageUrl: "https://images.credly.com/size/340x340/images/8881885c-9234-4ee6-bf4b-d526ebc8e98a/tempfile20221205-50-dxl8g6.png",
       credlyUrl: "https://www.credly.com/badges/d9e9c6f2-fbc2-4b73-9c16-9748ba46a819/public_url",
       note: "Certificate of Completion"
     },
