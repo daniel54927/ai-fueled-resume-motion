@@ -22,10 +22,11 @@ const Experience = () => {
       location: "Waukegan, IL",
       period: "Dec 2025 - Present",
       highlights: [
-        "Design & deploy production AI automation (voice agent; n8n + LLM agent pipelines; ServiceDesk Plus to Motion orchestration)",
-        "Member of APC's internal AI Taskforce",
-        "Lead infrastructure modernization: VMware ESXi 56+ server estate, Windows/SQL, networking/firewalls",
-        "Security operations lead: migrated managed detection & response from Carbon Black to SentinelOne; triage 150 to 200 alerts/month"
+        "Designed and shipped a production voice AI agent from scratch that fields overnight IT helpdesk calls end to end: it verifies callers against Active Directory, triages emergencies from routine requests, escalates critical incidents to on-call staff, and auto-creates tickets for the rest, cutting non-emergency after-hours calls by roughly 90%.",
+        "Build and run n8n and LLM agent pipelines (ServiceDesk Plus to Motion orchestration) that standardize repeatable work across the property and remove manual handoffs.",
+        "Serve on the internal AI Taskforce, guiding where automation and LLM agents get applied across the business.",
+        "Lead a 56 plus server VMware ESXi estate, Windows and SQL Server, networking, and firewalls, with documented, rollback safe change control and tested disaster recovery.",
+        "Run security operations: migrated managed detection and response from Carbon Black to SentinelOne and triage 150 to 200 alerts per month against ITIL and CIS Controls."
       ]
     },
     {
@@ -35,10 +36,10 @@ const Experience = () => {
       location: "Waukegan, IL",
       period: "2024 - 2025",
       highlights: [
-        "Led a pilot project for a local AI agent using LLMs, n8n, and relational/vector databases to support compliance and risk reduction",
-        "Launched a Self-Service Portal that reduced software deployment time and cut support tickets across 287 endpoints",
-        "Monitored and responded to real-time threats using SentinelOne MDR (migrated from Carbon Black) and incident response protocols, resolving 150 to 200 alerts monthly",
-        "Maintained secure infrastructure across hybrid systems, supporting endpoint management and user education"
+        "Prototyped the company's first local AI agent (LLMs, n8n, relational and vector databases) for compliance and risk reduction, the groundwork that became today's production automation.",
+        "Launched a self service portal that cut software deployment time and reduced support tickets across 287 endpoints.",
+        "Monitored and responded to real time threats with SentinelOne MDR (migrated from Carbon Black), resolving 150 to 200 alerts monthly under defined incident response protocols.",
+        "Hardened and maintained secure infrastructure across hybrid systems, owning endpoint management and user security education."
       ]
     },
 
@@ -49,22 +50,22 @@ const Experience = () => {
       location: "Recife, Brazil",
       period: "2015 - 2023",
       highlights: [
-        "Led the technical operations and platform management for an online English learning start-up",
-        "Architected and managed technical infrastructure using open-source tools (WordPress, Moodle, MySQL, H5P)",
-        "Oversaw website development initiatives, managed digital content deployment, and ensured system reliability",
-        "Developed and supervised the customer technical support function"
+        "Owned all technology for an online first English learning startup for 8 years, working fully remotely as its technical lead.",
+        "Architected and operated the learning platform on open source tools (WordPress, Moodle, MySQL, H5P), keeping it reliable for a distributed, online student base.",
+        "Streamlined and automated content deployment and site operations so a small team could keep shipping without added headcount.",
+        "Built and supervised the customer technical support function end to end."
       ]
     },
     {
       id: 3,
-      company: "ELCOMA Eletrônicos Ltda./VAGALUME WiFi",
+      company: "ELCOMA Eletronicos Ltda./VAGALUME WiFi",
       position: "R&D Dept. Assistant Manager",
       location: "Recife, Brazil",
       period: "2014 - 2015",
       highlights: [
-        "Supported the R&D Manager by identifying bottlenecks in the manufacturing cycle and recommending process improvements",
-        "Implemented streamlined procedures for product assembly and component inventory tracking",
-        "Developed and maintained essential documentation to standardize workflows and support consistent production quality"
+        "Drove process improvements that reduced bottlenecks across the manufacturing cycle and improved consistency.",
+        "Standardized product assembly and component inventory tracking with streamlined, repeatable procedures.",
+        "Authored the documentation and workflow standards that held production quality steady as the team scaled."
       ]
     },
     {
@@ -74,9 +75,9 @@ const Experience = () => {
       location: "Olinda, Brazil",
       period: "2007 - 2012",
       highlights: [
-        "Oversaw routine updates and preventative maintenance for university hardware and software systems",
-        "Ensured operational readiness for 8 computer labs (approx. 240 workstations) and AV equipment across 225 classrooms",
-        "Served on the Mediation and Problem Solving Team, collaborating with Pernambuco Court of Law"
+        "Kept 8 computer labs (about 240 workstations) and AV systems across 225 classrooms operational through proactive maintenance and standardized updates.",
+        "Sustained high uptime for a large, always on academic environment serving thousands of students and faculty.",
+        "Served on the Mediation and Problem Solving Team, partnering with the Pernambuco Court of Law on escalations."
       ]
     },
     {
@@ -86,11 +87,12 @@ const Experience = () => {
       location: "Kennesaw, GA",
       period: "2003 - 2006",
       highlights: [
-        "Delivered technical support to 500+ end-users across 12 states, managing roughly 130 tickets weekly",
-        "Maintained an average resolution time of 10-30 minutes per incident",
-        "Developed formal support procedures, enhancing workflow consistency and productivity"
+        "Ran a service desk supporting 500 plus users across 12 states, a distributed, remote first support model years before it was standard.",
+        "Handled roughly 130 tickets per week at a 10 to 30 minute average resolution time.",
+        "Built the formal support procedures that lifted workflow consistency and team productivity."
       ]
     }
+
   ];
 
   useEffect(() => {
@@ -125,8 +127,9 @@ const Experience = () => {
         <div className="mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-underline">Work Experience</h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
-            A journey through my professional career, showcasing key roles and achievements.
+            Twenty plus years building, automating, and running reliable systems, now with AI at the center, much of it delivered remotely across distributed teams.
           </p>
+
         </div>
         
         <div className="relative">
