@@ -74,10 +74,10 @@ const Projects = () => {
   };
 
   const hermesProject = {
-    title: "Hermes + Honcho — Multi-Agent Fleet",
+    title: "Hermes + Honcho, Multi-Agent Fleet",
     description: [
       "A personal multi-agent system on my own VPS (Docker): multiple Hermes agents across different machines share one centralized memory (\"brain\", via Honcho) and a common skill set, each doing real work on its local machine.",
-      "Per-user memory isolation; role-based permissions are the next phase — a distributed-systems proof of multi-tenant memory isolation, shared skills, and per-desktop deployment."
+      "Per-user memory isolation; role-based permissions are the next phase. A distributed-systems proof of multi-tenant memory isolation, shared skills, and per-desktop deployment."
     ],
     features: [
       { icon: 'network' as const, title: 'Distributed Agents', description: 'Multiple Hermes agents across machines, each acting on its local host.' },
