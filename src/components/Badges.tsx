@@ -10,6 +10,8 @@ interface BadgeData {
   issuedDate: string;
   imageUrl?: string;
   credlyUrl?: string;
+  externalUrl?: string;
+  linkLabel?: string;
   note?: string;
 }
 
