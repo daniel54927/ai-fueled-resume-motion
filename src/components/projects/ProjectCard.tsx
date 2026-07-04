@@ -6,7 +6,7 @@ import { Mail, Bot, Mic, Phone, Activity, Network, LayoutDashboard, ExternalLink
 import { SiReact, SiTypescript, SiPostgresql, SiDocker, SiPython, SiNextdotjs } from 'react-icons/si';
 import N8nIcon from '../icons/N8nIcon';
 
-type FeatureIcon = 'mail' | 'bot' | 'mic' | 'phone' | 'activity' | 'network' | 'dashboard';
+type FeatureIcon = 'mail' | 'bot' | 'mic' | 'phone' | 'activity' | 'network' | 'dashboard' | 'lock';
 
 interface ProjectCardProps {
   title: string;
