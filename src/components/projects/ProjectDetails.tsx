@@ -9,17 +9,26 @@ interface ProjectDetailsProps {
     title: string;
     items: string[];
   };
+  logoUrl?: string;
 }
 
-const ProjectDetails = ({ title, description, results }: ProjectDetailsProps) => {
+const ProjectDetails = ({ title, description, results, logoUrl }: ProjectDetailsProps) => {
 
 
   return (
     <div className="p-8 md:p-12">
-      <div className="flex items-center space-x-2 mb-6">
-        <div className="bg-tech-blue/20 p-3 rounded-full">
-          <N8nIcon className="h-6 w-6 text-tech-blue" />
-        </div>
+      <div className="flex items-center space-x-3 mb-6">
+        {logoUrl ? (
+          <img
+            src={logoUrl}
+            alt={`${title} logo`}
+            className="h-10 w-10 rounded-lg object-contain"
+          />
+        ) : (
+          <div className="bg-tech-blue/20 p-3 rounded-full">
+            <N8nIcon className="h-6 w-6 text-tech-blue" />
+          </div>
+        )}
         <h2 className="text-2xl md:text-3xl font-bold text-white">{title}</h2>
       </div>
       
