@@ -63,6 +63,7 @@ const ProjectCard = ({
   externalLabel,
   externalNote,
   ctaNote,
+  logoUrl,
   onImageClick,
 }: ProjectCardProps) => {
   const featureItems = features.map(feature => ({
