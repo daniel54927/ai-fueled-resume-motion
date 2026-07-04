@@ -6,7 +6,7 @@ import { Mail, Bot, Mic, Phone, Activity, Network, LayoutDashboard, ExternalLink
 import { SiReact, SiTypescript, SiPostgresql, SiDocker, SiPython, SiNextdotjs } from 'react-icons/si';
 import N8nIcon from '../icons/N8nIcon';
 
-type FeatureIcon = 'mail' | 'bot' | 'mic' | 'phone' | 'activity' | 'network' | 'dashboard';
+type FeatureIcon = 'mail' | 'bot' | 'mic' | 'phone' | 'activity' | 'network' | 'dashboard' | 'lock';
 
 interface ProjectCardProps {
   title: string;
@@ -31,6 +31,7 @@ interface ProjectCardProps {
   externalLabel?: string;
   externalNote?: string;
   ctaNote?: string;
+  logoUrl?: string;
   onImageClick?: (src: string, alt: string) => void;
 }
 
@@ -43,6 +44,7 @@ const renderFeatureIcon = (icon: FeatureIcon) => {
     case 'activity': return <Activity className={cls} />;
     case 'network': return <Network className={cls} />;
     case 'dashboard': return <LayoutDashboard className={cls} />;
+    case 'lock': return <Lock className={cls} />;
     case 'bot':
     default: return <Bot className={cls} />;
   }
@@ -61,6 +63,7 @@ const ProjectCard = ({
   externalLabel,
   externalNote,
   ctaNote,
+  logoUrl,
   onImageClick,
 }: ProjectCardProps) => {
   const featureItems = features.map(feature => ({
@@ -103,6 +106,7 @@ const ProjectCard = ({
           title={title}
           description={description}
           results={results}
+          logoUrl={logoUrl}
         />
 
         {hasImages && (
