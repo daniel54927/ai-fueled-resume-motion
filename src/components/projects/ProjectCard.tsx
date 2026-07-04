@@ -70,14 +70,27 @@ const ProjectCard = ({
   }));
 
   const techItems = technologies.map(tech => {
+    const t = tech.toLowerCase();
+    const iconCls = "h-4 w-4 text-tech-blue";
     let icon;
-    if (tech.toLowerCase().includes('n8n')) {
-      icon = <N8nIcon className="h-4 w-4 text-tech-blue" />;
-    } else if (/openai|gpt|llm|claude/i.test(tech)) {
-      icon = <Bot className="h-4 w-4 text-tech-blue" />;
-    } else {
-      icon = <Mail className="h-4 w-4 text-tech-blue" />;
-    }
+    if (t.includes('n8n')) icon = <N8nIcon className={iconCls} />;
+    else if (t.includes('react')) icon = <SiReact className={iconCls} />;
+    else if (t.includes('typescript')) icon = <SiTypescript className={iconCls} />;
+    else if (t.includes('postgres')) icon = <SiPostgresql className={iconCls} />;
+    else if (t.includes('docker')) icon = <SiDocker className={iconCls} />;
+    else if (t.includes('python')) icon = <SiPython className={iconCls} />;
+    else if (t.includes('next')) icon = <SiNextdotjs className={iconCls} />;
+    else if (t.includes('caddy')) icon = <Server className={iconCls} />;
+    else if (t.includes('voice')) icon = <Mic className={iconCls} />;
+    else if (t.includes('llm') || t.includes('gpt') || t.includes('claude')) icon = <Bot className={iconCls} />;
+    else if (t.includes('active directory')) icon = <Network className={iconCls} />;
+    else if (t.includes('servicedesk') || t.includes('service desk')) icon = <Ticket className={iconCls} />;
+    else if (t.includes('vps')) icon = <Server className={iconCls} />;
+    else if (t.includes('vector') || t.includes('database') || t.includes(' db') || t.endsWith('db')) icon = <Database className={iconCls} />;
+    else if (t.includes('auth')) icon = <Lock className={iconCls} />;
+    else if (t.includes('honcho')) icon = <Brain className={iconCls} />;
+    else if (t.includes('hermes')) icon = <Bot className={iconCls} />;
+    else icon = <Cpu className={iconCls} />;
     return { name: tech, icon };
   });
 
