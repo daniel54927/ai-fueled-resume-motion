@@ -106,6 +106,7 @@ const ProjectCard = ({
           title={title}
           description={description}
           results={results}
+          logoUrl={logoUrl}
         />
 
         {hasImages && (
