@@ -41,10 +41,11 @@ const Badges = () => {
       name: "MIT xPRO: Designing & Building AI Products and Services",
       issuer: "MIT xPRO",
       issuedDate: "Oct 2025",
-      imageUrl: "https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/164579250",
+      imageUrl: "https://xpro.mit.edu/static/images/mit-xpro-logo.svg",
       externalUrl: "https://certificates.emeritus.org/52bec1ba-d0c2-429b-b0ae-f4c96d043c96?friendsui=true",
       linkLabel: "View certificate",
-      note: "Professional Certificate"
+      note: "Professional Certificate",
+      logoLight: true
     },
     {
       name: "Cybersecurity Immersive Bootcamp",
