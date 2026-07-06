@@ -107,12 +107,22 @@ const Badges = () => {
       <AnimatedCard className="h-full flex flex-col items-center p-6 dark:bg-tech-dark/50 transition-all group-hover:scale-105">
         <div className="relative mb-6 w-40 h-40 flex items-center justify-center">
           {badge.imageUrl ? (
-            <img
-              src={badge.imageUrl}
-              alt={badge.name}
-              className="max-w-full max-h-full object-contain"
-              style={{ width: "100%", height: "100%" }}
-            />
+            badge.logoLight ? (
+              <div className="bg-white rounded-lg p-4 flex items-center justify-center w-40 h-40">
+                <img
+                  src={badge.imageUrl}
+                  alt={badge.name}
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
+            ) : (
+              <img
+                src={badge.imageUrl}
+                alt={badge.name}
+                className="max-w-full max-h-full object-contain"
+                style={{ width: "100%", height: "100%" }}
+              />
+            )
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-tech-blue/10 rounded-lg border border-tech-blue/20">
               <GraduationCap className="h-16 w-16 text-tech-blue" />
