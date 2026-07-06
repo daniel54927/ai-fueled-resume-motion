@@ -13,6 +13,7 @@ interface BadgeData {
   externalUrl?: string;
   linkLabel?: string;
   note?: string;
+  logoLight?: boolean;
 }
 
 const Badges = () => {
