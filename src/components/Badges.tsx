@@ -13,6 +13,7 @@ interface BadgeData {
   externalUrl?: string;
   linkLabel?: string;
   note?: string;
+  logoLight?: boolean;
 }
 
 const Badges = () => {
@@ -40,10 +41,11 @@ const Badges = () => {
       name: "MIT xPRO: Designing & Building AI Products and Services",
       issuer: "MIT xPRO",
       issuedDate: "Oct 2025",
-      imageUrl: "https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/164579250",
+      imageUrl: "https://xpro.mit.edu/static/images/mit-xpro-logo.svg",
       externalUrl: "https://certificates.emeritus.org/52bec1ba-d0c2-429b-b0ae-f4c96d043c96?friendsui=true",
       linkLabel: "View certificate",
-      note: "Professional Certificate"
+      note: "Professional Certificate",
+      logoLight: true
     },
     {
       name: "Cybersecurity Immersive Bootcamp",
@@ -105,12 +107,22 @@ const Badges = () => {
       <AnimatedCard className="h-full flex flex-col items-center p-6 dark:bg-tech-dark/50 transition-all group-hover:scale-105">
         <div className="relative mb-6 w-40 h-40 flex items-center justify-center">
           {badge.imageUrl ? (
-            <img
-              src={badge.imageUrl}
-              alt={badge.name}
-              className="max-w-full max-h-full object-contain"
-              style={{ width: "100%", height: "100%" }}
-            />
+            badge.logoLight ? (
+              <div className="bg-white rounded-lg p-4 flex items-center justify-center w-40 h-40">
+                <img
+                  src={badge.imageUrl}
+                  alt={badge.name}
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
+            ) : (
+              <img
+                src={badge.imageUrl}
+                alt={badge.name}
+                className="max-w-full max-h-full object-contain"
+                style={{ width: "100%", height: "100%" }}
+              />
+            )
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-tech-blue/10 rounded-lg border border-tech-blue/20">
               <GraduationCap className="h-16 w-16 text-tech-blue" />
