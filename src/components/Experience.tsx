@@ -127,7 +127,7 @@ const Experience = () => {
         <div className="mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-underline">Work Experience</h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
-            Twenty plus years building, automating, and running reliable systems, now with AI at the center, much of it delivered remotely across distributed teams.
+            15+ years building, automating, and running reliable systems, now with AI at the center, much of it delivered remotely across distributed teams.
           </p>
 
         </div>
