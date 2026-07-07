@@ -72,6 +72,14 @@ const Badges = () => {
       note: "Certificate of Completion"
     },
     {
+      name: "Certified Ethical Hacking (CEHv11)",
+      issuer: "EC-Council (via QuickStart)",
+      issuedDate: "2024",
+      imageUrl: "https://images.credly.com/size/340x340/images/33bd505e-1e01-48d9-bdf7-4d62b7a202b1/tempfile20211108-58-k5at1s.png",
+      credlyUrl: "https://www.credly.com/badges/1b6da9e4-40db-4d55-9445-68e92d44ece8/public_url",
+      note: "Certificate of Completion"
+    },
+    {
       name: "Python for All",
       issuer: "QuickStart",
       issuedDate: "Jul 2024",
