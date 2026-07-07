@@ -1,6 +1,6 @@
 
 import { useEffect, useRef } from 'react';
-import { ChevronDown, Briefcase, Cpu, Shield, Compass } from 'lucide-react';
+import { ChevronDown, Briefcase, Cpu, Shield, Compass, GraduationCap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
