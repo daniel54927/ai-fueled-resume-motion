@@ -1,6 +1,6 @@
 
 import { useEffect, useRef } from 'react';
-import { ChevronDown, Briefcase, Cpu, Shield, Compass } from 'lucide-react';
+import { ChevronDown, Briefcase, Cpu, Shield, Compass, GraduationCap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
@@ -23,6 +23,15 @@ const Hero = () => {
         <span className="py-1 px-4 bg-tech-blue/20 text-tech-blue dark:text-white rounded-full text-sm mb-6 animate-fade-in font-medium">
           AI Automation Engineer
         </span>
+
+        <a
+          href="#badges"
+          className="inline-flex items-center gap-2 py-1 px-4 bg-tech-dark/80 backdrop-blur-sm border border-tech-blue/30 rounded-full text-xs md:text-sm mb-6 animate-fade-in font-medium text-white hover:border-tech-blue transition-colors"
+          style={{ animationDelay: '0.1s' }}
+        >
+          <GraduationCap className="h-4 w-4 text-tech-blue" />
+          <span>MIT xPRO: Designing &amp; Building AI Products and Services (2025)</span>
+        </a>
         
         <h1 ref={headingRef} className="text-4xl md:text-6xl font-bold mb-6 opacity-0 text-white">
           Daniel <span className="tech-gradient-text">C. Brown</span>
