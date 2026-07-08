@@ -48,52 +48,16 @@ const Experience = () => {
       company: "InglesFazBem.com.br",
       position: "Technical Lead",
       location: "Recife, Brazil",
-      period: "2015 - 2023",
+      period: "2018 - 2023",
       highlights: [
-        "Owned all technology for an online first English learning startup for 8 years, working fully remotely as its technical lead.",
-        "Architected and operated the learning platform on open source tools (WordPress, Moodle, MySQL, H5P), keeping it reliable for a distributed, online student base.",
-        "Streamlined and automated content deployment and site operations so a small team could keep shipping without added headcount.",
-        "Built and supervised the customer technical support function end to end."
-      ]
-    },
-    {
-      id: 3,
-      company: "ELCOMA Eletronicos Ltda./VAGALUME WiFi",
-      position: "R&D Dept. Assistant Manager",
-      location: "Recife, Brazil",
-      period: "2014 - 2015",
-      highlights: [
-        "Drove process improvements that reduced bottlenecks across the manufacturing cycle and improved consistency.",
-        "Standardized product assembly and component inventory tracking with streamlined, repeatable procedures.",
-        "Authored the documentation and workflow standards that held production quality steady as the team scaled."
-      ]
-    },
-    {
-      id: 4,
-      company: "UNIAESO BARROS MELO UNIVERSITY",
-      position: "Senior Support Analyst",
-      location: "Olinda, Brazil",
-      period: "2007 - 2012",
-      highlights: [
-        "Kept 8 computer labs (about 240 workstations) and AV systems across 225 classrooms operational through proactive maintenance and standardized updates.",
-        "Sustained high uptime for a large, always on academic environment serving thousands of students and faculty.",
-        "Served on the Mediation and Problem Solving Team, partnering with the Pernambuco Court of Law on escalations."
-      ]
-    },
-    {
-      id: 5,
-      company: "KEMIRA CHEMICALS Inc",
-      position: "Service Desk Manager",
-      location: "Kennesaw, GA",
-      period: "2003 - 2006",
-      highlights: [
-        "Ran a service desk supporting 500 plus users across 12 states, a distributed, remote first support model years before it was standard.",
-        "Handled roughly 130 tickets per week at a 10 to 30 minute average resolution time.",
-        "Built the formal support procedures that lifted workflow consistency and team productivity."
+        "Built and ran the entire online learning platform solo: selected and migrated to Moodle, self-hosted and maintained it, and converted the founder's paper-based teaching method into interactive H5P activities.",
+        "Sole technical support for the full student base across web and mobile (iOS and Android): access, offline use, and video-delivery performance.",
+        "Ran GDPR-aligned operations: access logs, records of processing, security monitoring, and automated backups for business continuity."
       ]
     }
 
   ];
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
