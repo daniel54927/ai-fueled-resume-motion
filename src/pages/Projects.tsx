@@ -92,20 +92,19 @@ const Projects = () => {
   };
 
   const dashboardProject = {
-    title: "deepfrog Project Dashboard",
+    title: "Enterprise Project Dashboard",
     description: [
-      "A private dashboard I built to track 56+ active projects. It's a Next.js app self-hosted on my VPS behind Caddy, with a vector-database \"brain\" for semantic search across project history."
+      "A project and infrastructure tracking dashboard I designed and built for a regulated enterprise environment. It gives leadership real-time portfolio visibility across dozens of active initiatives, backed by a vector-database \"brain\" for semantic search across project history.",
+      "Runs in production behind authentication. Because it holds sensitive internal data, it is not publicly viewable and cannot be demoed live."
     ],
     features: [
-      { icon: 'dashboard' as const, title: '56+ Projects Tracked', description: 'One pane of glass across every active initiative.' },
+      { icon: 'dashboard' as const, title: 'Portfolio Visibility', description: 'Real-time status across dozens of active initiatives, built for leadership.' },
       { icon: 'bot' as const, title: 'Semantic Search', description: 'Vector-database brain surfaces past decisions and context on demand.' },
-      { icon: 'network' as const, title: 'Self-Hosted', description: 'Next.js app on my own VPS, fronted by Caddy.' },
+      { icon: 'network' as const, title: 'Self-Hosted & Secured', description: 'Next.js app on private infrastructure, behind authentication.' },
     ],
     technologies: ['Next.js', 'Caddy', 'VPS', 'Vector DB'],
-    impactText: "A personal command center that keeps a large, parallel project portfolio coherent and searchable.",
-    externalUrl: 'https://projects.deepfrog.app',
-    externalLabel: 'Visit dashboard',
-    externalNote: 'login-gated',
+    impactText: "Keeps a large, parallel project portfolio coherent and searchable for the teams that depend on it.",
+    ctaNote: "In production. Contents are confidential, so no public demo.",
   };
 
   return (
