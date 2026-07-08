@@ -32,6 +32,8 @@ interface ProjectCardProps {
   externalNote?: string;
   ctaNote?: string;
   logoUrl?: string;
+  videoUrl?: string;
+  posterUrl?: string;
   onImageClick?: (src: string, alt: string) => void;
 }
 
