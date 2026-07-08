@@ -66,6 +66,8 @@ const ProjectCard = ({
   externalNote,
   ctaNote,
   logoUrl,
+  videoUrl,
+  posterUrl,
   onImageClick,
 }: ProjectCardProps) => {
   const featureItems = features.map(feature => ({
