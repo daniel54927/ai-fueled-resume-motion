@@ -32,6 +32,8 @@ interface ProjectCardProps {
   externalNote?: string;
   ctaNote?: string;
   logoUrl?: string;
+  videoUrl?: string;
+  posterUrl?: string;
   onImageClick?: (src: string, alt: string) => void;
 }
 
@@ -64,6 +66,8 @@ const ProjectCard = ({
   externalNote,
   ctaNote,
   logoUrl,
+  videoUrl,
+  posterUrl,
   onImageClick,
 }: ProjectCardProps) => {
   const featureItems = features.map(feature => ({
@@ -98,10 +102,12 @@ const ProjectCard = ({
   });
 
   const hasImages = images && images.length > 0;
+  const hasVideo = !!videoUrl;
+  const hasMedia = hasImages || hasVideo;
 
   return (
     <div className="bg-tech-dark/80 border border-tech-blue/20 rounded-xl overflow-hidden shadow-lg mb-24 animate-on-scroll opacity-0">
-      <div className={hasImages ? "md:grid md:grid-cols-2 gap-0" : ""}>
+      <div className={hasMedia ? "md:grid md:grid-cols-2 gap-0" : ""}>
         <ProjectDetails
           title={title}
           description={description}
@@ -109,18 +115,32 @@ const ProjectCard = ({
           logoUrl={logoUrl}
         />
 
-        {hasImages && (
+        {hasMedia && (
           <div className="md:sticky md:top-24 md:self-start bg-tech-dark/80 border-l border-tech-blue/10 p-8 h-fit pb-10">
-            <div
-              className="rounded-lg overflow-hidden mb-6 cursor-pointer transition-transform hover:scale-105 shadow-xl"
-              onClick={() => onImageClick?.(images![0].src, images![0].alt)}
-            >
-              <img
-                src={images![0].src}
-                alt={images![0].alt}
-                className="w-full h-auto object-cover"
-              />
-            </div>
+            {hasVideo ? (
+              <div className="rounded-lg overflow-hidden mb-6 shadow-xl">
+                <video
+                  src={videoUrl}
+                  poster={posterUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            ) : (
+              <div
+                className="rounded-lg overflow-hidden mb-6 cursor-pointer transition-transform hover:scale-105 shadow-xl"
+                onClick={() => onImageClick?.(images![0].src, images![0].alt)}
+              >
+                <img
+                  src={images![0].src}
+                  alt={images![0].alt}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            )}
             {externalUrl && (
               <a
                 href={externalUrl}
@@ -135,6 +155,7 @@ const ProjectCard = ({
           </div>
         )}
       </div>
+
 
       <ProjectFeatures
         features={featureItems}

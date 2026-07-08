@@ -42,11 +42,11 @@ const Hero = () => {
         </p>
 
         <p className="max-w-2xl mx-auto text-base md:text-lg text-tech-blue mb-2 animate-fade-in font-medium italic" style={{ animationDelay: '0.3s' }}>
-          Everything here is live. Call it, click it, or watch it run.
+          Everything here runs in production. Live demos available on request.
         </p>
 
         <p className="max-w-2xl mx-auto text-sm md:text-base text-gray-400 mb-8 animate-fade-in" style={{ animationDelay: '0.35s' }}>
-          One of my agents cut after-hours IT calls by roughly 90%. You can phone it right now.
+          One of my agents cut after-hours IT calls by roughly 90%. I will walk you through a live demo on request.
         </p>
         
         <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>

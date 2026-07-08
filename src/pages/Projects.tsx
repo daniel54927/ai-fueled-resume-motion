@@ -87,6 +87,8 @@ const Projects = () => {
     ],
     technologies: ['Docker', 'VPS', 'Hermes', 'Honcho', 'Python', 'Vector DB'],
     impactText: "A working proof of multi-tenant memory isolation, shared skills, and per-desktop deployment for a personal AI fleet.",
+    videoUrl: "/lovable-uploads/hermes_family_explainer.mp4",
+    posterUrl: "/lovable-uploads/hermes_family_explainer.jpg",
   };
 
   const dashboardProject = {
