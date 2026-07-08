@@ -101,6 +101,7 @@ const ProjectCard = ({
     return { name: tech, icon };
   });
 
+  const hasImages = images && images.length > 0;
   const hasVideo = !!videoUrl;
   const hasMedia = hasImages || hasVideo;
 
