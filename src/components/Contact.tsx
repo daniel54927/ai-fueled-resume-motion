@@ -99,6 +99,9 @@ const Contact = () => {
           <p className="text-gray-200 max-w-3xl mx-auto">
             Have a question or want to start your digital adventure? Feel free to contact me.
           </p>
+          <p className="mt-6 text-lg md:text-xl font-medium text-tech-blue max-w-3xl mx-auto border-l-4 border-tech-purple pl-4 py-2 bg-tech-blue/5 rounded">
+            Have a real problem? Give me a challenge and I'll show you the solution, live or as a full unedited recording.
+          </p>
         </div>
         
         <div className="grid md:grid-cols-2 gap-12">
