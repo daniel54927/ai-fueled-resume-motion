@@ -55,8 +55,11 @@ const renderFeatureIcon = (icon: FeatureIcon) => {
     case 'network': return <Network className={cls} />;
     case 'dashboard': return <LayoutDashboard className={cls} />;
     case 'lock': return <Lock className={cls} />;
+    case 'book': return <BookOpen className={cls} />;
+    case 'chart': return <LineChart className={cls} />;
     case 'bot':
     default: return <Bot className={cls} />;
+
   }
 };
 
