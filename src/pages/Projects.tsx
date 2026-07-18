@@ -74,6 +74,34 @@ const Projects = () => {
     externalUrl: 'https://pokecheck.deepfrog.app',
     externalLabel: 'View live app',
     externalNote: 'login-gated, access on request',
+    previewPanels: [
+      { node: <PokeCheckCookbook />, caption: 'Bilingual low-carb cookbook, net-carb-led.' },
+      { node: <PokeCheckTimeline />, caption: 'Records-only timeline, shown here with demo data. It never calculates a dose.' },
+    ],
+  };
+
+  const examGeniusProject = {
+    title: "ExamGenius, AI-Assisted Exam Generation and Auto-Grading",
+    description: [
+      "A teacher platform I built that creates exams with AI, prints a per-student answer sheet with a unique pre-printed code, and grades the filled-in sheets from a phone photo using computer vision. No dedicated scanner, no manual grading.",
+      "Field-tested on real devices ahead of a classroom pilot. Bilingual in English and Portuguese, built for both Brazilian and US school systems."
+    ],
+    features: [
+      { icon: 'bot' as const, title: 'AI Exam Generation', description: 'Builds assessments with AI, including from an uploaded book or PDF.' },
+      { icon: 'activity' as const, title: 'Phone-Camera Grading', description: 'Computer vision reads a filled-in answer sheet from a single photo.' },
+      { icon: 'dashboard' as const, title: 'Per-Student Sheets and Grade Book', description: 'Unique-coded sheets self-route into a class grade book with CSV export.' },
+    ],
+    technologies: ['React', 'TypeScript', 'Supabase', 'Computer Vision', 'PWA'],
+    impactText: "A production computer-vision pipeline shipped end to end: generate, print, capture, grade. Full-stack and mobile-first, proven on real hardware before a classroom used it.",
+    externalUrl: 'https://exam.deepfrog.app',
+    externalLabel: 'View live app',
+    externalNote: 'login-gated, demo on request',
+    previewPanels: [
+      { node: <ExamGeniusDashboard />, caption: 'One place to create, print, scan, and grade.' },
+      { node: <ExamGeniusScan />, caption: 'The core feature: a phone photo in, a grade out.' },
+      { node: <ExamGeniusBuilder />, caption: 'AI builds it, and every sheet is per-student and self-routing.' },
+      { node: <ExamGeniusNotas />, caption: 'Auto-graded results land in a class grade book.' },
+    ],
   };
 
   const hermesProject = {
