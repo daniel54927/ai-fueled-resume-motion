@@ -2,11 +2,17 @@
 import React from 'react';
 import ProjectDetails from './ProjectDetails';
 import ProjectFeatures from './ProjectFeatures';
+import AppPreviewFrame from './AppPreviewFrame';
 import { Mail, Bot, Mic, Phone, Activity, Network, LayoutDashboard, ExternalLink, Cpu, Server, Ticket, Database, Lock, Brain } from 'lucide-react';
 import { SiReact, SiTypescript, SiPostgresql, SiDocker, SiPython, SiNextdotjs } from 'react-icons/si';
 import N8nIcon from '../icons/N8nIcon';
 
 type FeatureIcon = 'mail' | 'bot' | 'mic' | 'phone' | 'activity' | 'network' | 'dashboard' | 'lock';
+
+export interface PreviewPanel {
+  node: React.ReactNode;
+  caption: string;
+}
 
 interface ProjectCardProps {
   title: string;
@@ -34,6 +40,7 @@ interface ProjectCardProps {
   logoUrl?: string;
   videoUrl?: string;
   posterUrl?: string;
+  previewPanels?: PreviewPanel[];
   onImageClick?: (src: string, alt: string) => void;
 }
 
@@ -68,6 +75,7 @@ const ProjectCard = ({
   logoUrl,
   videoUrl,
   posterUrl,
+  previewPanels,
   onImageClick,
 }: ProjectCardProps) => {
   const featureItems = features.map(feature => ({
@@ -103,7 +111,8 @@ const ProjectCard = ({
 
   const hasImages = images && images.length > 0;
   const hasVideo = !!videoUrl;
-  const hasMedia = hasImages || hasVideo;
+  const hasPreviews = !!previewPanels && previewPanels.length > 0;
+  const hasMedia = hasImages || hasVideo || hasPreviews;
 
   return (
     <div className="bg-tech-dark/80 border border-tech-blue/20 rounded-xl overflow-hidden shadow-lg mb-24 animate-on-scroll opacity-0">
@@ -117,7 +126,22 @@ const ProjectCard = ({
 
         {hasMedia && (
           <div className="md:sticky md:top-24 md:self-start bg-tech-dark/80 border-l border-tech-blue/10 p-8 h-fit pb-10">
-            {hasVideo ? (
+            {hasPreviews ? (
+              <div className="space-y-4">
+                <AppPreviewFrame caption={previewPanels![0].caption} size="lg">
+                  {previewPanels![0].node}
+                </AppPreviewFrame>
+                {previewPanels!.length > 1 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {previewPanels!.slice(1).map((p, i) => (
+                      <AppPreviewFrame key={i} caption={p.caption} size="sm">
+                        {p.node}
+                      </AppPreviewFrame>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : hasVideo ? (
               <div className="rounded-lg overflow-hidden mb-6 shadow-xl">
                 <video
                   src={videoUrl}
@@ -141,12 +165,12 @@ const ProjectCard = ({
                 />
               </div>
             )}
-            {externalUrl && (
+            {externalUrl && !hasPreviews && (
               <a
                 href={externalUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-tech-blue hover:text-tech-blue/90 font-medium"
+                className="inline-flex items-center text-tech-blue hover:text-tech-blue/90 font-medium mt-4"
               >
                 <span>Open live app</span>
                 <ExternalLink className="ml-2 h-4 w-4" />
