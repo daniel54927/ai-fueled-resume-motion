@@ -6,6 +6,8 @@ import Header from '../components/Header';
 import ImageModal from '../components/ImageModal';
 import ProjectsHeader from '../components/projects/ProjectsHeader';
 import ProjectCard from '../components/projects/ProjectCard';
+import { ExamGeniusDashboard, ExamGeniusScan, ExamGeniusBuilder, ExamGeniusNotas } from '../components/projects/previews/ExamGeniusPreviews';
+import { PokeCheckCookbook, PokeCheckTimeline } from '../components/projects/previews/PokeCheckPreviews';
 
 const Projects = () => {
   useEffect(() => {
