@@ -62,23 +62,25 @@ const Projects = () => {
     logoUrl: "https://pokecheck.deepfrog.app/icon-512.png",
     description: [
       "A records-only glucose-monitoring app I built for my family's Type 1 Diabetes management. Deliberate safety boundary: it records and summarizes readings. It never calculates insulin doses.",
-      "Admin-provisioned authentication. The clinical summary was adopted by our physician."
+      "It pairs a recipe book for diabetics, low-carb Bernstein-method meals chosen to keep blood sugar and insulin down through what you eat, with a doctor-facing chart that overlays the patient's real finger-prick readings and meal markers on the continuous glucose monitor graph. A physician can see true finger-stick readings against the monitor and know what the patient was eating. Admin-provisioned authentication, and the clinical summary was adopted by our physician."
     ],
     features: [
-      { icon: 'activity' as const, title: 'Records-Only by Design', description: 'Logs and summarizes readings; never calculates insulin doses.' },
-      { icon: 'bot' as const, title: 'Clinical Summary', description: 'Physician-adopted summary format used in real T1D care.' },
+      { icon: 'activity' as const, title: 'Records-Only by Design', description: 'Logs and summarizes readings. Never calculates insulin doses.' },
+      { icon: 'book' as const, title: 'Diabetic Recipe Book', description: 'Low-carb Bernstein meals chosen to keep blood sugar and insulin down through what you eat.' },
+      { icon: 'chart' as const, title: 'Fingerstick and Meals on CGM', description: 'Overlays real finger-prick readings and meals on the CGM graph, so the doctor sees true readings against the monitor and what the patient ate.' },
       { icon: 'lock' as const, title: 'Admin-Provisioned Auth', description: 'Access is admin-controlled. No open sign-ups.' },
     ],
     technologies: ['React', 'TypeScript', 'Postgres', 'Auth'],
-    impactText: "A safe, family-facing T1D companion whose clinical summary was adopted by our physician. Proof that AI-adjacent tooling can add value while respecting hard clinical safety boundaries.",
+    impactText: "A safe, family-facing T1D companion: a diabetic recipe book that steers blood sugar and insulin through food, plus a doctor-facing overlay of real finger-prick readings and meals on the CGM graph. Its clinical summary was adopted by our physician, all while respecting a hard no-dosing safety boundary.",
     externalUrl: 'https://pokecheck.deepfrog.app',
     externalLabel: 'View live app',
     externalNote: 'login-gated, access on request',
     previewPanels: [
       { node: <PokeCheckCookbook />, caption: 'Bilingual low-carb cookbook, net-carb-led.' },
-      { node: <PokeCheckTimeline />, caption: 'Records-only timeline, shown here with demo data. It never calculates a dose.' },
+      { node: <PokeCheckTimeline />, caption: 'Real finger-prick readings and meals overlaid on the CGM graph, for the doctor. Demo data.' },
     ],
   };
+
 
   const examGeniusProject = {
     title: "ExamGenius, AI-Assisted Exam Generation and Auto-Grading",

@@ -81,8 +81,22 @@ export const PokeCheckTimeline = () => {
             <rect x="0" y={bandTop} width={width} height={bandBottom - bandTop}
               fill="rgba(52,229,160,0.08)" />
             <text x="4" y={bandTop - 2} fontSize="7" fill={mutedC}>70 to 180</text>
-            {/* line */}
+            {/* CGM sensor line */}
             <path d={path} fill="none" stroke={mint} strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+            {/* meal markers at indices 2, 10, 18 */}
+            {[2, 10, 18].map(i => {
+              const x = i * stepX;
+              return (
+                <g key={`meal-${i}`}>
+                  <line x1={x} x2={x} y1={height} y2={height - 10} stroke="#f5b642" strokeWidth="1.2" />
+                  <circle cx={x} cy={height - 11} r="1.6" fill="#f5b642" />
+                </g>
+              );
+            })}
+            {/* finger-prick markers */}
+            {[{ i: 3, v: 128 }, { i: 9, v: 104 }, { i: 15, v: 132 }, { i: 21, v: 168 }].map(({ i, v }) => (
+              <circle key={`fp-${i}`} cx={i * stepX} cy={toY(v)} r="2.5" fill="#e6f5ee" stroke={mint} strokeWidth="1" />
+            ))}
           </svg>
           <div className="flex items-center justify-between mt-2 text-[10px]">
             <div>
@@ -91,7 +105,22 @@ export const PokeCheckTimeline = () => {
             </div>
             <div style={{ color: mutedC }}>target 70 to 180 mg/dL</div>
           </div>
+          <div className="flex items-center gap-3 mt-1.5 text-[9px]" style={{ color: mutedC }}>
+            <div className="flex items-center gap-1">
+              <svg width="14" height="6"><line x1="0" y1="3" x2="14" y2="3" stroke={mint} strokeWidth="1.5" /></svg>
+              <span>CGM sensor</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <svg width="8" height="8"><circle cx="4" cy="4" r="2.5" fill="#e6f5ee" stroke={mint} strokeWidth="1" /></svg>
+              <span>finger poke</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <svg width="6" height="10"><line x1="3" y1="10" x2="3" y2="1" stroke="#f5b642" strokeWidth="1.2" /><circle cx="3" cy="1" r="1.4" fill="#f5b642" /></svg>
+              <span>meal</span>
+            </div>
+          </div>
         </div>
+
         <div className="text-[9px]" style={{ color: mutedC }}>
           records-only. never calculates a dose. demo data shown.
         </div>

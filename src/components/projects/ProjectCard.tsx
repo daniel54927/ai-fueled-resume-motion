@@ -3,11 +3,12 @@ import React from 'react';
 import ProjectDetails from './ProjectDetails';
 import ProjectFeatures from './ProjectFeatures';
 import AppPreviewFrame from './AppPreviewFrame';
-import { Mail, Bot, Mic, Phone, Activity, Network, LayoutDashboard, ExternalLink, Cpu, Server, Ticket, Database, Lock, Brain } from 'lucide-react';
+import { Mail, Bot, Mic, Phone, Activity, Network, LayoutDashboard, ExternalLink, Cpu, Server, Ticket, Database, Lock, Brain, BookOpen, LineChart } from 'lucide-react';
 import { SiReact, SiTypescript, SiPostgresql, SiDocker, SiPython, SiNextdotjs } from 'react-icons/si';
 import N8nIcon from '../icons/N8nIcon';
 
-type FeatureIcon = 'mail' | 'bot' | 'mic' | 'phone' | 'activity' | 'network' | 'dashboard' | 'lock';
+type FeatureIcon = 'mail' | 'bot' | 'mic' | 'phone' | 'activity' | 'network' | 'dashboard' | 'lock' | 'book' | 'chart';
+
 
 export interface PreviewPanel {
   node: React.ReactNode;
@@ -54,8 +55,11 @@ const renderFeatureIcon = (icon: FeatureIcon) => {
     case 'network': return <Network className={cls} />;
     case 'dashboard': return <LayoutDashboard className={cls} />;
     case 'lock': return <Lock className={cls} />;
+    case 'book': return <BookOpen className={cls} />;
+    case 'chart': return <LineChart className={cls} />;
     case 'bot':
     default: return <Bot className={cls} />;
+
   }
 };
 
