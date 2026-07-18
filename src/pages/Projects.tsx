@@ -158,6 +158,7 @@ const Projects = () => {
           <div className="section-container">
             <ProjectCard {...voiceAgentProject} onImageClick={openImageModal} />
             <ProjectCard {...pokeCheckProject} onImageClick={openImageModal} />
+            <ProjectCard {...examGeniusProject} onImageClick={openImageModal} />
             <ProjectCard {...hermesProject} onImageClick={openImageModal} />
             <ProjectCard {...dashboardProject} onImageClick={openImageModal} />
           </div>
